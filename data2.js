@@ -6,6 +6,8 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const date = require('date-and-time')
 var util = require('util')
+const multer = require("multer");
+const compress_images = require("compress-images")
 var cookie = require('cookie-parser');
 
 var c;
@@ -149,6 +151,9 @@ app.post('/index3', async(req, res) => {
                
                var login=query(`insert into login(user_id,login_time,failed_attempt) values('${data[0].id}','${value}','${c}')`)
              
+               var token_id=jwt.sign(data[0].id,'id')
+               res.cookie('home',token_id)
+
                var token = jwt.sign(data[0].name, 'prachi');
                console.log(token);
 
@@ -196,5 +201,99 @@ app.get('/username', (req, res) => {
    })
 })
 
+
+////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//////////////////////////
+//tweet
+
+app.get('/index',(req,res) =>{
+   var cook = req.cookies.authcookie;
+   console.log("cookie: ", cook);
+   if (!cook) {
+      var str = "";
+      c=0;
+      res.render('login.ejs', { str,c});
+      
+   }else{
+      var data="";
+      res.render('tweet.ejs',{data});
+   }
+})
+
+app.get('/index1',(req,res) =>
+{
+   var cook = req.cookies.authcookie;
+   console.log("cookie: ", cook);
+   if (!cook) {
+      var str = "";
+      c=0;
+      res.render('login.ejs', { str,c});
+      
+   }else{
+    res.render('tweet_add.ejs');
+   }
+})
+
+var storage = multer.diskStorage({
+   destination: function (req, file, callback) {
+       callback(null, './public/files');
+   },
+   filename: function (req, file, callback) {
+       callback(null, file.originalname);
+   }
+});
+
+var upload = multer({ storage: storage }).single('img');
+
+app.post('/tweet_upload', async (req, res) => {
+   var id = req.cookies.home;
+   var token = jwt.verify(id, 'id');
+   console.log(token)
+   upload(req, res, function (err) {
+      
+       if (err) {
+           console.log(err)
+       } else {
+           var FileName = req.file.filename;
+           console.log(FileName);
+
+           var imgsrc = '/files/' + req.file.filename;
+           var insertData = `INSERT INTO user_tweets(u_id,heading,description,media_url)VALUES('${token}','${req.body.heading}','${req.body.desc}','${imgsrc}')`
+               conn.query(insertData, (err, result) => {
+               if (err) throw err
+                  //res.send("file uploaded");
+                  res.redirect("/tweet_show")
+         
+               });
+           
+       }
+   })
+
+
+});
+
+
+app.get('/tweet_show',(req,res) =>
+{
+   var cook = req.cookies.authcookie;
+   console.log("cookie: ", cook);
+   if (!cook) {
+      var str = "";
+      c=0;
+      res.render('login.ejs', { str,c});
+      
+   }else{
+      var id = req.cookies.home;
+      var token = jwt.verify(id, 'id');
+      console.log(token)
+      var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
+      conn.query(image,(err,data) =>{
+      if(err) throw err;
+      console.log(data);
+      res.render('tweet.ejs',{data});
+      })
+   }
+})
 
 app.listen(2080);

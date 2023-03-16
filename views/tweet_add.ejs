@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
+        <label for="text">Heading:</label>
+        <textarea  id="text" name="heading"></textarea>
+        <p id="err"></p>
+        <br>
+        <label for="textarea">Description:</label>
+        <textarea  id="textarea1" name="desc"></textarea>
+        <p id="err1"></p>
+        <br>
+        <img id="preview">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="img" onchange="previewImage(event)"/>
+        <p id="err2"></p>
+       <br>
+    
+        <input type="submit" value="submit"/>
+    </form>
+
+
+    <script>
+      
+
+        function function_tweet()
+        {
+            var tweet_text = document.getElementById("textarea1").value;
+            var tweet_heading = document.getElementById("text").value;
+            var tweet_image = document.getElementById("image");
+    
+
+         if( tweet_heading.length > 40)
+         {
+             document.getElementById("err1").innerHTML="enter valid text";
+             return false;
+         }
+         else{
+            document.getElementById("err1").innerHTML = "";
+         }
+
+        if( tweet_text.length >140)
+         {
+             document.getElementById("err1").innerHTML="enter valid text";
+             return false;
+         }
+         else{
+            document.getElementById("err1").innerHTML = "";
+         }
+
+         var imgsize =Math.round(tweet_image.files[0].size/1048576);
+         if(imgsize > 2)
+            { 
+                document.getElementById("err2").innerHTML = "upload image whose size is less than 2mb";
+                return false;
+            }
+            else
+            {
+                document.getElementById("err1").innerHTML = "";
+            }
+       
+        }
+
+        const previewImage = (event) => {
+/**
+* Get the selected files.
+*/
+const imageFiles = event.target.files;
+/**
+* Count the number of files selected.
+*/
+const imageFilesLength = imageFiles.length;
+/**
+* If at least one image is selected, then proceed to display the preview.
+*/
+if (imageFilesLength > 0) {
+/**
+* Get the image path.
+*/
+const imageSrc = URL.createObjectURL(imageFiles[0]);
+/**
+* Select the image preview element.
+*/
+const imagePreviewElement = document.querySelector("#preview");
+/**
+* Assign the path to the image preview element.
+*/
+imagePreviewElement.src = imageSrc;
+/**
+* Show the element by changing the display value to "block".
+*/
+imagePreviewElement.style.display = "block";
+}
+};
+    </script>
+</body>
+</html>
