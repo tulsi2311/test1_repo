@@ -19,7 +19,18 @@ const login = asyncHandler(async (req, res) => {
 
       var token = jwt.verify(cook, 'prachi');
       console.log("token verify", token);
-      res.render('home.ejs', { data: token });
+      // res.render('home.ejs', { data: token });
+      var id = req.cookies.home;
+      var token_id = jwt.verify(id, 'id');
+      console.log(token)
+      //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
+      var sql=await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
+      if(sql){
+         res.render('home.ejs', { data:sql,data2:token });
+      }else{
+         res.render('home.ejs', { data2: token });
+      }
+
 
    }
 
@@ -88,8 +99,18 @@ const login2 = asyncHandler(async (req, res) => {
 
       var token = jwt.verify(cook, 'prachi');
       console.log("token verify", token);
-      res.render('home.ejs', { data: token });
-
+      //res.render('home.ejs', { data: token });
+      var id = req.cookies.home;
+      var token_id = jwt.verify(id, 'id');
+      console.log(token)
+      //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
+      var sql=await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
+      if(sql){
+         res.render('home.ejs', { data:sql,data2:token });
+      }else{
+         console.log("else")
+         res.render('home.ejs', { data2: token });
+      }
    }
 })
 
