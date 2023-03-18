@@ -13,8 +13,12 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
+    <div class="container_main">
+
+    
+        <div class="home_row">
+
+        <div class="home_tab1">
 
             <section>
                 <div class="col_nav">
@@ -27,47 +31,82 @@
                         
                         <div class="sidebarOption">
                             <span class="nav-icons"><i class="fa-solid fa-user"></i></span>
-                            <h2>Profile</h2>
+                            <a href="/prof/prof">Profile</a>
                         </div>
 
                         <div class="tweet_tag">
-                            <a href="/tweet/tweet_add" class="tweet">Tweet</a>
+                            <a href="/tweet/tweet_add" class="tweet_p">Tweet</a>
                         </div>
                         <h1>Welcome <%=data2 %></h1>
                         <a href="/logout/logout"><h2>Logout</h2></a>
                     </div>
-                </div>
+                <!-- </div> -->
             </section>
 
 
-
+         </div>
+        
+         <div class="home_tab2">
             <section>
-                <div class="col_tweet">
-                    <h2>Home</h2>
+                <div class="container">
                     <%
                         const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
                         const array_of_allowed_videos = ['mp4','gif'];
-                        for(var i=0;i<data.length;i++){
-                            console.log(data[i].media_url)
-                            const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
-                            if (array_of_allowed_files.includes(file_extension)) {
                     %>
-                    <h3>Heading:  <%=data[i].heading%></h3>
-                    <h4>Description: <%=data[i].description%></h4>
-                    <img src="<%=data[i].media_url%>" width="25%"/>
-                    <%
-                        }else{
-                     %>
-                     <video width="320" height="240" controls>
-                        <source src="<%=data[i].media_url%>" type="video/mp4">
-                    </video>
-                    <%
-                         } }
-                    %>
-                    
+                    <% for(var i=0;i<data.length;i++) { %>
+                      
+                            <div class="tweet">
+                                    <div class="test_col_row">
+                                        <div class="text_col1">
+                                            <div class="img1"><img src="/files/profile-img.png"></div>
+                                        </div>
+                                        <div class="text_col2">
+                                            <a href="">Jaquon Hart</a>
+                                            <p class="skill"><%=data[i].description%></p>
+                                            <%  const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
+                                                if (array_of_allowed_files.includes(file_extension)) {
+                                            %>
+                                            <img id="tweet_img" src="<%=data[i].media_url%>" />
+                                            <% }else{ %>
+                                                <video width="320" height="240" controls>
+                                                    <source src="<%=data[i].media_url%>" type="video/mp4">
+                                                </video>
+                                            <% }%>
+                                            <div class="icon">
+                                                <div class="insta">
+                                                    <div class="icon_row">
+                                                        <a href=""><i class="fa fa-thumbs-up"></i></a>
+                                                        <p>10</p>
+                                                      <div class="icon_row">
+                                                        <div class="icon_col">
+                                                            <a href=""><i class="fas fa-comment"></i></a>
+                                                            <p>10</p>
+                                                        </div>
+                                                        
+                                                      <div class="icon_row">
+                                                        <div class="icon_col">
+                                                            <a href=""><i class="fa fa-retweet"></i></a>
+                                                      <p>10</p>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                   
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                      
+                            </div>
+                        </div>
+                        </div>
+                        
+                   <% } %>
+                
                 </div>
             </section>
-
+            </div>
+       
+            <div class="home_tab3">
             <section>
                 <div class="col_search">
                     <!-- <div class="widgets__input">
@@ -89,9 +128,10 @@
                     </div>
             </section>
 
-
+          </div>
         </div>
     </div>
+
 </body>
 
 </html>

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/tweet_post.css">
     <title>Document</title>
 </head>
 <body>
-    <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
+    <!-- <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
         <label for="text">Heading:</label>
         <textarea  id="text" name="heading"></textarea>
         <p id="err"></p>
@@ -23,8 +25,31 @@
        <br>
     
         <input type="submit" value="submit"/>
+    </form> -->
+    <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
+    <div class="container">
+        <div class="post_row">
+              <div class="text_col1">
+                  <div class="img1"><img src="/files/profile-img.png"></div>
+              </div>
+              <div class="text_col2">
+                 <input type="text" name="heading" placeholder="Tweet heading" />
+                 <p id="err"></p>
+                   </div>
+        </div>
+        <div class="happen">
+          <textarea name="desc" placeholder="What's happening?"></textarea>
+          <p id="err1"></p>
+        </div>
+      <hr class="line">
+            <div class="icon">
+                <label for="image"><i class="fa-solid fa-image fa-3x"></i></label>
+                <input type="file" id="image" name="img"/>
+                <p id="err2"></p>
+            </div>   
+            <input type="submit" value="submit"/>
+      </div>
     </form>
-
 
     <script>
       

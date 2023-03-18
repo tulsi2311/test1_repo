@@ -119,18 +119,21 @@ input {
 /* --------------------------------------HOME------PAGE-------------------------------------- */
 
 * {
+    /* box-sizing: border-box; */
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
 body {
     margin: 0px;
 }
-
-.container {
+/* homepage bharti css */
+/* .container {
     max-width: 84%;
     margin: 0 auto;
     padding: 0 16px;
-}
+} */
 
 /* .column {
     float: left;
@@ -148,6 +151,13 @@ body {
     /* position: relative;
     position: sticky; */
 }
+.container {
+
+   
+    margin:0 auto;
+    padding: 0 16px;
+    border:1px solid grey;
+}
 
 .col_tweet {
     float: left;
@@ -156,6 +166,68 @@ body {
     border-left: 1px solid rgba(0, 0, 0, 0.192);
     border-right: 1px solid rgba(0, 0, 0, 0.192);
 }
+
+#tweet_img
+{
+  max-width:450px;
+    border-radius: 5px;
+    margin-top:10px;
+}
+.tweet{
+    border:1px solid grey;
+    margin:0 -16px;
+}
+
+.test_col_row
+{
+    padding-top:20px;
+    display:flex;
+    flex-wrap: wrap;
+}
+.text_col1{
+    width: 15%;
+    padding-left:20px;
+}
+.text_col2{
+    width: 85%;
+   
+}
+.img1 img{
+    height:50px;
+    width:50px;
+}
+
+.text_col2 a{
+    color:black;
+    text-decoration: none;
+    font-size:20px;
+    font-weight: bold;
+}
+.skill
+{
+    margin-top:10px;
+    max-width:500px;
+}
+.icon
+{
+    margin-top:20px;
+}
+.icon_row
+{
+    display: flex;
+    flex-wrap: wrap;
+ 
+}
+.icon_col
+{
+    margin-left:50px;
+    display: flex;
+}
+.icon_row p{
+    margin-left:5px;
+}
+
+/*  */
 
 .col_search {
    
@@ -170,6 +242,40 @@ body {
     display: table;
     clear: both;
 }
+
+/* css_change */
+.container_main
+{
+    width:85%;
+   
+    margin:auto;
+}
+.home_row
+{
+    display:flex;
+    flex-wrap:wrap
+}
+.home_tab1
+{
+    width:25%;
+}
+
+.home_tab2
+{
+    width:50%;
+}
+.home_tab3
+{
+    width:25%;
+}
+.tweet_p
+{
+    color:pink;
+}
+/* css_change_over */
+
+
+
 
 /* .feed {
     overflow-y: scroll;
@@ -229,16 +335,9 @@ body {
     margin-right: 7%;
 }
 
-.tweet {
-    text-decoration: none;
-    margin-top: 20px;
-    border-radius: 30px;
-    background-color: #857DF9;
-    padding: 4% 25%;
-}
-
+ 
 .tweet_tag a {
-    color: white;
+    color: black;
     font-size: 1.2rem;
 }
 
@@ -333,3 +432,7 @@ body {
     flex-wrap: wrap;
     width: 50%;
 } */
+
+
+
+
