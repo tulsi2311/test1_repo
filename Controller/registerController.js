@@ -4,10 +4,7 @@ const conn = require('../connection/connection')
 const asyncHandler = require("express-async-handler");
 
 const register = asyncHandler(async (req, res) => {
-
-
     res.render('reg.ejs')
-
 })
 
 

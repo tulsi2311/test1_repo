@@ -9,7 +9,7 @@ const query = util.promisify(conn.query).bind(conn)
 const login = asyncHandler(async (req, res) => {
    var cook = req.cookies.authcookie;
    console.log("cookie: ", cook);
-   if (!cook) {
+   if ((!cook) || cook=='') {
       var str = "";
       c = 0;
       res.render('login.ejs', { str, c });
@@ -40,7 +40,7 @@ const login = asyncHandler(async (req, res) => {
 const kakaLogin = asyncHandler(async (req, res) => {
 
    console.log(req.body);
-   var sql = `select * from Elite_User where email='${req.body.email}'`;
+   var sql = `select * from Elite_User where is_active=1 and is_delete=0 and email='${req.body.email}'`;
    conn.query(sql, (err, data) => {
       if (err) throw err;
 
@@ -103,6 +103,8 @@ const login2 = asyncHandler(async (req, res) => {
       var id = req.cookies.home;
       var token_id = jwt.verify(id, 'id');
       console.log(token)
+      var sql2=await query(`select * from Elite_User where is_active=1 and is_delete=0`)
+      if(sql2){
       //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
       var sql=await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
       if(sql){
@@ -111,6 +113,7 @@ const login2 = asyncHandler(async (req, res) => {
          console.log("else")
          res.render('home.ejs', { data2: token });
       }
+   }
    }
 })
 

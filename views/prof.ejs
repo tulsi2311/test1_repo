@@ -34,7 +34,7 @@
 
           <div class="sidebarOption active">
             <span class="material-icons"> home </span>
-            <h2>Home</h2>
+            <a href="/login/login">Home</a>
           </div>
 
 
@@ -374,13 +374,30 @@
 
     function logoutac() {
 
-      alert("are you sure you want to logout")
+
+      if (confirm("are your sure to logout") == true) {
+            fetch(`/logout/logout`)
+            location.assign(`/login/login/index5`)
+            console.log("delete")
+      } else {
+            alert("you cancel the delete");
+      }
+
     }
 
 
-    function deleteac() {
+   async function deleteac() {
 
-      alert("are you sure you want to delete account")
+      if (confirm("are your sure to Delete Account") == true) {
+       const data=   await  fetch(`/deleteAccount/delete`);
+       const data2 = await data.json();
+       console.log(data2);
+            window.location.href="/login/login/index5"
+            console.log(data2);
+      } else {
+            alert("you cancel the delete");
+      }
+
     }
 
 
