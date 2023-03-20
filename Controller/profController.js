@@ -6,11 +6,15 @@ const conn=require('../connection/connection')
 const asyncHandler = require("express-async-handler");
 
 
+const query = util.promisify(conn.query).bind(conn)
 
 const prof_new = asyncHandler( async(req, res) => {
-
-   
-    res.render('prof');
+    var id = req.cookies.home;
+    var token = jwt.verify(id, 'id');
+    var sql=await query(`select id,media_url from user_tweets where u_id='${token}'`)
+    var like=await query(`select twet_id from tweet_like where use_id='${token}'`)
+    console.log(like)
+    res.render('prof',{data:sql,likeid:like});
 })
 
 module.exports = { prof_new }

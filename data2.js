@@ -16,6 +16,7 @@ const logout = require('./Routes/logout')
 const tweet = require('./Routes/tweet')
 const prof = require('./Routes/prof')
 const accountD = require('./Routes/accountD')
+const like = require('./Routes/like')
 var c;
 app.use(express.static('public'));
 app.set('view engine', "ejs");
@@ -38,6 +39,7 @@ app.use('/logout',logout)
 app.use('/tweet',tweet)
 app.use('/prof',prof)
 app.use('/deleteAccount',accountD)
+app.use('/like',like)
 
 
 

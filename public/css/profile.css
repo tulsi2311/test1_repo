@@ -584,3 +584,10 @@ border:2px solid #02070a;
 .signpagebox{
 padding:50px;
 }
+.icon_row{
+  display: flex;
+  padding-left: 2rem;
+}
+.icon_col{
+  display: flex;
+}
