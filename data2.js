@@ -17,6 +17,9 @@ const tweet = require('./Routes/tweet')
 const prof = require('./Routes/prof')
 const accountD = require('./Routes/accountD')
 const like = require('./Routes/like')
+const search = require('./Routes/search')
+const list=require('./Routes/list')
+
 var c;
 app.use(express.static('public'));
 app.set('view engine', "ejs");
@@ -40,6 +43,9 @@ app.use('/tweet',tweet)
 app.use('/prof',prof)
 app.use('/deleteAccount',accountD)
 app.use('/like',like)
+app.use('/search',search)
+app.use('/list',list)
+
 
 
 
