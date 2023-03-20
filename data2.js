@@ -19,6 +19,7 @@ const accountD = require('./Routes/accountD')
 const like = require('./Routes/like')
 const search = require('./Routes/search')
 const list=require('./Routes/list')
+const info = require('./Routes/first_info')
 
 var c;
 app.use(express.static('public'));
@@ -45,6 +46,7 @@ app.use('/deleteAccount',accountD)
 app.use('/like',like)
 app.use('/search',search)
 app.use('/list',list)
+app.use('/info',info)
 
 
 

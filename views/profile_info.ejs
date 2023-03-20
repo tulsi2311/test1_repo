@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile_info</title>
+    <link rel="stylesheet" href="/css/profile_info.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile">
+            <div class="logo">
+                <i class="fa-brands fa-twitter fa-3x"></i>
+            </div>
+            <div class="row">
+                <form action="/info/pro_info" method="post" enctype="multipart/form-data">
+                    <div class="info_content col-25">
+                        <label for="image">
+                            <img src="/files/user.jpeg" alt="" class="user_img" name="profile_img">
+                        </label>
+                        <input type="file" id="image" name="img" style="display: none;">
+                    </div>
+
+                    <div class="col-75">
+
+                        <!-- <div>
+                            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                        </div> -->
+
+                        <div>
+                            <input type="text" id="contact" name="contact" placeholder="Phone number..">
+                        </div>
+
+                        <div>
+                            <input type="date" id="dob" name="dob" placeholder="Date of Birth..">
+                        </div>
+
+                        <!-- <div>
+                            <select id="country" name="country">
+                                <option value="australia">India</option>
+                                <option value="australia">Australia</option>
+                                <option value="canada">Canada</option>
+                                <option value="usa">USA</option>
+                            </select>
+                        </div> -->
+
+                        <div>
+                            <input type="text" id="bio" name="bio" placeholder="Bio..">
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <input type="submit" value="Submit" class="sub_btn" id="sub_btn">
+                        <!-- <input type="submit" value="Skip" id="skip_btn"> -->
+                        <!-- <p class="sub_btn" id="skip">Skip</p> -->
+                    </div>
+                    <div>
+                        <a href="http://localhost:2080/login/login" class="sub_btn">Skip</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ const query = util.promisify(conn.query).bind(conn)
 const login = asyncHandler(async (req, res) => {
    var cook = req.cookies.authcookie;
    console.log("cookie: ", cook);
-   if ((!cook) || cook=='') {
+   if ((!cook) || cook == '') {
       var str = "";
       c = 0;
       res.render('login.ejs', { str, c });
@@ -24,10 +24,10 @@ const login = asyncHandler(async (req, res) => {
       var token_id = jwt.verify(id, 'id');
       console.log(token)
       //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
-      var sql=await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
-      if(sql){
-         res.render('home.ejs', { data:sql,data2:token });
-      }else{
+      var sql = await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
+      if (sql) {
+         res.render('home.ejs', { data: sql, data2: token });
+      } else {
          res.render('home.ejs', { data2: token });
       }
 
@@ -57,7 +57,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
          console.log(hash2);
          if (hash2) {
             if (data[0].is_active) {
-               
+
                const now = new Date();
                const value = date.format(now, 'YYYY/MM/DD HH:mm:ss');
 
@@ -103,17 +103,29 @@ const login2 = asyncHandler(async (req, res) => {
       var id = req.cookies.home;
       var token_id = jwt.verify(id, 'id');
       console.log(token)
-      var sql2=await query(`select * from Elite_User where is_active=1 and is_delete=0`)
-      if(sql2){
-      //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
-      var sql=await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
-      if(sql){
-         res.render('home.ejs', { data:sql,data2:token });
+      var count=await query(`select count(*) as count from login where user_id='${token_id}'`)
+      console.log(count[0].count)
+      if(count[0].count>1){
+         var token = jwt.verify(cook, 'prachi');
+         console.log("token verify", token);
+         var sql2 = await query(`select * from Elite_User where is_active=1 and is_delete=0`)
+         if (sql2) {
+            //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
+            var sql = await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
+            if (sql) {
+               res.render('home.ejs', { data: sql, data2: token });
+            } else {
+               console.log("else")
+               res.render('home.ejs', { data2: token });
+            }
+         }
+         //res.render('home.ejs', { data: token });
       }else{
-         console.log("else")
-         res.render('home.ejs', { data2: token });
+         res.render('profile_info')
       }
-   }
+
+
+     
    }
 })
 

@@ -230,6 +230,11 @@
                                     <div>
                                         <div>
                                             <p class="skill"><%=data[i].description%></p>
+                                            <p class="skill"><%=data[i].description%></p>
+                                            <%  if(data[i].media_url==null) {   
+                                                console.log("nothing")
+                                             }else{ 
+                                            %>
                                             <%  const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
                                                 if (array_of_allowed_files.includes(file_extension)) {
                                             %>
@@ -280,7 +285,7 @@
                                                      
                                                    </div>
                                               </div>
-                                            <% }%>
+                                            <% }}%>
                                             
                                         </div>
                                     </div>
