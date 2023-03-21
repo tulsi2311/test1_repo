@@ -61,6 +61,7 @@
                                             <div class="img1"><img src="/files/profile-img.png"></div>
                                         </div>
                                         <div class="text_col2">
+                                            <p id="tweetid"><%=data[i].id%></p>
                                             <a href="">Jaquon Hart</a>
                                             <p><%=data[i].heading%></p>
                                             <p class="skill"><%=data[i].description%></p>
@@ -83,7 +84,7 @@
                                                         <p>10</p>
                                                       <div class="icon_row">
                                                         <div class="icon_col">
-                                                            <a href=""><i class="fas fa-comment"></i></a>
+                                                           <a href="/comment/newc?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fas fa-comment"></i></a>
                                                             <p>10</p>
                                                         </div>
                                                         
@@ -105,6 +106,63 @@
                         </div>
                         
                    <% } %>
+
+
+
+
+                   <% for(var i=0;i<tweetfollowing.length;i++) { %>
+                      
+                    <div class="tweet">
+                            <div class="test_col_row">
+                                <div class="text_col1">
+                                    <div class="img1"><img src="/files/profile-img.png"></div>
+                                </div>
+                                <div class="text_col2">
+                                    <p id="tweetid"><%=tweetfollowing[i].id%></p>
+                                    <a href="">Jaquon Hart</a>
+                                    <p><%=tweetfollowing[i].heading%></p>
+                                    <p class="skill"><%=tweetfollowing[i].description%></p>
+                                    <%  if(tweetfollowing[i].media_url==null) {   
+                                        console.log("nothing")
+                                     }else{
+                                        const file_extension = tweetfollowing[i].media_url.slice(((tweetfollowing[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
+                                        if (array_of_allowed_files.includes(file_extension)) {
+                                    %>
+                                    <img id="tweet_img" src="<%=tweetfollowing[i].media_url%>" />
+                                    <% }else{ %>
+                                        <video width="320" height="240" controls>
+                                            <source src="<%=tweetfollowing[i].media_url%>" type="video/mp4">
+                                        </video>
+                                    <% }}%>
+                                    <div class="icon">
+                                        <div class="insta">
+                                            <div class="icon_row">
+                                                <a href=""><i class="fa fa-thumbs-up"></i></a>
+                                                <p>10</p>
+                                              <div class="icon_row">
+                                                <div class="icon_col">
+                                                   <a href="/comment/newc?tid=<%=tweetfollowing[i].id%>&u_id=<%=tweetfollowing[i].u_id%>"><i class="fas fa-comment"></i></a>
+                                                    <p>10</p>
+                                                </div>
+                                                
+                                              <div class="icon_row">
+                                                <div class="icon_col">
+                                                    <a href=""><i class="fa fa-retweet"></i></a>
+                                              <p>10</p>
+                                                </div>
+                                               
+                                            </div>
+                                           
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+              
+                    </div>
+                </div>
+                </div>
+                
+           <% } %>
                 
                 </div>
             </section>
@@ -133,6 +191,7 @@
         </div>
     </div>
     <script>
+
         var followinguser=[];
             async function search(search_value) {
                 var s = ""

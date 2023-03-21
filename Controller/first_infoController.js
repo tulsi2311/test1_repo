@@ -79,9 +79,6 @@ const user_info = asyncHandler(async (req, res) => {
                console.log("else")
                res.render('home.ejs', { data2: token });
             }
-
-            // res.render("home.ejs")
-   
         }
     })
 

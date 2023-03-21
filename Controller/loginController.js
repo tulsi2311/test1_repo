@@ -24,9 +24,31 @@ const login = asyncHandler(async (req, res) => {
       var token_id = jwt.verify(id, 'id');
       console.log(token)
       //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
-      var sql = await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
+      var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}'`)
+      var followingid=await query(`select following_id from user_following where user_i='${token_id}'`)
+      console.log("error:::::::::",followingid)
+      //console.log("following id:::::::",followingid[0].following_id)
+      var tweet;
+      if(followingid.length==0){
+         if (sql) {
+            tweetfollowing=""
+            res.render('home.ejs', { data: sql, data2: token ,tweetfollowing});
+         } else {
+            console.log("else")
+            res.render('home.ejs', { data2: token });
+         }
+      }
+      if(followingid.length>1){
+         for(var i=0;i<followingid.length;i++){
+            tweet=await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+         }
+      }
+      else{
+         tweet=await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+      }
+      console.log(tweet)
       if (sql) {
-         res.render('home.ejs', { data: sql, data2: token });
+         res.render('home.ejs', { data: sql, data2: token ,tweetfollowing:tweet});
       } else {
          res.render('home.ejs', { data2: token });
       }
@@ -102,18 +124,40 @@ const login2 = asyncHandler(async (req, res) => {
       //res.render('home.ejs', { data: token });
       var id = req.cookies.home;
       var token_id = jwt.verify(id, 'id');
-      console.log(token)
+      console.log("count:::::::::",token_id)
       var count=await query(`select count(*) as count from login where user_id='${token_id}'`)
       console.log(count[0].count)
       if(count[0].count>1){
          var token = jwt.verify(cook, 'prachi');
          console.log("token verify", token);
-         var sql2 = await query(`select * from Elite_User where is_active=1 and is_delete=0`)
+         var sql2 = await query(`select * from Elite_User where is_active=1 and is_delete=0 and id='${token_id}'`)
          if (sql2) {
             //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
-            var sql = await query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
+            var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}'`)
+            var followingid=await query(`select following_id from user_following where user_i='${token_id}'`)
+            //console.log("following",followingid)
+            //console.log("following id:::::::",followingid[0].following_id)
+            var tweet;
+            if(followingid.length==0){
+               if (sql) {
+                  tweetfollowing=""
+                  res.render('home.ejs', { data: sql, data2: token ,tweetfollowing});
+               } else {
+                  console.log("else")
+                  res.render('home.ejs', { data2: token });
+               }
+            }
+            if(followingid.length>1){
+               for(var i=0;i<followingid.length;i++){
+                  tweet=await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+               }
+            }
+            else{
+               tweet=await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+            }
+            console.log(tweet)
             if (sql) {
-               res.render('home.ejs', { data: sql, data2: token });
+               res.render('home.ejs', { data: sql, data2: token ,tweetfollowing:tweet});
             } else {
                console.log("else")
                res.render('home.ejs', { data2: token });

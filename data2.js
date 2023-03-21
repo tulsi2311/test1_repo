@@ -20,6 +20,9 @@ const like = require('./Routes/like')
 const search = require('./Routes/search')
 const list=require('./Routes/list')
 const info = require('./Routes/first_info')
+const comment = require('./Routes/comment')
+
+const chnagepassword = require('./Routes/changepassword')
 
 var c;
 app.use(express.static('public'));
@@ -47,6 +50,8 @@ app.use('/like',like)
 app.use('/search',search)
 app.use('/list',list)
 app.use('/info',info)
+app.use('/comment',comment)
+app.use('/changepassword',chnagepassword)
 
 
 
