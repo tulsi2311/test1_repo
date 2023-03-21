@@ -21,6 +21,8 @@ const static2=require('./Routes/static1')
 const home1= require('./Routes/static1')
 const prof1=require('./Routes/static1')
 const changepwd=require('./Routes/changepwd')
+const editprof=require('./Routes/static1')
+
 var c;
 app.use(express.static('public'));
 app.set('view engine', "ejs");
@@ -45,7 +47,7 @@ app.use('/prof',prof)
 app.use('/deleteAccount',accountD)
 app.use('/static',static1)
 app.use('/static2',static2)
-
+app.use('/editprof',editprof)
 app.use('/home1',home1)
 app.use('/prof1',prof1)
 app.use('/changepwd',changepwd)

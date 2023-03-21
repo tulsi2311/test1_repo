@@ -28,5 +28,9 @@ const prof1 = asyncHandler( async(req, res) => {
    
     res.render('profdemo');
 })
+const editprof = asyncHandler( async(req, res) => {
 
-module.exports = { static1,static2 ,home1,prof1}
+   
+    res.render('editprofile');
+})
+module.exports = { static1,static2 ,home1,prof1,editprof}
