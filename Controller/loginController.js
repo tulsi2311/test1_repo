@@ -4,7 +4,7 @@ const date = require('date-and-time')
 var util = require('util')
 const conn = require('../connection/connection')
 const asyncHandler = require("express-async-handler");
-
+var c;
 const query = util.promisify(conn.query).bind(conn)
 const login = asyncHandler(async (req, res) => {
    var cook = req.cookies.authcookie;

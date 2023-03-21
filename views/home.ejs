@@ -1,52 +1,36 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/homepage.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Home page</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twitter Clone - Final</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <div class="container_main">
-
-    
-        <div class="home_row">
-
-        <div class="home_tab1">
-
-            <section>
-                <div class="col_nav">
-                    <div>
-                        <i class="fa-brands fa-twitter fa-3x"></i>
-                        <div class="sidebarOption active">
-                            <span class="nav-icons"><i class="fa-solid fa-house-user"></i></span>
-                            <h2>Home</h2>
-                        </div>
-                        
-                        <div class="sidebarOption">
-                            <span class="nav-icons"><i class="fa-solid fa-user"></i></span>
-                            <a href="/prof/prof">Profile</a>
-                        </div>
-
-                        <div class="tweet_tag">
-                            <a href="/tweet/tweet_add" class="tweet_p">Tweet</a>
-                        </div>
-                        <h1>Welcome <%=data2 %></h1>
-                        <!-- <a href="/logout/logout"><h2>Logout</h2></a> -->
-                    </div>
-                <!-- </div> -->
-            </section>
+  <input type="text" hidden name="id" id="id">
+  <div class="whole-web">
+    <div class="container">
 
 
-         </div>
-        
-         <div class="home_tab2">
+      <div class="flexdata">
+
+
+        <!-- sidebar starts -->
+        <%-include("staticpart1")-%>
+      </div>
+      <!-- sidebar ends -->
+
+      <!-- feed starts -->
+      <div class="feed">
+
+        <div class="home_tab2">
             <section>
                 <div class="container">
                     <%
@@ -106,33 +90,209 @@
             </section>
             </div>
        
-            <div class="home_tab3">
-            <section>
-                <div class="col_search">
-                    <!-- <div class="widgets__input">
-                          <span class="material-icons widgets__searchIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                          <input type="search" placeholder="Search" class="widgets__input" />
-                        </div> -->
-                    <!-- <div class="widgets__input1">
-                            <form action="/action_page.php">
-                              <input type="text" placeholder="Search.." name="search">
-                              <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div> -->
-                    <div class="widgets">
-                        <div class="widgets__input">
-                            <span class="material-icons widgets__searchIcon">
-                                <i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" placeholder="Search" />
-                        </div>
-                    </div>
-            </section>
 
-          </div>
-        </div>
+       
+      </div>
+
+
+      <!-- feed ends -->
+
+      <!-- widgets starts -->
+      <div class="widgets">
+  <%-include("staticpart2")-%>
+      </div>
     </div>
+  </div>
+  <!-- widgets ends -->
+  </div>
+  <dialog id="moreoption">
+    <div class="manubar">
+      <a class="achange" href="http://localhost:8000/changepassword"> Change Password</a>
+      <a class="achange" id="deleteac" onclick="deleteac()">Delete Account</a>
+      <a class="achange" id="logoutac" onclick="logoutac()">Logout</a>
 
+      <p class="cancel" onclick="dataout()">cancle</p>
+    </div>
+  </dialog>
+  <script>
+
+    function dataopt() {
+
+      var data1 = document.getElementById('moreoption')
+      data1.showModal()
+    }
+    function dataout() {
+      var data1 = document.getElementById('moreoption')
+      data1.close()
+    }
+
+
+
+
+
+
+
+
+    window.onscroll = function () { myFunction() };
+
+    var header = document.getElementById("myHeader");
+
+
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+
+
+
+
+
+
+
+
+    async function del(abc) {
+      x = parseInt(abc)
+      console.log(x)
+
+      var text = "you really want to delte this record" + x;
+      if (confirm(text) == true) {
+        text = "you really want to delte this record", x;
+        fetch('/delete?id=' + x, {
+          method: 'post',
+          headers: {
+            "Content-type": 'application/json'
+          },
+          body: JSON.stringify({
+            id: x
+          })
+        })
+
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById(x).style.display = 'none';
+            //console.log(data.result.length);
+            console.log(data)
+            console.log("data delete sucesfully!!!!")
+            location.reload()
+          })
+      }
+    }
+
+
+    // var likeobj = 0;
+    var count = 0
+    var flag = true
+    function likepost() {
+      var z = document.getElementById('heart1')
+      count = 1
+
+      if (flag == true) {
+        z.style.color = 'red'
+        flag = false;
+      } else {
+        z.style.color = '#e0e2e4'
+        flag = true;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function dataopt() {
+
+var data1 = document.getElementById('moreoption')
+data1.showModal()
+}
+function dataout() {
+var data1 = document.getElementById('moreoption')
+data1.close()
+}
+
+
+
+
+
+
+
+
+window.onscroll = function () { myFunction() };
+
+var header = document.getElementById("myHeader");
+
+
+var sticky = header.offsetTop;
+
+function myFunction() {
+if (window.pageYOffset > sticky) {
+  header.classList.add("sticky");
+} else {
+  header.classList.remove("sticky");
+}
+}
+
+
+function logoutac() {
+
+
+if (confirm("are your sure to logout") == true) {
+      fetch(`/logout/logout`)
+      location.assign(`/login/login/index5`)
+      console.log("delete")
+} else {
+      alert("you cancel the delete");
+}
+
+}
+
+
+async function deleteac() {
+
+if (confirm("are your sure to Delete Account") == true) {
+ const data=   await  fetch(`/deleteAccount/delete`);
+ const data2 = await data.json();
+ console.log(data2);
+      window.location.href="/login/login/index5"
+      console.log(data2);
+} else {
+      alert("you cancel the delete");
+}
+
+}
+
+
+// var likeobj = 0;
+var count=0
+var flag=true
+function likepost() {
+  var z=document.getElementById('heart1')
+  count=1
+  
+  if(flag==true){
+      z.style.color='red'
+    flag=false;
+  }else{
+    z.style.color='#e0e2e4'
+    flag=true;
+  }
+}
+
+
+  </script>
 </body>
 
 </html>
-Footer
