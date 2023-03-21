@@ -54,7 +54,7 @@
                         const array_of_allowed_videos = ['mp4','gif'];
                     %>
                     <% for(var i=0;i<data.length;i++) { %>
-                      
+                        <% var flag =0%>
                             <div class="tweet">
                                     <div class="test_col_row">
                                         <div class="text_col1">
@@ -80,8 +80,23 @@
                                             <div class="icon">
                                                 <div class="insta">
                                                     <div class="icon_row">
-                                                        <a href=""><i class="fa fa-thumbs-up"></i></a>
-                                                        <p>10</p>
+                                                        <% for(let j=0;j<tweetid.length;j++){%>
+                                                            <% if(data[i].id == tweetid[j]){%>
+                                                              <a id="likeCount<%=data[i].id%>"
+                                                                  href="/likes/likes2"><%=likecount[j]%></a>
+                                                                  <i id="<%=data[i].id%>"
+                                                                  class="like_d fa fa-thumbs-up"
+                                                                  onclick="likepost(this.id,1)"></i>
+                                                                  <%flag =1%>
+                                                              <%}%>
+                                                                  <%}%>
+                                                                 <%if(flag != 1){%>
+                                                                  <a id="likeCount<%=data[i].id%>"
+                                                                      href="/likes/likes2">0</a>
+                                                                      <i id="<%=data[i].id%>"
+                                                                      class="like_c fa fa-thumbs-up"
+                                                                      onclick="likepost(this.id,0)"></i>
+                                                                  <%}%>
                                                       <div class="icon_row">
                                                         <div class="icon_col">
                                                            <a href="/comment/newc?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fas fa-comment"></i></a>
@@ -111,7 +126,7 @@
 
 
                    <% for(var i=0;i<tweetfollowing.length;i++) { %>
-                      
+                    <% var flag =0%>
                     <div class="tweet">
                             <div class="test_col_row">
                                 <div class="text_col1">
@@ -137,8 +152,23 @@
                                     <div class="icon">
                                         <div class="insta">
                                             <div class="icon_row">
-                                                <a href=""><i class="fa fa-thumbs-up"></i></a>
-                                                <p>10</p>
+                                                <% for(let j=0;j<tweetid.length;j++){%>
+                                                    <% if(tweetfollowing[i].id == tweetid[j]){%>
+                                                      <a id="likeCount<%=tweetfollowing[i].id%>"
+                                                          href="/likes/likes2"><%=likecount[j]%></a>
+                                                          <i id="<%=tweetfollowing[i].id%>"
+                                                          class="like_d fa fa-thumbs-up"
+                                                          onclick="likepost(this.id,1)"></i>
+                                                          <%flag =1%>
+                                                      <%}%>
+                                                          <%}%>
+                                                         <%if(flag != 1){%>
+                                                          <a id="likeCount<%=tweetfollowing[i].id%>"
+                                                              href="/likes/likes2">0</a>
+                                                              <i id="<%=tweetfollowing[i].id%>"
+                                                              class="like_c fa fa-thumbs-up"
+                                                              onclick="likepost(this.id,0)"></i>
+                                                          <%}%>
                                               <div class="icon_row">
                                                 <div class="icon_col">
                                                    <a href="/comment/newc?tid=<%=tweetfollowing[i].id%>&u_id=<%=tweetfollowing[i].u_id%>"><i class="fas fa-comment"></i></a>
@@ -261,6 +291,27 @@
                 }  
             }
             
+
+            async function likepost(id,like_flag) {
+            if (like_flag == 0) {
+                 document.getElementById(`${id}`).style.color = "red"
+              
+                const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=1`);
+                const like_count = await like_result.json();
+                document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+                document.getElementById(`${id}`).setAttribute("onclick",(id,1));
+            }
+            else {
+                var like_btn = document.getElementById(`${id}`).style.color="black"
+        
+                const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=0`);
+                const like_count = await like_result.json();
+                document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+                document.getElementById(`${id}`).setAttribute("onclick",(id,0));
+            }
+  
+        }
+
         </script>
 </body>
 

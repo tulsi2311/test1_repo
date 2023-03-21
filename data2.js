@@ -16,11 +16,11 @@ const logout = require('./Routes/logout')
 const tweet = require('./Routes/tweet')
 const prof = require('./Routes/prof')
 const accountD = require('./Routes/accountD')
-const like = require('./Routes/like')
 const search = require('./Routes/search')
 const list=require('./Routes/list')
 const info = require('./Routes/first_info')
 const comment = require('./Routes/comment')
+const likes=require('./Routes/likes')
 
 const chnagepassword = require('./Routes/changepassword')
 
@@ -46,12 +46,12 @@ app.use('/logout',logout)
 app.use('/tweet',tweet)
 app.use('/prof',prof)
 app.use('/deleteAccount',accountD)
-app.use('/like',like)
 app.use('/search',search)
 app.use('/list',list)
 app.use('/info',info)
 app.use('/comment',comment)
 app.use('/changepassword',chnagepassword)
+app.use('/likes',likes)
 
 
 
