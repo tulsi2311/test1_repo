@@ -75,7 +75,11 @@ const user_info = asyncHandler(async (req, res) => {
             var sql = query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
             if (sql) {
                 tweetfollowing=""
+<<<<<<< HEAD
                res.render('home.ejs', { data: sql, data2: token ,tweetfollowing});
+=======
+               res.render('home.ejs', { data: sql, data2: token,tweetfollowing });
+>>>>>>> 6ded9e4e4bc0fcf6c7e1dc355f33628b5a78013a
             } else {
                console.log("else")
                res.render('home.ejs', { data2: token });

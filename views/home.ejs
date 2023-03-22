@@ -41,6 +41,7 @@
                             </h1>
                             <!-- <a href="/logout/logout"><h2>Logout</h2></a> -->
                         </div>
+<<<<<<< HEAD
                         <!-- </div> -->
                 </section>
 
@@ -132,6 +133,83 @@
                                                                 </div>
                                                             </div>
 
+=======
+                        <h1>Welcome <%=data2 %></h1>
+                        <!-- <a href="/logout/logout"><h2>Logout</h2></a> -->
+                    </div>
+                <!-- </div> -->
+            </section>
+
+
+         </div>
+        
+         <div class="home_tab2">
+            <section>
+                <div class="container">
+                    <%
+                        const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
+                        const array_of_allowed_videos = ['mp4','gif'];
+                    %>
+                    <% for(var i=0;i<data.length;i++) { %>
+                        <% var flag =0%>
+                            <div class="tweet">
+                                    <div class="test_col_row">
+                                        <div class="text_col1">
+                                            <div class="img1"><img src="/files/profile-img.png"></div>
+                                        </div>
+                                        <div class="text_col2">
+                                            <p id="tweetid"><%=data[i].id%></p>
+                                            <a href="">Jaquon Hart</a>
+                                            <p><%=data[i].heading%></p>
+                                            <p class="skill"><%=data[i].description%></p>
+                                            <%  if(data[i].media_url==null) {   
+                                                console.log("nothing")
+                                             }else{
+                                                const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
+                                                if (array_of_allowed_files.includes(file_extension)) {
+                                            %>
+                                            <img id="tweet_img" src="<%=data[i].media_url%>" />
+                                            <% }else{ %>
+                                                <video width="320" height="240" controls>
+                                                    <source src="<%=data[i].media_url%>" type="video/mp4">
+                                                </video>
+                                            <% }}%>
+                                            <div class="icon">
+                                                <div class="insta">
+                                                    <div class="icon_row">
+                                                        <% for(let j=0;j<tweetid.length;j++){%>
+                                                            <% if(data[i].id == tweetid[j]){%>
+                                                              <a id="likeCount<%=data[i].id%>"
+                                                                  href="/likes/likes2"><%=likecount[j]%></a>
+                                                                  <i id="<%=data[i].id%>"
+                                                                  class="like_d fa fa-thumbs-up"
+                                                                  onclick="likepost(this.id,1)"></i>
+                                                                  <%flag =1%>
+                                                              <%}%>
+                                                                  <%}%>
+                                                                 <%if(flag != 1){%>
+                                                                  <a id="likeCount<%=data[i].id%>"
+                                                                      href="/likes/likes2">0</a>
+                                                                      <i id="<%=data[i].id%>"
+                                                                      class="like_c fa fa-thumbs-up"
+                                                                      onclick="likepost(this.id,0)"></i>
+                                                                  <%}%>
+                                                      <div class="icon_row">
+                                                        <div class="icon_col">
+                                                           <a href="/comment/newc?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fas fa-comment"></i></a>
+                                                            
+                                                        </div>
+                                                        
+                                                      <div class="icon_row">
+                                                        <div class="icon_col">
+                                                            <a href="/retweet/re?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fa fa-retweet"></i></a>
+                                                      
+                                                        </div>
+                                                       
+                                                    </div>
+                                                   
+                                                 </div>
+>>>>>>> 6ded9e4e4bc0fcf6c7e1dc355f33628b5a78013a
                                             </div>
                                         </div>
                                     </div>
@@ -140,6 +218,7 @@
 
 
 
+<<<<<<< HEAD
                                         <% for(var i=0;i<tweetfollowing.length;i++) { %>
                                             <% var flag=0%>
                                                 <div class="tweet">
@@ -228,6 +307,61 @@
 
                                                         </div>
                                                     </div>
+=======
+                   <% for(var i=0;i<tweetfollowing.length;i++) { %>
+                    <% var flag =0%>
+                    <div class="tweet">
+                            <div class="test_col_row">
+                                <div class="text_col1">
+                                    <div class="img1"><img src="/files/profile-img.png"></div>
+                                </div>
+                                <div class="text_col2">
+                                    <p id="tweetid"><%=tweetfollowing[i].id%></p>
+                                    <a href="">Jaquon Hart</a>
+                                    <p><%=tweetfollowing[i].heading%></p>
+                                    <p class="skill"><%=tweetfollowing[i].description%></p>
+                                    <%  if(tweetfollowing[i].media_url==null) {   
+                                        console.log("nothing")
+                                     }else{
+                                        const file_extension = tweetfollowing[i].media_url.slice(((tweetfollowing[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
+                                        if (array_of_allowed_files.includes(file_extension)) {
+                                    %>
+                                    <img id="tweet_img" src="<%=tweetfollowing[i].media_url%>" />
+                                    <% }else{ %>
+                                        <video width="320" height="240" controls>
+                                            <source src="<%=tweetfollowing[i].media_url%>" type="video/mp4">
+                                        </video>
+                                    <% }}%>
+                                    <div class="icon">
+                                        <div class="insta">
+                                            <div class="icon_row">
+                                                <% for(let j=0;j<tweetid.length;j++){%>
+                                                    <% if(tweetfollowing[i].id == tweetid[j]){%>
+                                                      <a id="likeCount<%=tweetfollowing[i].id%>"
+                                                          href="/likes/likes2"><%=likecount[j]%></a>
+                                                          <i id="<%=tweetfollowing[i].id%>"
+                                                          class="like_d fa fa-thumbs-up"
+                                                          onclick="likepost(this.id,1)"></i>
+                                                          <%flag =1%>
+                                                      <%}%>
+                                                          <%}%>
+                                                         <%if(flag != 1){%>
+                                                          <a id="likeCount<%=tweetfollowing[i].id%>"
+                                                              href="/likes/likes2">0</a>
+                                                              <i id="<%=tweetfollowing[i].id%>"
+                                                              class="like_c fa fa-thumbs-up"
+                                                              onclick="likepost(this.id,0)"></i>
+                                                          <%}%>
+                                              <div class="icon_row">
+                                                <div class="icon_col">
+                                                   <a href="/comment/newc?tid=<%=tweetfollowing[i].id%>&u_id=<%=tweetfollowing[i].u_id%>"><i class="fas fa-comment"></i></a>
+                                                    
+                                                </div>
+                                                
+                                              <div class="icon_row">
+                                                <div class="icon_col">
+                                                    <a href="/retweet/re?tid=<%=tweetfollowing[i].id%>&u_id=<%=tweetfollowing[i].u_id%>"><i class="fa fa-retweet"></i></a>
+>>>>>>> 6ded9e4e4bc0fcf6c7e1dc355f33628b5a78013a
                                                 </div>
 
                                                 <% } %>
@@ -337,7 +471,11 @@
                 const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=1`);
                 const like_count = await like_result.json();
                 document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+<<<<<<< HEAD
                 document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id},1)`);
+=======
+                document.getElementById(`${id}`).setAttribute("onclick",`likepost(${id},1)`);
+>>>>>>> 6ded9e4e4bc0fcf6c7e1dc355f33628b5a78013a
             }
             else {
                 var like_btn = document.getElementById(`${id}`).style.color = "black"
@@ -345,7 +483,11 @@
                 const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=0`);
                 const like_count = await like_result.json();
                 document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+<<<<<<< HEAD
                 document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id},0)`);
+=======
+                document.getElementById(`${id}`).setAttribute("onclick",`likepost(${id},0)`);
+>>>>>>> 6ded9e4e4bc0fcf6c7e1dc355f33628b5a78013a
             }
 
         }

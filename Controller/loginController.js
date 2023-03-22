@@ -52,7 +52,9 @@ const login = asyncHandler(async (req, res) => {
             res.render('home.ejs', { data: sql, data2: token, tweetfollowing, tweetid: arr, likecount: arr2 });
          } else {
             console.log("else")
-            res.render('home.ejs', { data2: token });
+            tweetfollowing = ""
+            console.log("render2")
+            res.render('home.ejs', { data2: token,tweetfollowing });
          }
       }else{
       if (followingid.length > 1) {
@@ -65,9 +67,12 @@ const login = asyncHandler(async (req, res) => {
       }
       console.log(tweet)
       if (sql) {
+         console.log("render3")
          res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
       } else {
-         res.render('home.ejs', { data2: token });
+         tweetfollowing = ""
+         console.log("render4")
+         res.render('home.ejs', { data2: token,tweetfollowing });
       }
    }
 
@@ -172,9 +177,11 @@ const login2 = asyncHandler(async (req, res) => {
             if (followingid.length == 0) {
                if (sql) {
                   tweetfollowing = ""
+                  console.log("render5")
                   res.render('home.ejs', { data: sql, data2: token, tweetfollowing });
                } else {
                   console.log("else")
+                  console.log("render6")
                   res.render('home.ejs', { data2: token });
                }
             }
@@ -188,14 +195,17 @@ const login2 = asyncHandler(async (req, res) => {
             }
             console.log(tweet)
             if (sql) {
+               console.log("render7")
                res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet , tweetid: arr, likecount: arr2});
             } else {
                console.log("else")
+               console.log("render8")
                res.render('home.ejs', { data2: token });
             }
          }
          //res.render('home.ejs', { data: token });
       } else {
+         console.log("render9")
          res.render('profile_info')
       }
 

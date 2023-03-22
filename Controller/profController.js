@@ -12,6 +12,10 @@ const prof_new = asyncHandler( async(req, res) => {
     var id = req.cookies.home;
     var token = jwt.verify(id, 'id');
     var sql=await query(`select * from user_tweets where u_id='${token}'`)
+<<<<<<< HEAD
+=======
+    console.log(sql)
+>>>>>>> 6ded9e4e4bc0fcf6c7e1dc355f33628b5a78013a
     var like=await query(`select twet_id from tweet_like where use_id='${token}'`)
     var profdata = await query(`select * from Elite_User where id='${token}'`)
     var tweetcount = await query(`select count(*) as t from user_tweets where u_id=${token}`);
