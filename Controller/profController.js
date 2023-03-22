@@ -11,7 +11,8 @@ const query = util.promisify(conn.query).bind(conn)
 const prof_new = asyncHandler( async(req, res) => {
     var id = req.cookies.home;
     var token = jwt.verify(id, 'id');
-    var sql=await query(`select id,media_url from user_tweets where u_id='${token}'`)
+    var sql=await query(`select * from user_tweets where u_id='${token}'`)
+    console.log(sql)
     var like=await query(`select twet_id from tweet_like where use_id='${token}'`)
     var count = await query(`select count(*) as count from 2023_Elite.user_following where user_i='${token}'`);
     var follower = await query(`select count(*) as c from 2023_Elite.user_follower where user_id_id='${token}'`);
