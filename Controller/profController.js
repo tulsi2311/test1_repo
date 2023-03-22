@@ -4,6 +4,7 @@ const date = require('date-and-time')
 var util = require('util')
 const conn=require('../connection/connection')
 const asyncHandler = require("express-async-handler");
+const multer = require("multer");
 
 
 const query = util.promisify(conn.query).bind(conn)
@@ -20,4 +21,50 @@ const prof_new = asyncHandler( async(req, res) => {
     res.render('prof',{data:sql,likeid:like,count:count[0].count,f:follower[0].c});
 })
 
-module.exports = { prof_new }
+const edit_prof = asyncHandler(async(req,res) =>
+{
+    var id = req.cookies.home;
+    var token = jwt.verify(id, 'id');
+
+    var edit_query = await query(`select * from Elite_User where id='${token}'`);
+    var sql=edit_query[0].date_of_birth;
+
+console.log(":::::::",JSON.stringify(sql).slice(9,11))  
+
+var date ="";
+date+=sql.getFullYear() +"-"+JSON.stringify(sql).slice(6,8)+"-"+JSON.stringify(sql).slice(9,11);
+
+    res.render('editprofile.ejs',{edit_query,date});
+})
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './public/files');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+    }
+ });
+ 
+ var upload = multer({ storage: storage }).single('img');
+
+const update_prof = asyncHandler(async(req,res) =>
+{
+    var id = req.cookies.home;
+    var token = jwt.verify(id, 'id');
+    upload(req, res, function (err) {
+        console.log(":::::::::",req.file)
+        console.log("Token: ",req.body)
+
+        var FileName = req.file.filename;
+       
+        var imgsrc = '/files/' + req.file.filename;
+        console.log(imgsrc)
+    var update_prof = `update Elite_User set name='${req.body.user_name}',bio='${req.body.bio}',user_image='${imgsrc}',date_of_birth='${req.body.dob}' where id='${token}'`;
+    conn.query(update_prof, (err, result) => {
+        if (err) throw err
+       res.redirect('/prof/prof');
+    })
+})
+})
+
+module.exports = { prof_new,edit_prof,update_prof }

@@ -21,6 +21,7 @@ const list=require('./Routes/list')
 const info = require('./Routes/first_info')
 const comment = require('./Routes/comment')
 const likes=require('./Routes/likes')
+const editProfile=require('./Routes/prof')
 
 const chnagepassword = require('./Routes/changepassword')
 
@@ -52,6 +53,8 @@ app.use('/info',info)
 app.use('/comment',comment)
 app.use('/changepassword',chnagepassword)
 app.use('/likes',likes)
+app.use('/prof',editProfile)
+
 
 
 
