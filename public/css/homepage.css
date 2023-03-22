@@ -156,7 +156,7 @@ body {
    
     margin:0 auto;
     padding: 0 16px;
-    border:1px solid grey;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .col_tweet {
@@ -174,7 +174,7 @@ body {
     margin-top:10px;
 }
 .tweet{
-    border:1px solid grey;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin:0 -16px;
 }
 
@@ -492,5 +492,3 @@ body {
 .like_d{
     color: red;
 }
-
-

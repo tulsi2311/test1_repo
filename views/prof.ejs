@@ -53,35 +53,15 @@
         <div>
 
         </div class="bottomdata datastick">
-        <div class="bottom-stick">
-          <div class="bottom-stickchild">
-            <div class="picture">
-
-              <div class="picture-child">
-                <img class="imgpro" src="/IMG_20220710_083920.jpg" alt="" height="32px" width="32px">
-
-              </div>
-            </div>
-            <div class="username-bottom">
-              <div class="username-bottom-child">
-
-                <p>
-                  <a class="notdes" href=""> Tulsi Dholariya </a>
-                </p>
-
-
-              </div>
-
-
-            </div>
-
-            <div class="other-bottom">
-              <div class="other-bottom-child">
-                <a class="notdes" href=""> ... </a>
-              </div>
-            </div>
+         
+        <div class="profile_row">
+          <div class="profile_tab1">
+            <img src="<%=profile_data.user_image%>">
           </div>
-
+          <div class="profile_tab2">
+            <p><%=profile_data.name%></p>
+            <p><%=profile_data.user_name%></p>
+          </div>
         </div>
       </div>
       <!-- sidebar ends -->
@@ -118,14 +98,13 @@
 
               <div>
 
-                <h2> Tulsi Dholariya </h2>
-                <p class="lighttxt">
-                  1 Tweet
-                </p>
+                <h2> <%=profile_data.name%>  </h2>
+                <p class="lighttxt"><%=tweet_count%> Tweets</p>
               </div>
             </div>
           </div>
         </div>
+        
         <!-- tweetbox starts -->
         <div class="feed-contain">
           <div class="mainprofile">
@@ -136,30 +115,31 @@
 
               </div>
               <div class="card_profile_img">
-
+              <img src="<%=profile_data.user_image%>">
               </div>
               <div class="user_details">
                 <div class="unameinpro">
 
-                  <h3>Tulsi Dholariya</h3>
-                  <h4>@tulsi_dholariya</h4>
+                  <h3><%=profile_data.name%> </h3>
+                  <h4><%=profile_data.user_name%> </h4>
                 </div>
 
 
                 <div class="editpro">
-                  <a href="/edit/mainprof" class="editproa"> Edit Profile </a>
+                  <a class="editproa"> Edit Profile </a>
                 </div>
               </div>
 
               <div class="follow">
                 <div class="flexthisdata">
                   <div class="lfmargin">
-
-                    <img width="20" src="/calendar-interface-symbol-tool (1).png" alt="calander">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                   
                   </div>
                   <div class="joindate">
-
-                    <h4>&nbsp&nbsp&nbspjoined March @2023</h4>
+               
+                    <h4> 
+                      joined March @2023</h4>
                   </div>
                 </div>
                 <div class="flexthisdata">
@@ -184,12 +164,17 @@
 
 
             <div class="post-child">
+              <%
+              const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
+              const array_of_allowed_videos = ['mp4','gif'];
+          %>
+          <% for(var i=0;i<data.length;i++) { %>
               <div class="flexdatatwit">
 
 
                 <div class="twitimg">
 
-                  <img width="32px" class="tweetimg1" src="/IMG_20220710_083920.jpg" alt="img">
+                  <img width="32px" class="tweetimg1" src="<%=profile_data.user_image%>" alt="img">
                 </div>
 
 
@@ -201,35 +186,25 @@
                     <div class="tweetname">
 
                       <h5 class="tweetnamed">
-                        Tulsi Dholariya
+                        <%=profile_data.name%>
                       </h5>
                     </div>
                     <div class="tweetid">
                       <h5 class="tweetidd">
-                        @tulsi_dholariya
+                        <%=profile_data.user_name%>
                       </h5>
                     </div>
-                    <div class="tweettime">
-                      <h5 class="tweettimed">
-                        6hr
-                      </h5>
-                    </div>
+                   
 
 
                   </div>
                   <div class="tweetdatamain">
 
                     <h5 class="tweetdatatxt">
-                      <%
-                        const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
-                        const array_of_allowed_videos = ['mp4','gif'];
-                    %>
-                    <% for(var i=0;i<data.length;i++) { %>
-                            <p id="count"><%=data.length%></p>
                             <div>
                                     <div>
-                                        <div>
-                                            <p class="skill"><%=data[i].description%></p>
+                                       
+
                                             <p class="skill"><%=data[i].description%></p>
                                             <%  if(data[i].media_url==null) {   
                                                 console.log("nothing")
@@ -238,20 +213,23 @@
                                             <%  const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
                                                 if (array_of_allowed_files.includes(file_extension)) {
                                             %>
-                                            <img id="tweet_img" width="50%" src="<%=data[i].media_url%>" />
+                                            <img id="tweet_img"  src="<%=data[i].media_url%>" />
                                             <div>
                                               <div class="insta">
                                                   <div class="icon_row">
+                                                    <div class="icon_tab">
                                                       <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
                                                       <p>10</p>
+                                                    </div>
+                                                     
                                                     <div class="icon_row">
-                                                      <div class="icon_col">
+                                                      <div class="icon_col1">
                                                           <a href=""><i  class="fas fa-comment"></i></a>
                                                           <p>10</p>
                                                       </div>
                                                       
                                                     <div class="icon_row">
-                                                      <div class="icon_col">
+                                                      <div class="icon_col2">
                                                           <a href=""><i class="fa fa-retweet"></i></a>
                                                     <p>10</p>
                                                       </div>
@@ -270,7 +248,7 @@
                                                           <i id="heart<%=i%>" class="fa fa-thumbs-up" onclick="likepost()"></i>
                                                           <p>10</p>
                                                         <div class="icon_row">
-                                                          <div class="icon_col">
+                                                          <div class="icon_col1">
                                                               <a href=""><i  class="fas fa-comment"></i></a>
                                                               <p>10</p>
                                                           </div>
@@ -287,18 +265,19 @@
                                               </div>
                                             <% }}%>
                                             
-                                        </div>
+                                        
                                     </div>
                       
                             </div>
                         </div>
                         </div>
                         
-                   <% } %>
+              
                     </h5>
                   </div>
                 </div>
               </div>
+            <%}%>
             </div>
 
 
@@ -314,11 +293,7 @@
 
       <!-- widgets starts -->
       <div class="widgets">
-        <div class="input1  header1" id="myHeader1">
-          <span class="material-icons widgets__searchIcon"> search </span>
-          <input type="text" class="searchtext" placeholder="Search Twitter" />
-        </div>
-
+       
       </div>
     </div>
   </div>
@@ -326,7 +301,7 @@
   </div>
   <dialog id="moreoption">
     <div class="manubar">
-      <a class="achange" href="/changepassword/chnage"> Change Password</a>
+      <a class="achange" href="http://localhost:8000/changepassword"> Change Password</a>
       <a class="achange" id="deleteac" onclick="deleteac()">Delete Account</a>
       <a class="achange" id="logoutac" onclick="logoutac()">Logout</a>
 

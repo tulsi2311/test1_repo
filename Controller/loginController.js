@@ -43,17 +43,18 @@ const login = asyncHandler(async (req, res) => {
       console.log(":::::::::number of like:::::::", arr2)
 
 
-
+      console.log("following id ::::::::",followingid)
 
       if (followingid.length == 0) {
          if (sql) {
             tweetfollowing = ""
+            console.log("render1")
             res.render('home.ejs', { data: sql, data2: token, tweetfollowing, tweetid: arr, likecount: arr2 });
          } else {
             console.log("else")
             res.render('home.ejs', { data2: token });
          }
-      }
+      }else{
       if (followingid.length > 1) {
          for (var i = 0; i < followingid.length; i++) {
             tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
@@ -68,7 +69,7 @@ const login = asyncHandler(async (req, res) => {
       } else {
          res.render('home.ejs', { data2: token });
       }
-
+   }
 
    }
 
