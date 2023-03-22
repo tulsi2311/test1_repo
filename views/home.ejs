@@ -53,6 +53,7 @@
                                         <div class="text_col2">
                                             <a href="">Jaquon Hart</a>
                                             <p class="skill"><%=data[i].description%></p>
+                                            <% if(data[i].media_url !=null){ %>
                                             <%  const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
                                                 if (array_of_allowed_files.includes(file_extension)) {
                                             %>
@@ -61,7 +62,7 @@
                                                 <video width="320" height="240" controls>
                                                     <source src="<%=data[i].media_url%>" type="video/mp4">
                                                 </video>
-                                            <% }%>
+                                            <% }}%>
                                             <div class="icon">
                                                 <div class="insta">
                                                     <div class="icon_row">
