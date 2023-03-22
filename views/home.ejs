@@ -299,7 +299,7 @@
                 const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=1`);
                 const like_count = await like_result.json();
                 document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
-                document.getElementById(`${id}`).setAttribute("onclick",(id,1));
+                document.getElementById(`${id}`).setAttribute("onclick",`likepost(${id},1)`);
             }
             else {
                 var like_btn = document.getElementById(`${id}`).style.color="black"
@@ -307,7 +307,7 @@
                 const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=0`);
                 const like_count = await like_result.json();
                 document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
-                document.getElementById(`${id}`).setAttribute("onclick",(id,0));
+                document.getElementById(`${id}`).setAttribute("onclick",`likepost(${id},0)`);
             }
   
         }
