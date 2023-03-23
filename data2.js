@@ -21,6 +21,7 @@ const list=require('./Routes/list')
 const info = require('./Routes/first_info')
 const comment = require('./Routes/comment')
 const likes=require('./Routes/likes')
+const retweet=require('./Routes/retweet')
 
 const chnagepassword = require('./Routes/changepassword')
 
@@ -52,6 +53,7 @@ app.use('/info',info)
 app.use('/comment',comment)
 app.use('/changepassword',chnagepassword)
 app.use('/likes',likes)
+app.use('/retweet',retweet)
 
 
 
@@ -328,4 +330,4 @@ app.get('/tweet_show',(req,res) =>
    }
 })
 
-app.listen(2081);
+app.listen(2082);

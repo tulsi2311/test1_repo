@@ -4,7 +4,7 @@ const date = require('date-and-time')
 var util = require('util')
 const conn = require('../connection/connection')
 const asyncHandler = require("express-async-handler");
-
+var c;
 const query = util.promisify(conn.query).bind(conn)
 const login = asyncHandler(async (req, res) => {
    var cook = req.cookies.authcookie;
@@ -12,6 +12,7 @@ const login = asyncHandler(async (req, res) => {
    if ((!cook) || cook == '') {
       var str = "";
       c = 0;
+      console.log("render1")
       res.render('login.ejs', { str, c });
 
    }
@@ -48,9 +49,11 @@ const login = asyncHandler(async (req, res) => {
       if (followingid.length == 0) {
          if (sql) {
             tweetfollowing = ""
+            console.log("render2")
             res.render('home.ejs', { data: sql, data2: token, tweetfollowing, tweetid: arr, likecount: arr2 });
          } else {
             console.log("else")
+            console.log("render3")
             res.render('home.ejs', { data2: token });
          }
       } else {
@@ -62,10 +65,13 @@ const login = asyncHandler(async (req, res) => {
          else {
             tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
          }
+
          console.log(tweet)
          if (sql) {
+            console.log("render4")
             res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
          } else {
+            console.log("render5")
             res.render('home.ejs', { data2: token });
          }
       }
@@ -79,6 +85,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
 
    console.log(req.body);
    var sql = `select * from Elite_User where is_active=1 and is_delete=0 and email='${req.body.email}'`;
+   c = req.body.database
    conn.query(sql, (err, data) => {
       if (err) throw err;
 
@@ -86,6 +93,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
 
          var str = "incorrect email or password";
          c++;
+         console.log("render6")
          res.render('login.ejs', { str, c });
       }
       else {
@@ -110,6 +118,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
                res.cookie('authcookie', token);
                res.redirect('/login/login/index5');
             } else {
+               console.log("render7")
                res.render('active.ejs', { id: data[0].id, message: "You have to first active your account" })
                // res.send(`You have to first active your account <a href="/login_first?id=${data[0].id}"> Click here to verify your account</a>`);
             }
@@ -118,6 +127,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
 
             var str = "incorrect email or password";
             c++;
+            console.log("render8")
             res.render('login.ejs', { str, c });
          }
       }
@@ -131,6 +141,7 @@ const login2 = asyncHandler(async (req, res) => {
    if (!cook) {
       var str = "";
       c = 0;
+      console.log("render9")
       res.render('login.ejs', { str, c });
    }
    else {
@@ -167,34 +178,42 @@ const login2 = asyncHandler(async (req, res) => {
             console.log("::::::::::post ids::::::", arr)
             console.log(":::::::::number of like:::::::", arr2)
 
-
+            var tweetid
             if (followingid.length == 0) {
+               console.log("yessssssss folllowwiiingh");
                if (sql) {
                   tweetfollowing = ""
-                  res.render('home.ejs', { data: sql, data2: token, tweetfollowing });
+                  // tweetid = ""
+                  console.log("render10")
+                  res.render('home.ejs', { data: sql, data2: token, tweetfollowing, tweetid: arr, likecount: arr2  });
                } else {
                   console.log("else")
+                  console.log("render11")
                   res.render('home.ejs', { data2: token });
                }
-            }
-            if (followingid.length > 1) {
-               for (var i = 0; i < followingid.length; i++) {
-                  tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
-               }
-            }
-            else {
-               tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
-            }
-            console.log(tweet)
-            if (sql) {
-               res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
             } else {
-               console.log("else")
-               res.render('home.ejs', { data2: token });
+               if (followingid.length > 1) {
+                  for (var i = 0; i < followingid.length; i++) {
+                     tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+                  }
+               }
+               else {
+                  tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+               }
+               console.log(tweet)
+               if (sql) {
+                  console.log("render12")
+                  res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
+               } else {
+                  console.log("else")
+                  console.log("render13")
+                  res.render('home.ejs', { data2: token });
+               }
             }
          }
          //res.render('home.ejs', { data: token });
       } else {
+         console.log("render14")
          res.render('profile_info')
       }
 
