@@ -53,22 +53,22 @@ const login = asyncHandler(async (req, res) => {
             console.log("else")
             res.render('home.ejs', { data2: token });
          }
-      }
-      if (followingid.length > 1) {
-         for (var i = 0; i < followingid.length; i++) {
-            tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+      } else {
+         if (followingid.length > 1) {
+            for (var i = 0; i < followingid.length; i++) {
+               tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+            }
+         }
+         else {
+            tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+         }
+         console.log(tweet)
+         if (sql) {
+            res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
+         } else {
+            res.render('home.ejs', { data2: token });
          }
       }
-      else {
-         tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
-      }
-      console.log(tweet)
-      if (sql) {
-         res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
-      } else {
-         res.render('home.ejs', { data2: token });
-      }
-
 
    }
 
@@ -187,7 +187,7 @@ const login2 = asyncHandler(async (req, res) => {
             }
             console.log(tweet)
             if (sql) {
-               res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet , tweetid: arr, likecount: arr2});
+               res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
             } else {
                console.log("else")
                res.render('home.ejs', { data2: token });
