@@ -29,7 +29,7 @@
                       </svg>
                     </div>
 
-                    <input type="text" name="name" id="namee" class="squre" placeholder="   Name" />
+                    <input type="text" name="name" id="namee" class="squre" placeholder="Name" />
                     <p id="error1"></p>
 
 
@@ -118,30 +118,38 @@
 
     async function prachi2(card) {
 
-      var change = await fetch(`/emaill?email=${card}`);
+      var change = await fetch(`/registration/register/email?email=${card}`);
       var change2 = await change.json();
 
       console.log("email checking: ", change2.data);
       if (change2.data != "") {
+        var btn = document.getElementById("sub")
+        btn.disabled = true
         document.getElementById("error2").innerHTML = "email already exist";
       }
       else {
         document.getElementById("error2").innerHTML = "";
+        var btn = document.getElementById("sub")
+        btn.disabled = false
       }
     }
 
 
     async function prachi3(card) {
 
-      var change = await fetch(`/username?userName=${card}`);
+      var change = await fetch(`/registration/register/username?userName=${card}`);
       var change2 = await change.json();
 
       console.log("user name checking: ", change2.data);
       if (change2.data != "") {
         document.getElementById("error5").innerHTML = "user name already exist";
+        var btn = document.getElementById("sub")
+        btn.disabled = true
       }
       else {
         document.getElementById("error5").innerHTML = "";
+        var btn = document.getElementById("sub")
+        btn.disabled = false
       }
     }
 

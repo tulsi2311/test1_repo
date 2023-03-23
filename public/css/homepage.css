@@ -229,12 +229,6 @@ body {
 
 /*  */
 
-.col_search {
-   
-    float: left;
-    width: 30%;
-    padding: 10px;
-}
 
 
 .row:after {
@@ -366,16 +360,70 @@ body {
 } */
 
 
+.col_search {
+   
+    float: left;
+   
+    padding: 10px;
+}
+.searchprofile{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 9%;
+    margin-top:10px;
+    width:112%;
+    
+}
+.profileinfo1
+{
+    width:25%;
+}
+
+
+.profileinfo2
+{
+    width:50%;
+    margin-top:10px; 
+
+}
+.profileinfo3
+{
+    width:25%;
+    margin-top:13px;
+        
+}
+.followbtn{
+    text-decoration: none;
+        background-color: #857DF9;
+        border-radius: 10px;
+        padding:5px; 
+        cursor: pointer;
+
+}
+.profileinfo3 span{
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 .widgets {
-    flex: 0.3;
+    flex: 0.7; 
 }
 
 .widgets__input {
     display: flex;
     align-items: center;
+    border:1px solid black;
     /* background-color:#857df965; */
     padding: 10px;
-    border: 1px solid #857df965;
+    width: 112%;
+    border: 2px solid #857df965;
     border-radius: 20px;
     margin-top: 10px;
     margin-left: 20px;
@@ -387,6 +435,8 @@ body {
     font-size: 1rem;
     margin-left: 10px;
     outline: none;
+  /* border:1px solid red; */
+    width:100%;  
     /* text-decoration: ; */
 
 }
@@ -394,6 +444,8 @@ body {
 .widgets__searchIcon {
     color: rgb(24, 7, 7);
 }
+
+
 
 
 /* .container {
@@ -433,6 +485,10 @@ body {
     width: 50%;
 } */
 
+.like_c{
+    color:black;
+}
 
-
-
+.like_d{
+    color: red;
+}

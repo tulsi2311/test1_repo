@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <link rel="stylesheet" href="/css/comment.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%=data[0].id%>
+        <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
+            <% for(var i=0;i<data.length;i++) { %>
+
+                <div class="tweet">
+                    <div class="test_col_row">
+                        <div class="text_col1">
+                            <div class="img1"><img src="/files/profile-img.png"></div>
+                        </div>
+                        <div class="text_col2">
+                            <p id="tweetid">
+                                <%=data[i].id%>
+                            </p>
+                            <a href="">Jaquon Hart</a>
+                            <p>
+                                <%=data[i].heading%>
+                            </p>
+                            <p class="skill">
+                                <%=data[i].description%>
+                            </p>
+                            <% if(data[i].media_url==null) { console.log("nothing") }else{ const
+                                file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>> 0) +
+                                2);
+                                if (array_of_allowed_files.includes(file_extension)) {
+                                %>
+                                <img id="tweet_img" src="<%=data[i].media_url%>" />
+                                <% }else{ %>
+                                    <video width="320" height="240" controls>
+                                        <source src="<%=data[i].media_url%>" type="video/mp4">
+                                    </video>
+                                    <% }}%>
+                                        <div class="icon">
+                                            <div class="insta" id="append">
+                                                <div class="icon_row">
+                                                    <a href=""><i class="fa fa-thumbs-up"></i></a>
+                                                    <p>10</p>
+                                                    <div class="icon_row">
+                                                        <div class="icon_col">
+                                                            <a href=""><i class="fas fa-comment"></i></a>
+                                                            <p>10</p>
+                                                        </div>
+
+                                                        <div class="icon_row">
+                                                            <div class="icon_col">
+                                                                <a href=""><i class="fa fa-retweet"></i></a>
+                                                                <p>10</p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type="text" name="comment" id="emoji123">
+                                                <p onclick="abc()"><i class="fa-regular fa-face-smile fa-2x"></i></p>
+                                                <emoji-picker></emoji-picker>
+
+                                                <%for(var k=0;k<arr2.length;k++){%>
+                                                    <% if(arr2[k].user_image==null){%>
+                                                        <img src="/files/profile-img.png" width="2%"></img>
+                                                        <%}else{%>
+                                                            <img src="<%=arr2[k].user_image%>" width="1%"></img>
+                                                            <%}%>
+                                                                <span>Name:- <%=arr2[k].name%></span>
+
+                                                                <p>comment:- <%=c[k].comment%>
+                                                                </p>
+                                                                <%}%>
+                                                                    <p id="name"></p>
+                                                                    <img src="" id="image" alt="">
+                                                                    <p id="all"></p>
+                                                                    <p id="<%=data[i].id%>" onclick="postComment(this)">
+                                                                        Post</p>
+                                            </div>
+                                        </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <% } %>
+
+                    <script>
+
+
+                        async function postComment(id) {
+                            console.log(id.id)
+                            var c = document.getElementById("emoji123").value
+                            var data = await fetch(`/comment/postComment?twid=${id.id}&comment=${c}`)
+                            var comment = await data.json()
+                            console.log(comment)
+                            console.log(comment.nameImage[0].name)
+                            console.log(comment.nameImage[0].user_image)
+                            console.log(comment.all[0].comment)
+                            document.getElementById("all").innerHTML += comment.all[0].comment
+                            document.getElementById("name").innerHTML += comment.nameImage[0].name
+                            if (comment.nameImage[0].user_image == null) {
+                                const img = document.createElement("img");
+                                img.src = "/files/profile-img.png";
+                                document.getElementById("name").appendChild(img);
+                                //document.getElementById("image").src = "/files/profile-img.png"
+                            } else {
+                                document.getElementById("image").src = comment.nameImage[0].user_image
+                            }
+                        }
+
+                        document.querySelector('emoji-picker')
+                            .addEventListener('emoji-click', event => console.log(event.detail));
+
+                        document.querySelector('emoji-picker')
+                            .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
+
+                        document.querySelector('emoji-picker').style.display = "none";
+                        // document.querySelector('tweet').style.display = "none";
+
+                        function abc() {
+                            console.log("harsh")
+                            if (document.querySelector('emoji-picker').style.display == "none") {
+                                document.querySelector('emoji-picker').style.display = "block";
+                            }
+                            else {
+                                document.querySelector('emoji-picker').style.display = "none";
+                            }
+                        }
+                    </script>
+</body>
+
+</html>

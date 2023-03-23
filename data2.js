@@ -16,12 +16,14 @@ const logout = require('./Routes/logout')
 const tweet = require('./Routes/tweet')
 const prof = require('./Routes/prof')
 const accountD = require('./Routes/accountD')
-const static1= require('./Routes/static1')
-const static2=require('./Routes/static1')
-const home1= require('./Routes/static1')
-const prof1=require('./Routes/static1')
-const changepwd=require('./Routes/changepwd')
-const editprof=require('./Routes/static1')
+const search = require('./Routes/search')
+const list=require('./Routes/list')
+const info = require('./Routes/first_info')
+const comment = require('./Routes/comment')
+const likes=require('./Routes/likes')
+const retweet=require('./Routes/retweet')
+
+const chnagepassword = require('./Routes/changepassword')
 
 var c;
 app.use(express.static('public'));
@@ -45,12 +47,17 @@ app.use('/logout',logout)
 app.use('/tweet',tweet)
 app.use('/prof',prof)
 app.use('/deleteAccount',accountD)
-app.use('/static',static1)
-app.use('/static2',static2)
-app.use('/editprof',editprof)
-app.use('/home1',home1)
-app.use('/prof1',prof1)
-app.use('/changepwd',changepwd)
+app.use('/search',search)
+app.use('/list',list)
+app.use('/info',info)
+app.use('/comment',comment)
+app.use('/changepassword',chnagepassword)
+app.use('/likes',likes)
+app.use('/retweet',retweet)
+
+
+
+
 // app.get('/registration', (req, res) => {
 
 

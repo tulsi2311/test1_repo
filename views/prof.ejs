@@ -88,7 +88,7 @@
 
 
                 <div class="editpro">
-                  <a  href="http://localhost:2081/editprof/editprof1" class="editproa"> Edit Profile </a>
+                  <a  href="/prof/profedit" class="editproa"> Edit Profile </a>
                 </div>
               </div>
 
@@ -105,10 +105,10 @@
                 </div>
                 <div class="flexthisdata">
                   <div class="lfmargin">
-                    <h4> <a class="countfollowing">0</a> Following&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp </h4>
+                    <h4> <%=count%> <a href="/list/following">Following</a>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp </h4>
                   </div>
                   <div>
-                    <h4> <a class="countfollowers">0</a> Followers </h4>
+                    <h4><%=f%><a href="/list/follower"> Followers</a></h4>
                   </div>
 
 
@@ -161,87 +161,83 @@
                   <div class="tweetdatamain">
 
                     <h5 class="tweetdatatxt">
-                      srgtjnasrtjn
+                      <%
+                        const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
+                        const array_of_allowed_videos = ['mp4','gif'];
+                    %>
+                    <% for(var i=0;i<data.length;i++) { %>
+                            <p id="count"><%=data.length%></p>
+                            <div>
+                                    <div>
+                                        <div>
+                                            <p class="skill"><%=data[i].description%></p>
+                                            <p class="skill"><%=data[i].description%></p>
+                                            <%  if(data[i].media_url==null) {   
+                                                console.log("nothing")
+                                             }else{ 
+                                            %>
+                                            <%  const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
+                                                if (array_of_allowed_files.includes(file_extension)) {
+                                            %>
+                                            <img id="tweet_img" width="50%" src="<%=data[i].media_url%>" />
+                                            <div>
+                                              <div class="insta">
+                                                  <div class="icon_row">
+                                                      <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
+                                                      <p>10</p>
+                                                    <div class="icon_row">
+                                                      <div class="icon_col">
+                                                          <a href=""><i  class="fas fa-comment"></i></a>
+                                                          <p>10</p>
+                                                      </div>
+                                                      
+                                                    <div class="icon_row">
+                                                      <div class="icon_col">
+                                                          <a href=""><i class="fa fa-retweet"></i></a>
+                                                    <p>10</p>
+                                                      </div>
+                                                     
+                                                  </div>
+                                                 
+                                               </div>
+                                          </div>
+                                            <% }else{ %>
+                                                <video width="320" height="240" controls>
+                                                    <source src="<%=data[i].media_url%>" type="video/mp4">
+                                                </video>
+                                                <div>
+                                                  <div class="insta">
+                                                      <div class="icon_row">
+                                                          <i id="heart<%=i%>" class="fa fa-thumbs-up" onclick="likepost()"></i>
+                                                          <p>10</p>
+                                                        <div class="icon_row">
+                                                          <div class="icon_col">
+                                                              <a href=""><i  class="fas fa-comment"></i></a>
+                                                              <p>10</p>
+                                                          </div>
+                                                          
+                                                        <div class="icon_row">
+                                                          <div class="icon_col">
+                                                              <a href=""><i class="fa fa-retweet"></i></a>
+                                                        <p>10</p>
+                                                          </div>
+                                                         
+                                                      </div>
+                                                     
+                                                   </div>
+                                              </div>
+                                            <% }}%>
+                                            
+                                        </div>
+                                    </div>
                       
+                            </div>
+                        </div>
+                        </div>
+                        
+                   <% } %>
                     </h5>
                   </div>
-
-
-                  <div class="tweetdata">
-                    <div class="containicon">
-                      <div class="containiconchild">
-
-                        <div class="icons">
-                          <div class="iconchild">
-                            <?xml version="1.0" ?>
-                            <!DOCTYPE svg
-                              PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-                              enable-background="new 0 0 512 512" height="20px" id="Layer_1" version="1.1"
-                              viewBox="0 0 512 512" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <path
-                                d="M170.476,166.19h155.097c4.285,0,7.76-3.469,7.76-7.754s-3.475-7.765-7.76-7.765H170.476c-4.285,0-7.754,3.48-7.754,7.765  S166.191,166.19,170.476,166.19z" />
-                              <path
-                                d="M348.088,203.362H202.74c-4.284,0-7.759,3.469-7.759,7.754s3.475,7.765,7.759,7.765h145.348c4.284,0,7.754-3.48,7.754-7.765  S352.372,203.362,348.088,203.362z" />
-                              <path
-                                d="M306.695,256.052H170.476c-4.285,0-7.754,3.469-7.754,7.754c0,4.284,3.469,7.754,7.754,7.754h136.219  c4.279,0,7.754-3.47,7.754-7.754C314.448,259.521,310.974,256.052,306.695,256.052z" />
-                              <path
-                                d="M396.776,86.288H115.225c-29.992,0-54.403,22.562-54.403,50.308v154.83c0,27.735,24.411,50.297,54.403,50.297h166.034  l119.812,83.989v-84.135c27.996-2.038,50.108-23.753,50.108-50.151v-154.83C451.179,108.85,426.768,86.288,396.776,86.288z   M427.906,291.426c0,14.902-13.972,27.025-31.131,27.025h-18.978v62.523l-89.193-62.523h-173.38  c-17.164,0-31.131-12.123-31.131-27.025v-154.83c0-14.913,13.967-27.035,31.131-27.035h281.551  c17.159,0,31.131,12.123,31.131,27.035V291.426z" />
-                            </svg> </h5>
-
-                          </div>
-                        </div>
-
-                        <div class="icons">
-                          <div class="iconchild">
-                            <?xml version="1.0" ?>
-                            <!DOCTYPE svg
-                              PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-                              enable-background="new 0 0 100 100" height="20px" id="Layer_1" version="1.1"
-                              viewBox="0 0 100 100" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <g>
-                                <defs>
-                                  <rect height="100" id="SVGID_1_" width="100" />
-                                </defs>
-                                <path
-                                  d="M23.102,76.5c-1.854,0-3.361-1.514-3.361-3.372V45.664L5,45.657l20.029-21.924l20.037,21.931   H30.305v20.235h15.85L56.541,76.5H23.102z M95,54.344H80.254V26.872c0-1.859-1.508-3.372-3.361-3.372H43.461L53.84,34.101h15.847   v20.235l-14.751,0.008l20.035,21.928L95,54.344z" />
-                              </g>
-                            </svg>
-
-
-
-                          </div>
-                        </div>
-
-
-                        <div class="icons">
-                          <div class="iconchild">
-
-                            <i id="heart1" class="fa fa-heart" style="font-size:20px " onclick="likepost()"></i>
-                            <h5><a class="likecount">5</a> likes</h5>
-                          </div>
-
-                        </div>
-
-
-
-                      </div>
-                    </div>
-
-
-
-
-                  </div>
-
-
-
-
-
-
-
-
-
                 </div>
               </div>
             </div>
@@ -267,7 +263,7 @@
   </div>
   <dialog id="moreoption">
     <div class="manubar">
-      <a class="achange" href="http://localhost:8000/changepassword"> Change Password</a>
+      <a class="achange" href="/changepassword/changepassword"> Change Password</a>
       <a class="achange" id="deleteac" onclick="deleteac()">Delete Account</a>
       <a class="achange" id="logoutac" onclick="logoutac()">Logout</a>
 
@@ -348,16 +344,18 @@
     var count = 0
     var flag = true
     function likepost() {
-      var z = document.getElementById('heart1')
-      count = 1
-
-      if (flag == true) {
-        z.style.color = 'red'
-        flag = false;
-      } else {
-        z.style.color = '#e0e2e4'
-        flag = true;
-      }
+      var count2=document.getElementById("count").innerHTML
+      console.log(count2)
+        var z=document.getElementById('heart1')
+        count=1
+        
+        if(flag==true){
+            z.style.color='red'
+          flag=false;
+        }else{
+          z.style.color='#e0e2e4'
+          flag=true;
+        }
     }
 
 

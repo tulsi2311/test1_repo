@@ -61,13 +61,13 @@ const upload2 = asyncHandler(async (req, res) => {
                 var insertData = `INSERT INTO user_tweets(u_id,description,media_url)VALUES('${token}','${req.body.desc}','${imgsrc}')`
                 conn.query(insertData, (err, result) => {
                     if (err) throw err
-                    res.redirect("/login/login/index5")
+                    res.redirect("/login/login")
                 });
             }else{
                 var insertData = `INSERT INTO user_tweets(u_id,description)VALUES('${token}','${req.body.desc}')`
                 conn.query(insertData, (err, result) => {
                 if (err) throw err
-                res.redirect("/login/login/index5")
+                res.redirect("/login/login")
             });
             }
         }

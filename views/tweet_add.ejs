@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="/css/tweet_post.css">
     <title>Document</title>
 </head>
+
 <body>
     <!-- <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
         <label for="text">Heading:</label>
@@ -45,9 +47,10 @@
           <p id="err1"></p>
         </div>
       <hr class="line">
-      <div class="icon">
+      <div class="icgg">
+        <img id="preview">
         <label for="image"><i class="fa-solid fa-image iconimg1"></i></label>
-        <input type="file" id="image" name="img" />
+        <input type="file" id="image" name="img" onchange="previewImage(event)"/>
         <p id="err2"></p>
         <p onclick="abc()"><i class="fa-regular fa-face-smile  iconsmile1"></i></p>
         <emoji-picker></emoji-picker>
@@ -148,4 +151,5 @@
         };
         </script>
 </body>
+
 </html>
