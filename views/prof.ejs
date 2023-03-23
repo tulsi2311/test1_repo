@@ -61,6 +61,14 @@
           <div class="profile_tab2">
             <p><%=profile_data.name%></p>
             <p><%=profile_data.user_name%></p>
+         
+        <div class="profile_row">
+          <div class="profile_tab1">
+            <img src="<%=profile_data.user_image%>">
+          </div>
+          <div class="profile_tab2">
+            <p><%=profile_data.name%></p>
+            <p><%=profile_data.user_name%></p>
           </div>
         </div>
         <%-include("staticpart1")-%>
@@ -101,10 +109,13 @@
 
                 <h2> <%=profile_data.name%>  </h2>
                 <p class="lighttxt"><%=tweet_count%> Tweets</p>
+                <h2> <%=profile_data.name%>  </h2>
+                <p class="lighttxt"><%=tweet_count%> Tweets</p>
               </div>
             </div>
           </div>
         </div>
+        
         
         <!-- tweetbox starts -->
         <div class="feed-contain">
@@ -117,10 +128,13 @@
               </div>
               <div class="card_profile_img">
               <img src="<%=profile_data.user_image%>">
+              <img src="<%=profile_data.user_image%>">
               </div>
               <div class="user_details">
                 <div class="unameinpro">
 
+                  <h3><%=profile_data.name%> </h3>
+                  <h4><%=profile_data.user_name%> </h4>
                   <h3><%=profile_data.name%> </h3>
                   <h4><%=profile_data.user_name%> </h4>
                 </div>
@@ -141,6 +155,9 @@
                     <img width="20" src="/public/files/1a83c828b67134a9b2ab348a0fb5d807" alt="calander">
                   </div>
                   <div class="joindate">
+               
+                    <h4> 
+                      joined March @2023</h4>
                
                     <h4> 
                       joined March @2023</h4>
@@ -173,6 +190,11 @@
               const array_of_allowed_videos = ['mp4','gif'];
           %>
           <% for(var i=0;i<data.length;i++) { %>
+              <%
+              const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
+              const array_of_allowed_videos = ['mp4','gif'];
+          %>
+          <% for(var i=0;i<data.length;i++) { %>
               <div class="flexdatatwit">
 
 
@@ -192,13 +214,17 @@
 
                       <h5 class="tweetnamed">
                         <%=profile_data.name%>
+                        <%=profile_data.name%>
                       </h5>
                     </div>
                     <div class="tweetid">
                       <h5 class="tweetidd">
                         <%=profile_data.user_name%>
+                        <%=profile_data.user_name%>
                       </h5>
                     </div>
+                   
+
                    
 
 
@@ -210,6 +236,8 @@
                                     <div>
                                        
 
+                                       
+
                                             <p class="skill"><%=data[i].description%></p>
                                             <%  if(data[i].media_url==null) {   
                                                 console.log("nothing")
@@ -219,9 +247,11 @@
                                                 if (array_of_allowed_files.includes(file_extension)) {
                                             %>
                                             <img id="tweet_img"  src="<%=data[i].media_url%>" />
+                                            <img id="tweet_img"  src="<%=data[i].media_url%>" />
                                             <div>
                                               <div class="insta">
                                                   <div class="icon_row">
+                                                    <div class="icon_tab">
                                                     <div class="icon_tab">
                                                       <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
                                                      
@@ -231,11 +261,13 @@
                                                      
                                                     <div class="icon_row">
                                                       <div class="icon_col1">
+                                                      <div class="icon_col1">
                                                           <a href=""><i  class="fas fa-comment"></i></a>
                                                           <p><%=arr3[i]%></p>
                                                       </div>
                                                       
                                                     <div class="icon_row">
+                                                      <div class="icon_col2">
                                                       <div class="icon_col2">
                                                           <a href=""><i class="fa fa-retweet"></i></a>
                                                     <p>10</p>
@@ -256,6 +288,7 @@
                                                           <p>10</p>
                                                         <div class="icon_row">
                                                           <div class="icon_col1">
+                                                          <div class="icon_col1">
                                                               <a href=""><i  class="fas fa-comment"></i></a>
                                                               <p>10</p>
                                                           </div>
@@ -273,6 +306,7 @@
                                             <% }}%>
                                             
                                         
+                                        
                                     </div>
                       
                             </div>
@@ -280,10 +314,12 @@
                         </div>
                         
               
+              
                     </h5>
                   </div>
                 </div>
               </div>
+            <%}%>
             <%}%>
             </div>
 

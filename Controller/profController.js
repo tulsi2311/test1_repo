@@ -19,6 +19,8 @@ const prof_new = asyncHandler(async (req, res) => {
     var like=await query(`select twet_id from tweet_like where use_id='${token}'`)
     var profdata = await query(`select * from Elite_User where id='${token}'`)
     var tweetcount = await query(`select count(*) as t from user_tweets where u_id=${token}`);
+    var profdata = await query(`select * from Elite_User where id='${token}'`)
+    var tweetcount = await query(`select count(*) as t from user_tweets where u_id=${token}`);
     var count = await query(`select count(*) as count from 2023_Elite.user_following where user_i='${token}'`);
     var follower = await query(`select count(*) as c from 2023_Elite.user_follower where user_id_id='${token}'`);
  
