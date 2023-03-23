@@ -2,13 +2,15 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const date = require('date-and-time')
 var util = require('util')
-const conn=require('../connection/connection')
+const conn = require('../connection/connection')
 const asyncHandler = require("express-async-handler");
+const multer = require("multer");
+//const multer = require("multer");
 
 
 const query = util.promisify(conn.query).bind(conn)
 
-const prof_new = asyncHandler( async(req, res) => {
+const prof_new = asyncHandler(async (req, res) => {
     var id = req.cookies.home;
     var token = jwt.verify(id, 'id');
 
@@ -56,4 +58,4 @@ const prof_new = asyncHandler( async(req, res) => {
     });
 })
 
-module.exports = { prof_new }
+module.exports = { prof_new, edit_prof, update_prof }

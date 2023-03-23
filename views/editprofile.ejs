@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/editprofile.css" />
+</head>
+<body class="body-edit">
+    
+<div class="wholeweb">
+
+    <div class="boxdata">
+<div class="txtdataedit">
+
+
+<div class="topflx ">
+<div class="topflx1 ">
+
+
+    <div onclick="history.back()"  class="top1">
+        <svg class="svg-icon" style="width: 2em; height: 2em;vertical-align: middle;fill: #000000; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M523.662 510.979l345.262-346.825c6.308-6.336 6.284-16.586-0.052-22.895-6.337-6.307-16.586-6.286-22.895 0.052l-345.158 346.721-345.159-346.722c-6.308-6.336-16.558-6.36-22.895-0.052s-6.36 16.558-0.052 22.895l345.263 346.826-345.263 346.824c-6.307 6.336-6.285 16.586 0.052 22.895 3.158 3.143 7.291 4.716 11.422 4.716 4.156 0 8.31-1.59 11.473-4.768l345.159-346.721 345.159 346.721c3.164 3.177 7.319 4.768 11.473 4.768 4.131 0 8.263-1.571 11.422-4.716 6.336-6.308 6.36-16.558 0.052-22.895l-345.263-346.824z"  /></svg>
+
+    </div>
+    <div class="top2">
+        <h3 class="h3data">Edit Data</h3>
+    </div>
+</div>
+
+    <form action="/prof/updateprof" method="post" enctype="multipart/form-data">
+    <div class="savebtn">
+        <!-- <a  class="savebtn1" href="/prof/updateprof">Save</a> -->
+        <input class="savebtn1" type="submit" value="save">
+    </div>
+
+</div>
+
+
+
+
+<div class="card1">
+    <div class="card_background_img1">
+    </div>
+
+    <div class="card_profile_img1">
+        <img src="<%=edit_query[0].user_image%>">
+        <div class="cover_img">
+            <label for="image1">
+                <i class="material-icons">add_a_photo</i>
+                <input type="file" id="image1" name="img" style="display: none;">
+            </label>
+          
+            
+         </div>
+ 
+         <!-- <img src="/files/1a83c828b67134a9b2ab348a0fb5d807" alt=""> -->
+    </div>
+   
+
+
+    <div class="col m-2">
+        <input placeholder="name" name="user_name" type="text" class="form-control " id="inputEmail3" value="<%=edit_query[0].name %>">
+      </div>
+      <div class="col  m-2 "> <input placeholder="bio" name="user_bio" type="text" class="form-control textarea" id="inputEmail3" value="<%=edit_query[0].bio%>" ></div>
+
+
+    <div class="editdata">
+        <label for="exampleFormControlInput1"  class="form-label"> Birth Date :</label> <input type="date" name="dob" class="bdate" value="<%=date%>">
+        <!-- <label for="exampleFormControlInput1" class="form-label"></label> -->
+    </div>
+
+</div>
+</form>
+
+
+
+
+    </div>
+
+</div>
+</div>

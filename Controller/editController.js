@@ -7,7 +7,7 @@ const asyncHandler = require("express-async-handler");
 
 const query = util.promisify(conn.query).bind(conn)
 const mainprof = asyncHandler(async (req, res) => {
-    res.render("editProf")
+    res.render("editprofile.ejs")
     
 })
 

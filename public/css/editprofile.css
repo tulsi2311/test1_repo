@@ -1,0 +1,144 @@
+.iconedit{
+    width: 20px;
+    height: 20px;
+  }
+  .dataflxedit{
+    display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+  position: relative;
+  top: 40%;
+  left: 40%;
+  width: 220px;
+  
+  
+  }
+  .boxdata{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  padding: 30px 0px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) ;
+    width: 500px;
+    border-radius: 20px;
+    background-color: white;
+    /* border: 2px solid #857df965; */
+  
+  }
+  .icondiv1{
+    margin: 18px 0px 0px 19px;
+    padding: 9px;
+    border-radius: 50%;
+    background-color: #02070a83;
+  
+  }
+  .txtdataedit{
+    padding: 20px;
+  }
+  .savebtn1{
+   
+  text-decoration: none;
+  padding: 2px 4px 2px 4px;
+  color: white;
+  
+  
+  
+  }
+  .icondiv2{
+    padding: 5px;
+    border-radius: 50%;
+    background-color: black;
+    margin: 26px 26px;
+  }
+  .savebtn{
+    width: 80px;
+    height: 30px;
+  }
+  .topflx1{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -10px;
+  
+  }
+  .topflx{
+    display: flex;
+  flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .savebtn{
+  border-radius: 10px;
+  background-color: black;
+  text-align: center;
+  margin-top: -10px;
+  }
+  
+  .card1 {
+    width: 100%;
+   
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card_profile_img1 {
+    
+    border-radius: 120px;
+    margin-top: -60px;
+    margin-left: 40px;
+ 
+  }
+  
+  .card_background_img1 {
+    width: 100%;
+    height: 130px;
+    background-color: #e1e7ed;
+    border:1px solid;
+    background-repeat: no-repeat;
+    background-size: cover; 
+  
+  }
+  .textarea{
+    height: 90px;
+  }
+  .editdata{
+    margin: 10px;
+    padding: 5px;
+  }
+  .body-edit{
+    background-color: rgba(0,0,0,0.1);
+  
+  }
+  .bdate{
+    border-radius: 3px;
+    background-color: rgba(0,0,0,0.1);
+    border: 2px solid #0000006b;
+  }
+
+  /* changes start */
+
+.cover_img1
+{
+    display:flex;
+    flex-wrap: wrap;
+   
+    
+}
+.icon_1
+{
+    padding-top:50px;
+    padding-left:170px;
+}
+.icon_2
+{
+    padding-top:50px;
+    padding-left:20px;
+}
+.material-icons
+{
+  transform: translate(112%, -206%);
+}
+
+
+  /* changes over */

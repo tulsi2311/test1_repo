@@ -7,16 +7,7 @@
 body{
     background-color: #d9d9d9;
 }
-.container {
-   background-color: white;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right:auto;
-    padding: 0 16px;
-    border:1px solid white;
-    margin-top:100px;
-    border-radius:26px;
-}
+
 .post_row
 {
     display: flex;
@@ -31,24 +22,49 @@ body{
 }
 .happen textarea{
     margin-left:70px;
-    font-size:20px;
+    font-size:13px;
     font-weight: 600;
     padding:15px;
     border:none;
+  
+}
+.textarea1{
+    margin-top: -50px;
+    width: 300px;
+    height:150px;
+    border: none;
+    outline: none;
 }
 .line
 {
     border:1px solid #d9d9d9;
-    margin-top:60px;
+    margin-top:20px;
     
+}
+.uploadpic{
+    text-align: end;
+}
+.tweetbtn{
+
+    font-size:15px;
+    height: 25px;
+    width: 78px;
+    border-radius: 26px;
+    background-color: #857DF9;
+    color: white;
+    border:2px solid  #857DF9;
+}
+.imgprof{
+    width: 45px;
+}
+.container{
+    margin-top: -30px;
 }
 .icon
 {
     display: flex;
     flex-wrap:wrap;
-    margin-top:10px;
-    margin-left:80px;
-    margin-bottom:50px;
+   margin: 15px 0px 20px 20px;
 
 }
 .col
@@ -58,6 +74,27 @@ body{
 #image{
     display: none;
 }
-.fa-face-smile{
-    margin-left: 10px;
+/* newchanges */
+
+.formdata{
+    background-color: white;
+    max-width: 450px;
+    /* height: 400px; */
+    margin-left: auto;
+    margin-right:auto;
+    /* padding: 0 16px; */
+    border:1px solid white;
+    margin-top:200px;
+    border-radius:10px;
+}
+/* 
+.uploadpic{
+
+} */
+.alldata{
+    padding: 20px;
+}
+.iconsmile1{
+  
+    margin: 0px 0px 0px 10px;
 }
