@@ -1,0 +1,107 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+body{
+    background-color: #d9d9d9;
+}
+.container {
+   background-color: white;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right:auto;
+    padding: 0 16px;
+    border:1px solid white;
+    margin-top:100px;
+    border-radius:26px;
+}
+.post_row
+{
+    display: flex;
+    flex-wrap: wrap;
+   margin-top:50px;
+}
+.text_col2 input{
+    border:3px solid #d9d9d9;
+    border-radius:20px;
+    padding:6px;
+    margin-left:10px;
+}
+.happen textarea{
+    margin-left:70px;
+    font-size:20px;
+    font-weight: 600;
+    padding:15px;
+    border:none;
+}
+.line
+{
+    border:1px solid #d9d9d9;
+    margin-top:60px;
+    
+}
+.icon
+{
+    display: flex;
+    flex-wrap:wrap;
+    margin-top:10px;
+    margin-left:80px;
+    margin-bottom:50px;
+
+}
+.col
+{
+    padding-right:20px;
+}
+#image{
+    display: none;
+}
+.fa-face-smile{
+    margin-left: 10px;
+}
+.searchprofile{
+    display: flex;
+    flex-wrap: wrap;
+    
+    margin-top:10px;
+    margin-bottom: 10px;
+    width:112%;
+    
+}
+.profileinfo1
+{
+    width:20%;
+}
+
+
+.profileinfo2
+{
+    width:40%;
+    margin-top:10px; 
+
+}
+.profileinfo3
+{
+    width:25%;
+    margin-top:17px;
+        
+}
+.followbtn{
+    text-decoration: none;
+        background-color: #857DF9;
+        border-radius: 10px;
+        padding:5px; 
+        cursor: pointer;
+
+}
+.profileinfo3 span{
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+}
+.following{
+   margin-top: 5%;
+}

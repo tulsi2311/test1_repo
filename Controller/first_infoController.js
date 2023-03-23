@@ -74,7 +74,8 @@ const user_info = asyncHandler(async (req, res) => {
             var set = query( `update Elite_User set number='${req.body.contact}', date_of_birth='${req.body.dob}', bio='${req.body.bio}', user_image = '${compree_image}' where id='${token_id}'`)
             var sql = query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
             if (sql) {
-               res.render('home.ejs', { data: sql, data2: token });
+                tweetfollowing=""
+               res.render('home.ejs', { data: sql, data2: token ,tweetfollowing});
             } else {
                console.log("else")
                res.render('home.ejs', { data2: token });

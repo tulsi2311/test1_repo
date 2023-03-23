@@ -17,6 +17,8 @@ const home = asyncHandler(async (req, res) => {
   var fname = req.query.var;
   var search_query = await query(`select * from Elite_User where name like '${fname}%' and id <> ${token}`)
   var search_following = await query(`SELECT following_id from user_following where user_i = ${token};`)
+
+  console.log(":::::::",search_query);
   res.send({listUser:search_query,following:search_following})
   
 

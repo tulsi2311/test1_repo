@@ -44,7 +44,8 @@ const login = asyncHandler(async (req, res) => {
       console.log(":::::::::number of like:::::::", arr2)
 
 
-
+      console.log("following id ::::::::",followingid)
+      console.log("following id ::::::::",followingid)
 
       if (followingid.length == 0) {
          if (sql) {

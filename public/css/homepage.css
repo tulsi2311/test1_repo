@@ -19,6 +19,7 @@ body {
 .container {
     margin: 0 auto;
     padding: 0 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-left: 1px solid rgba(128, 128, 128, 0.295);
     border-right: 1px solid rgba(128, 128, 128, 0.295);
 
@@ -51,7 +52,11 @@ body {
     border-radius: 5px;
     margin-top: 10px;
 }
-
+.tweet{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin:0 -16px;
+}
 .tweet {
     border-bottom: 1px solid rgba(128, 128, 128, 0.582);
     margin: 0 -16px;
@@ -402,6 +407,7 @@ body {
 
 .sidebarOption span{
     font-size: 30px;
+}
 .like_d{
     color: red;
 }

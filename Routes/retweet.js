@@ -8,3 +8,4 @@ router.route('/re').get(re)
 router.route('/reC').get(reC)
 
 module.exports = router
+module.exports = router
