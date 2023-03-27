@@ -193,7 +193,7 @@ block-size: fit-content;
   
   /* position: fixed; */
   
-  position: fixed;
+  position: sticky;
   /* border: 2px solid red; */
  padding-bottom: 40%;
   /* margin-top: 20px; */
@@ -1245,11 +1245,7 @@ color: white
 .like_d{
   color: red;
 }
-#searchresult
-{
-  margin-top:60px;
-  margin-left:20px;
-}
+
 
 /* changes start in sidebar */
 
@@ -1266,8 +1262,8 @@ color: white
   flex-wrap: wrap;
   margin-left: 9%;
   margin-top: 10px;
+  width: 112%;
 
- width:200px;
 }
 
 .profileinfo1 {
@@ -1277,12 +1273,13 @@ color: white
 
 .profileinfo2 {
   width: 50%;
- 
+  margin-top: 10px;
 
 }
 
 .profileinfo3 {
   width: 25%;
+  margin-top: 13px;
 
 }
 
@@ -1324,7 +1321,10 @@ color: white
 .imgSearch{
   width: 70%;
 }
-
+.searchprofile{
+  width: 150%;
+  /* border: 2px solid; */
+}
 .profileinfo2{
   margin-top: -0.5%;
 }
