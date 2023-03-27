@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Registration.....</title>
+    <link rel="stylesheet" href="/css/log_reg.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body class="body-align">
+    <form class="form1 card" action="/registration/register" onsubmit="return prachi1()" method="post">
+        <div class="card_profile_img"></div>
+        <div class="whole-txt pt-4 ps-5 pe-5 pb-5">
+
+            <h2 class="mb-4">Join Twitter Today</h2>
+
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input type="text" class="login__input" placeholder="name" name="name" id="namee">
+              <p id="error1" class="error_msg"></p>
+          </div>
+
+            <div class="login__field">
+                <i class="login__icon fa-solid fa-user-shield"></i>
+                <input type="text" class="login__input" placeholder="username" name="username" id="username" onchange="prachi3(this.value)">
+                <p id="error5" class="error_msg"></p>
+            </div>
+
+            <div class="login__field">
+                <i class="login__icon fa-solid fa-envelope"></i>
+                <input type="text" class="login__input" placeholder="email" name="email" id="emaill" onchange="prachi2(this.value)">
+                <p id="error2" class="error_msg"></p>
+            </div>
+
+
+            <div class="login__field">
+                <i class="login__icon fa-solid fa-unlock-keyhole"></i>
+                <input type="password" class="login__input" placeholder="password" name="password" id="pass">
+                <p id="error3" class="error_msg"></p>
+            </div>
+
+            <div class="login__field">
+                <i class="login__icon fa-solid fa-lock"></i>
+                <input type="password" class="login__input" placeholder="comform password" name="con_password" id="con_pass">
+                <p id="error4" class="error_msg"></p>
+            </div>
+
+            <div class=" d-grid gap-2 col-15 mb-4 ms-5 me-5 mt-5">
+                <!-- <a href="#" class="btnsubmit">Submit</a> -->
+                <input type="submit" id="sub" class="btnsubmit" value="Sign up" />
+            </div>
+
+            <div class=" textfora mb-4">
+                <p class="minitxt" id="account">Already have an account? 
+                    <a href="/login/login" class="links">Log in</a>
+                </p>
+            </div>
+        </div>
+    </form>
+</body>
+
+
+<script>
+
+  function prachi1() {
+
+    let name = document.getElementById("namee").value;
+    let email = document.getElementById("emaill").value;
+    let password = document.getElementById("pass").value;
+    let con_password = document.getElementById("con_pass").value;
+
+    if (name == "") {
+      document.getElementById("error1").innerHTML = "Please enter valid name";
+      return false;
+    }
+    else {
+      document.getElementById("error1").innerHTML = "";
+    }
+
+    var regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+    var email2 = regex.test(email);
+    if (email == "" || !(email2)) {
+      document.getElementById("error2").innerHTML = "Please enter valid email";
+      return false;
+    }
+    else {
+      document.getElementById("error1").innerHTML = "";
+
+    }
+
+    var regex1 = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})/;
+    var pass1 = regex1.test(password);
+    if (password == "" || !(pass1)) {
+      document.getElementById("error3").innerHTML = "Please enter valid password that contain capital alphabet,small alphabet,special character,length(6-20)";
+      return false;
+    }
+    else {
+      document.getElementById("error1").innerHTML = "";
+
+    }
+    if (con_password != password) {
+      document.getElementById("error4").innerHTML = "Password doesn't match";
+      return false;
+    }
+    else {
+      document.getElementById("error1").innerHTML = "";
+
+    }
+  }
+
+
+  async function prachi2(card) {
+
+    var change = await fetch(`/registration/register/email?email=${card}`);
+    var change2 = await change.json();
+
+    console.log("email checking: ", change2.data);
+    if (change2.data != "") {
+      var btn = document.getElementById("sub")
+      btn.disabled = true;
+      document.getElementById("error2").innerHTML = "email already exist";
+    }
+    else {
+      document.getElementById("error2").innerHTML = "";
+      var btn = document.getElementById("sub")
+      btn.disabled = false;
+    }
+  }
+
+
+  async function prachi3(card) {
+
+    var change = await fetch(`/registration/register/username?userName=${card}`);
+    var change2 = await change.json();
+
+    console.log("user name checking: ", change2.data);
+    if (change2.data != "") {
+      document.getElementById("error5").innerHTML = "username already exist";
+      var btn = document.getElementById("sub")
+      btn.disabled = true;
+    }
+    else {
+      document.getElementById("error5").innerHTML = "";
+      var btn = document.getElementById("sub")
+      btn.disabled = false;
+    }
+  }
+
+</script>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Following </title>
+    <link rel="stylesheet" href="/css/follow_list.css">
+</head>
+<body>
+    <div class="container">
+       <div class="following">
+        <div onclick="history.back()" class="arrowicon">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+              width="32" height="32" viewBox="0 0 256 256" xml:space="preserve">
+
+              <defs>
+              </defs>
+              <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                <polygon points="65.36,0 69.64,4.28 28.92,45 69.64,85.72 65.36,90 20.36,45 "
+                  style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                  transform="  matrix(1 0 0 1 0 0) " />
+              </g>
+            </svg>
+          </div>
+        <h2>Following List</h2>
+       </div>
+<div class="followList">
+    <% for(i=0;i<data.length;i++) { %> 
+       
+        <div class="searchprofile">
+            <div class="profileinfo1">
+                <img src="/files/profile-img.png" alt="">
+            </div>
+            <div class="profileinfo2">
+                   <div class="name">
+                    <span><%=data[i].name%></span>
+                    </div>
+                    
+                    <div class="email">
+                    <span><%=data[i].email%></span>
+                     </div>
+                     
+            </div>
+            <div class="profileinfo3">
+                <div class="followbtn">
+                    <span>UnFollow</span>
+                </div>
+              
+            </div>
+        </div>
+     <%}%>
+</div>
+    </div>
+   
+</body>
+</html>
