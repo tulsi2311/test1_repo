@@ -23,8 +23,8 @@
 
 
         <!-- sidebar starts -->
-       
-      
+
+
         <%-include("staticpart1")-%>
       </div>
       <!-- sidebar ends -->
@@ -32,14 +32,14 @@
       <!-- feed starts -->
       <div class="prof_feed">
 
-       <div class="prof_feed__header">
+        <div class="prof_feed__header">
           <div class="profHeader" id="myHeader">
             <div class="profUnameandarroo">
 
 
               <div onclick="history.back()" class="profArrowicon">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                 viewBox="0 0 256 256" xml:space="preserve">
+                  viewBox="0 0 256 256" xml:space="preserve">
 
                   <defs>
                   </defs>
@@ -54,15 +54,18 @@
 
               <div class="profName">
 
-                <h2> <%=profile_data.name%>  </h2>
-                <p class="lighttxt"><%=tweet_count%> Tweets</p>
-                
+                <h2>
+                  <%=profile_data.name%>
+                </h2>
+                <p class="lighttxt">
+                  <%=tweet_count%> Tweets
+                </p>
               </div>
             </div>
           </div>
         </div>
-        
-        
+
+
         <!-- tweetbox starts -->
         <div class="feed-contain">
           <div class="prof_mainprofile">
@@ -78,23 +81,29 @@
                   <div class="img1"><img src="/files/profile-img.png"></div>
                   <%}else{%>
                     <div class="img1"><img src="<%=profile_data.user_image%>"></div>
-                  <% } %>
-           
+                    <% } %>
+
               </div>
               <div class="profEditpro">
-                  
-                <a  href="/prof/profedit" class="editproa"> Edit Profile </a>
+
+                <a href="/prof/profedit" class="editproa"> Edit Profile </a>
               </div>
 
               <div class="user_details">
                 <div class="unameinpro">
 
-                  <p><%=profile_data.name%> </p>
-                  <p><%=profile_data.user_name%> </p>
-                  <p><%=profile_data.bio%> </p>
+                  <p>
+                    <%=profile_data.name%>
+                  </p>
+                  <p>
+                    <%=profile_data.user_name%>
+                  </p>
+                  <p>
+                    <%=profile_data.bio%>
+                  </p>
 
                 </div>
-               </div>
+              </div>
 
               <div class="profFollow">
                 <div class="flexthisdata">
@@ -103,177 +112,196 @@
                   </div>
                   <div class="joindate">
 
-                    <span> 
+                    <span>
                       joined March @2023</span>
                   </div>
                 </div>
                 <div class="flexthisdata profFollow">
                   <div class="lfmargin ">
-                    <p> <strong><%=count%></strong> <a href="/list/following">Following</a> </p>
+                    <p> <strong>
+                        <%=count%>
+                      </strong> <a href="/list/following">Following</a> </p>
                   </div>
                   <div>
-                    <p><strong><%=f%></strong><a href="/list/follower"> Followers</a></p>
+                    <p><strong>
+                        <%=f%>
+                      </strong><a href="/list/follower"> Followers</a></p>
                   </div>
 
 
                 </div>
+
+
+
+
+                <!-- tweetbox ends -->
+
+
               </div>
             </div>
-
           </div>
+        </div>
 
-          <!-- tweetbox ends -->
-
-          <!-- post starts -->
-          <%
-          const array_of_allowed_files = ['png', 'jpeg', 'jpg'];
-          const array_of_allowed_videos = ['mp4','gif'];
-      %>
-      <% for(var i=0;i<data.length;i++) { %>
-          <div class="profPost">
+        <!-- post starts -->
+        <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
+          <% for(var i=0;i<data.length;i++) { %>
+            <div class="profPost">
 
 
-            <div class="post-child">
-             
-              <div class="flexdatatwit">
+              <div class="post-child">
 
-                
-                <div class="twitimg">
-                  <%if(user[0].user_image==""){%>
-                    <div class="img1"><img src="/files/profile-img.png"></div>
-                    <%}else{%>
-                      <div class="img1"><img src="<%=profile_data.user_image%>"></div>
-                    <% } %>
-                    </div>
-
-                <div class="nameandtime">
-
-                  <div class="flex1">
-
-                    <div class="tweetname">
-
-                      <p class="tweetnamed">
-                        <%=profile_data.name%>
-                      </p>
-                      <p class="tweetnamed">
-                        <%=profile_data.user_name%>
-                      </p>
-                      
-                    </div>
-                   
-                   
-
-                   
+                <div class="flexdatatwit">
 
 
+                  <div class="twitimg">
+
+                    <%if(user[0].user_image==""){%>
+                      <div class="img1"><img src="./files/profile-img.png"></div>
+        
+                      <%}else{%>
+                        <div class="img1"><img src="<%=profile_data.user_image%>"></div>
+                        <% } %>
                   </div>
-                  <div class="tweetdatamain">
 
-                    <h5 class="tweetdatatxt">
+                  <div class="nameandtime">
+
+                    <div class="flex1">
+
+                      <div class="tweetname">
+
+                        <p class="tweetnamed">
+                          <%=profile_data.name%>
+                        </p>
+                        <p class="tweetnamed">
+                          <%=profile_data.user_name%>
+                        </p>
+
+                      </div>
+
+
+                    </div>
+                    <div class="tweetdatamain">
+
+                      <h5 class="tweetdatatxt"></h5>
+                      <div>
+
+
+                        <p class="skill">
+                          <%=data[i].description%>
+                        </p>
+
+
+                        <% if(data[i].media_url==null) { console.log("nothing") }else{ %>
+                          <% const file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>>
+                            0) + 2);
+                            if (array_of_allowed_files.includes(file_extension)) { %>
+                            <img id="tweet_img" src="<%=data[i].media_url%>" />
+
                             <div>
-                                    <div>
-                                       
+                              <div class="profInsta">
+                                <div class="icon_row">
+                                  <div class="icon_tab">
+                                    <div class="icon_tab">
+                                      <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
 
-                                       
+                                      <p>
+                                        <%=arr2[i]%>
+                                      </p>
 
-                                            <p class="skill"><%=data[i].description%></p>
-                                            <%  if(data[i].media_url==null) {   
-                                                console.log("nothing")
-                                             }else{ 
-                                            %>
-                                            <%  const file_extension = data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1) >>> 0) + 2);
-                                                if (array_of_allowed_files.includes(file_extension)) {
-                                            %>
-                                            <img id="tweet_img"  src="<%=data[i].media_url%>" />
-                                           
-                                            <div>
-                                              <div class="profInsta">
-                                                  <div class="icon_row">
-                                                    <div class="icon_tab">
-                                                    <div class="icon_tab">
-                                                      <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
-                                                     
-                                                      <p><%=arr2[i]%></p>
-                                                     
-                                                    </div>
-                                                     
-                                                    <div class="icon_row">
-                                                      <div class="icon_tab">
-                                                          <a href=""><i  class="fas fa-comment"></i></a>
-                                                          <p><%=arr3[i]%></p>
-                                                      </div>
-                                                      
-                                                    <div class="icon_row">
-                                                      <div class="icon_tab">
-                                                          <a href=""><i class="fa fa-retweet"></i></a>
-                                                  
-                                                      </div>
-                                                     
-                                                  </div>
-                                                 
-                                               </div>
-                                          </div>
-                                            <% }else{ %>
-                                                <video width="320" height="240" controls>
-                                                    <source src="<%=data[i].media_url%>" type="video/mp4">
-                                                </video>
-                                                <div>
-                                                  <div class="insta">
-                                                      <div class="icon_row">
-                                                          <i id="heart<%=i%>" class="fa fa-thumbs-up" onclick="likepost()"></i>
-                                                         
-                                                        <div class="icon_row">
-                                                          <div class="icon_col1">
-                                                          <div class="icon_col1">
-                                                              <a href=""><i  class="fas fa-comment"></i></a>
-                                                             
-                                                          </div>
-                                                          
-                                                        <div class="icon_row">
-                                                          <div class="icon_col">
-                                                              <a href=""><i class="fa fa-retweet"></i></a>
-                                                        
-                                                          </div>
-                                                         
-                                                      </div>
-                                                     
-                                                   </div>
-                                              </div>
-                                            <% }}%>
-                                            
-                                        
-                                        
                                     </div>
-                      
+
+                                    <div class="icon_row">
+                                      <div class="icon_tab">
+                                        <a href=""><i class="fas fa-comment"></i></a>
+                                        <p>
+                                          <%=arr3[i]%>
+                                        </p>
+                                      </div>
+
+                                      <div class="icon_row">
+                                        <div class="icon_tab">
+                                          <a href=""><i class="fa fa-retweet"></i></a>
+                                          <p>10</p>
+                                        </div>
+
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                        </div>
-                        </div>
-                        
-              
-              
-                    </h5>
+                            <% }else{ %>
+                              <video width="320" height="240" controls>
+                                <source src="<%=data[i].media_url%>" type="video/mp4">
+                              </video>
+                              <div>
+                                <div class="profInsta">
+                                  <div class="icon_row">
+                                    <div class="icon_tab">
+                                      <div class="icon_tab">
+                                        <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
+  
+                                        <p>
+                                          <%=arr2[i]%>
+                                        </p>
+  
+                                      </div>
+  
+                                      <div class="icon_row">
+                                        <div class="icon_tab">
+                                          <a href=""><i class="fas fa-comment"></i></a>
+                                          <p>
+                                            <%=arr3[i]%>
+                                          </p>
+                                        </div>
+  
+                                        <div class="icon_row">
+                                          <div class="icon_tab">
+                                            <a href=""><i class="fa fa-retweet"></i></a>
+                                            <p>10</p>
+                                          </div>
+  
+                                        </div>
+  
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <% }}%>
+
+
+
+
+
+                      </div>
+                    </div>
+
                   </div>
+
                 </div>
               </div>
             </div>
 
-
-          </div>
             <%}%>
-          
-
-      
-
-
-      <!-- feed ends -->
-
-      <!-- widgets starts -->
-    
-      
+      </div>
     </div>
+
+
+
+
   </div>
+
+
+
+
+
+
+
+
   <!-- widgets ends -->
-  
+
   <dialog id="moreoption">
     <div class="manubar">
       <a class="achange" href="http://localhost:8000/changepassword"> Change Password</a>
@@ -284,6 +312,11 @@
       <p class="cancel" onclick="dataout()">cancle</p>
     </div>
   </dialog>
+
+
+
+
+
   <script>
 
     function dataopt() {
@@ -295,6 +328,7 @@
       var data1 = document.getElementById('moreoption')
       data1.close()
     }
+
 
 
 
@@ -357,18 +391,18 @@
     var count = 0
     var flag = true
     function likepost() {
-      var count2=document.getElementById("count").innerHTML
+      var count2 = document.getElementById("count").innerHTML
       console.log(count2)
-        var z=document.getElementById('heart1')
-        count=1
-        
-        if(flag==true){
-            z.style.color='red'
-          flag=false;
-        }else{
-          z.style.color='#e0e2e4'
-          flag=true;
-        }
+      var z = document.getElementById('heart1')
+      count = 1
+
+      if (flag == true) {
+        z.style.color = 'red'
+        flag = false;
+      } else {
+        z.style.color = '#e0e2e4'
+        flag = true;
+      }
     }
 
 
@@ -388,13 +422,13 @@
 
     function dataopt() {
 
-var data1 = document.getElementById('moreoption')
-data1.showModal()
-}
-function dataout() {
-var data1 = document.getElementById('moreoption')
-data1.close()
-}
+      var data1 = document.getElementById('moreoption')
+      data1.showModal()
+    }
+    function dataout() {
+      var data1 = document.getElementById('moreoption')
+      data1.close()
+    }
 
 
 
@@ -403,66 +437,66 @@ data1.close()
 
 
 
-window.onscroll = function () { myFunction() };
+    window.onscroll = function () { myFunction() };
 
-var header = document.getElementById("myHeader");
-
-
-var sticky = header.offsetTop;
-
-function myFunction() {
-if (window.pageYOffset > sticky) {
-  header.classList.add("sticky");
-} else {
-  header.classList.remove("sticky");
-}
-}
+    var header = document.getElementById("myHeader");
 
 
-function logoutac() {
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
 
 
-if (confirm("are your sure to logout") == true) {
-      fetch(`/logout/logout`)
-      location.assign(`/login/login/index5`)
-      console.log("delete")
-} else {
-      alert("you cancel the delete");
-}
-
-}
+    function logoutac() {
 
 
-async function deleteac() {
+      if (confirm("are your sure to logout") == true) {
+        fetch(`/logout/logout`)
+        location.assign(`/login/login/index5`)
+        console.log("delete")
+      } else {
+        alert("you cancel the delete");
+      }
 
-if (confirm("are your sure to Delete Account") == true) {
- const data=   await  fetch(`/deleteAccount/delete`);
- const data2 = await data.json();
- console.log(data2);
-      window.location.href="/login/login/index5"
-      console.log(data2);
-} else {
-      alert("you cancel the delete");
-}
-
-}
+    }
 
 
-// var likeobj = 0;
-var count=0
-var flag=true
-function likepost() {
-  var z=document.getElementById('heart1')
-  count=1
-  
-  if(flag==true){
-      z.style.color='red'
-    flag=false;
-  }else{
-    z.style.color='#e0e2e4'
-    flag=true;
-  }
-}
+    async function deleteac() {
+
+      if (confirm("are your sure to Delete Account") == true) {
+        const data = await fetch(`/deleteAccount/delete`);
+        const data2 = await data.json();
+        console.log(data2);
+        window.location.href = "/login/login/index5"
+        console.log(data2);
+      } else {
+        alert("you cancel the delete");
+      }
+
+    }
+
+
+    // var likeobj = 0;
+    var count = 0
+    var flag = true
+    function likepost() {
+      var z = document.getElementById('heart1')
+      count = 1
+
+      if (flag == true) {
+        z.style.color = 'red'
+        flag = false;
+      } else {
+        z.style.color = '#e0e2e4'
+        flag = true;
+      }
+    }
   </script>
 </body>
 

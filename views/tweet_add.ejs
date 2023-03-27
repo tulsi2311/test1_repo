@@ -48,7 +48,7 @@
         </div>
       <hr class="line">
       <div class="icgg">
-        <img id="preview">
+        <img id="preview" width="25%">
         <label for="image"><i class="fa-solid fa-image iconimg1"></i></label>
         <input type="file" id="image" name="img" onchange="previewImage(event)"/>
         <p id="err2"></p>
@@ -86,18 +86,11 @@
         }
         
         function function_tweet() {
-        var tweet_text = document.getElementById("textarea1").value;
-        var tweet_heading = document.getElementById("text").value;
+        var tweet_text = document.getElementById("emoji123").value;
         var tweet_image = document.getElementById("image");
         
         
-        if (tweet_heading.length > 40) {
-        document.getElementById("err1").innerHTML = "enter valid text";
-        return false;
-        }
-        else {
-        document.getElementById("err1").innerHTML = "";
-        }
+
         
         if (tweet_text.length > 140) {
         document.getElementById("err1").innerHTML = "enter valid text";

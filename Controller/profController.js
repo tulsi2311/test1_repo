@@ -20,7 +20,7 @@ const prof_new = asyncHandler(async (req, res) => {
         var token = req.session.token_id;
 
 
-        var sql = await query(`select * from user_tweets where u_id='${token}'`)
+        var sql = await query(`select * from user_tweets where u_id='${token}' order by id desc`)
         var like = await query(`select twet_id from tweet_like where use_id='${token}'`)
         var profdata = await query(`select * from Elite_User where id='${token}'`)
         var tweetcount = await query(`select count(*) as t from user_tweets where u_id=${token}`);
