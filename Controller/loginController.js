@@ -46,6 +46,7 @@ const login = asyncHandler(async (req, res) => {
 
 
       console.log("following id ::::::::",followingid)
+      console.log("following id ::::::::",followingid)
 
       console.log(":::::",sql)
 

@@ -56,10 +56,13 @@
 
                 <h2> <%=profile_data.name%>  </h2>
                 <p class="lighttxt"><%=tweet_count%> Tweets</p>
+                <h2> <%=profile_data.name%>  </h2>
+                <p class="lighttxt"><%=tweet_count%> Tweets</p>
               </div>
             </div>
           </div>
         </div>
+        
         
         <!-- tweetbox starts -->
         <div class="feed-contain">
@@ -161,6 +164,8 @@
                    
                    
 
+                   
+
 
                   </div>
                   <div class="tweetdatamain">
@@ -168,6 +173,8 @@
                     <h5 class="tweetdatatxt">
                             <div>
                                     <div>
+                                       
+
                                        
 
                                             <p class="skill"><%=data[i].description%></p>
@@ -179,9 +186,11 @@
                                                 if (array_of_allowed_files.includes(file_extension)) {
                                             %>
                                             <img id="tweet_img"  src="<%=data[i].media_url%>" />
+                                            <img id="tweet_img"  src="<%=data[i].media_url%>" />
                                             <div>
                                               <div class="profInsta">
                                                   <div class="icon_row">
+                                                    <div class="icon_tab">
                                                     <div class="icon_tab">
                                                       <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
                                                      
@@ -216,6 +225,7 @@
                                                           <p>10</p>
                                                         <div class="icon_row">
                                                           <div class="icon_col1">
+                                                          <div class="icon_col1">
                                                               <a href=""><i  class="fas fa-comment"></i></a>
                                                               <p>10</p>
                                                           </div>
@@ -233,12 +243,14 @@
                                             <% }}%>
                                             
                                         
+                                        
                                     </div>
                       
                             </div>
                         </div>
                         </div>
                         
+              
               
                     </h5>
                   </div>
