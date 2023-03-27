@@ -9,8 +9,9 @@ const asyncHandler = require("express-async-handler");
 
 const logout =asyncHandler( async(req, res) => {
 
-    res.clearCookie("authcookie");
-    res.clearCookie("home")
+   
+    req.session.destroy();
+    //res.send({data:"hello"})
     res.send({data:"hello"})
     //res.redirect('/login/login');
 })

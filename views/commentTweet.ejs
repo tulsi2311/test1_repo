@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <%=data[0].id%>
         <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
             <% for(var i=0;i<data.length;i++) { %>
 
@@ -22,13 +21,10 @@
                             <div class="img1"><img src="/files/profile-img.png"></div>
                         </div>
                         <div class="text_col2">
-                            <p id="tweetid">
+                            <p id="tweetid" hidden>
                                 <%=data[i].id%>
                             </p>
                             <a href="">Jaquon Hart</a>
-                            <p>
-                                <%=data[i].heading%>
-                            </p>
                             <p class="skill">
                                 <%=data[i].description%>
                             </p>
@@ -37,7 +33,7 @@
                                 2);
                                 if (array_of_allowed_files.includes(file_extension)) {
                                 %>
-                                <img id="tweet_img" src="<%=data[i].media_url%>" />
+                                <img id="tweet_img" width="25%" src="<%=data[i].media_url%>" />
                                 <% }else{ %>
                                     <video width="320" height="240" controls>
                                         <source src="<%=data[i].media_url%>" type="video/mp4">

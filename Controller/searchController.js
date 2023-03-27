@@ -8,8 +8,8 @@ const asyncHandler = require("express-async-handler");
 const query = util.promisify(conn.query).bind(conn)
 const home = asyncHandler(async (req, res) => {
 
-  var cook_id = req.cookies.home;
-  var token = jwt.verify(cook_id, 'id');
+  var cook_id = req.session.token_id;
+  var token = req.session.token_id;
   // console.log("token verify::::  ", token);
 
 
@@ -25,8 +25,8 @@ const home = asyncHandler(async (req, res) => {
 })
 
 const follower = asyncHandler(async (req, res) => {
-  var cook_id = req.cookies.home;
-  var token = jwt.verify(cook_id, 'id');
+  var cook_id = req.session.token_id;
+  var token = req.session.token_id;
   var follower_id = token;
   console.log("req.body",req.query);
   console.log("follower_id:::::::  ", follower_id)

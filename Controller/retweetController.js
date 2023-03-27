@@ -33,8 +33,8 @@ const re = asyncHandler(async (req, res) => {
 const reC = asyncHandler(async (req, res) => {
     console.log(req.query.twid)
     console.log(req.query.comment)
-    var id = req.cookies.home;
-    var token_id = jwt.verify(id, 'id');
+    var id = req.session.token_id;
+    var token_id = req.session.token_id;
     var result=await query(`insert into re_tweet(uid,tweet_id,retweet_data) values('${token_id}','${req.query.twid}','${req.query.comment}')`)
     console.log(result)
     var lastid=result.insertId;

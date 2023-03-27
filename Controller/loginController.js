@@ -7,7 +7,7 @@ const asyncHandler = require("express-async-handler");
 var c;
 const query = util.promisify(conn.query).bind(conn)
 const login = asyncHandler(async (req, res) => {
-   var cook = req.cookies.authcookie;
+   var cook = req.session.token;
    console.log("cookie: ", cook);
    if ((!cook) || cook == '') {
       var str = "";
@@ -17,11 +17,11 @@ const login = asyncHandler(async (req, res) => {
 
    }
    else {
-      var token = jwt.verify(cook, 'prachi');
+      var token = req.session.token;
       console.log("token verify", token);
       // res.render('home.ejs', { data: token });
-      var id = req.cookies.home;
-      var token_id = jwt.verify(id, 'id');
+      var id = req.session.token_id;
+      var token_id = req.session.token_id;
       console.log(token)
       var select_user=await query(`select name,user_image from Elite_User where id='${token_id}'`)
       console.log("name image",select_user)
@@ -116,11 +116,17 @@ const kakaLogin = asyncHandler(async (req, res) => {
 
                var login = query(`insert into login(user_id,login_time,failed_attempt) values('${data[0].id}','${value}','${c}')`)
 
-               var token_id = jwt.sign(data[0].id, 'id')
-               res.cookie('home', token_id)
+               // var token_id = jwt.sign(data[0].id, 'id')
+               // res.cookie('home', token_id)
 
-               var token = jwt.sign(data[0].name, 'prachi');
-               console.log(token);
+               // var token = jwt.sign(data[0].name, 'prachi');
+               // console.log(token);
+               req.session.token_id=data[0].id;
+               var token_id=req.session.token_id
+               console.log("session",token_id)
+               
+               req.session.token=data[0].name
+               var token=req.session.token;
 
                res.cookie('authcookie', token);
                res.redirect('/login/login/index5');
@@ -143,7 +149,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
 
 const login2 = asyncHandler(async (req, res) => {
    var tweetfollowing=[]
-   var cook = req.cookies.authcookie;
+   var cook = req.session.token;
    console.log("cookie: ", cook);
    if (!cook) {
       var str = "";
@@ -153,18 +159,18 @@ const login2 = asyncHandler(async (req, res) => {
    }
    else {
 
-      var token = jwt.verify(cook, 'prachi');
+      var token = req.session.token;
       console.log("token verify", token);
       //res.render('home.ejs', { data: token });
-      var id = req.cookies.home;
-      var token_id = jwt.verify(id, 'id');
+      var id = req.session.token_id;
+      var token_id = req.session.token_id;
       console.log("count:::::::::", token_id)
       var select_user=await query(`select name,user_image from Elite_User where id='${token_id}'`)
       console.log("name image",select_user)
       var count = await query(`select count(*) as count from login where user_id='${token_id}'`)
       console.log(count[0].count)
       if (count[0].count > 1) {
-         var token = jwt.verify(cook, 'prachi');
+         var token = req.session.token;
          console.log("token verify", token);
          var sql2 = await query(`select * from Elite_User where is_active=1 and is_delete=0 and id='${token_id}'`)
          if (sql2) {

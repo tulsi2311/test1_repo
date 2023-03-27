@@ -4,7 +4,13 @@ const conn = require('../connection/connection')
 const asyncHandler = require("express-async-handler");
 
 const register = asyncHandler(async (req, res) => {
-    res.render('reg.ejs')
+    var cook = req.session.token;
+    console.log("cookie: ", cook);
+    if (cook == '') {
+        res.render('reg.ejs')
+    }else{
+        res.redirect('/login/login');
+    }
 })
 
 

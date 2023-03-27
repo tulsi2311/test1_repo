@@ -30,8 +30,8 @@ var upload = multer({ storage: storageEngine }).single('img');
 
 const user_info = asyncHandler(async (req, res) => {
 
-    var id = req.cookies.home
-    var token_id = jwt.verify(id, 'id');
+    var id = req.session.token_id
+    var token_id = req.session.token_id;
     console.log('Bharti')
 
 
@@ -66,11 +66,11 @@ const user_info = asyncHandler(async (req, res) => {
             
             var compree_image = "/compress/" + req.file.originalname;
 
-            var cook = req.cookies.authcookie;
-            var token = jwt.verify(cook, 'prachi');
+            var cook = req.session.token;
+            var token =req.session.token;
             console.log("token verify", token);
-            var id = req.cookies.home;
-            var token_id = jwt.verify(id, 'id');
+            var id = req.session.token_id;
+            var token_id = req.session.token_id;
             var set = query( `update Elite_User set number='${req.body.contact}', date_of_birth='${req.body.dob}', bio='${req.body.bio}', user_image = '${compree_image}' where id='${token_id}'`)
             var sql = query(`select heading,description,media_url from user_tweets where u_id='${token_id}'`)
             if (sql) {

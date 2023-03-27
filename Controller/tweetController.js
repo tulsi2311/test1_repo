@@ -8,7 +8,7 @@ const asyncHandler = require("express-async-handler");
 
 const query = util.promisify(conn.query).bind(conn)
 const tweet = asyncHandler(async (req, res) => {
-    var cook = req.cookies.authcookie;
+    var cook = req.session.token;
     console.log("cookie: ", cook);
     if (!cook) {
        var str = "";
@@ -33,8 +33,8 @@ var storage = multer.diskStorage({
  var upload = multer({ storage: storage }).single('img');
 
 const upload2 = asyncHandler(async (req, res) => {
-    var id = req.cookies.home;
-    var token = jwt.verify(id, 'id');
+    var id = req.session.token_id;
+    var token = req.session.token_id;
     console.log(token)
     upload(req, res, function (err) {
        

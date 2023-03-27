@@ -130,7 +130,7 @@
                           <div class="tweet">
                             <div class="test_col_row">
                               <div class="text_col1">
-                                <%if(followinguser[0].user_image== ""){%>
+                                <%if(followinguser[0].user_image== "" || followinguser[0].user_image== null){%>
                                   <div class="img1"><img src="/files/profile-img.png"></div>
                                   <%}else{ console.log("welcome",followinguser[0].user_image)%>
                                     <div class="img1"><img src="<%=followinguser[0].user_image%>"></div>

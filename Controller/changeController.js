@@ -7,20 +7,26 @@ const asyncHandler = require("express-async-handler");
 
 const query = util.promisify(conn.query).bind(conn)
 const change = asyncHandler(async (req, res) => {
-    res.render("changepassword")
+    var cook = req.session.token;
+    console.log("cookie: ", cook);
+    if (!cook ||(cook == '') ){
+        res.redirect('/login/login')
+    }else{
+        res.render("changepassword")
+    }
 })
 
 const change2 = asyncHandler(async (req, res) => {
     const { password_old, password_new } = req.body;
-    var id = req.cookies.home;
-    var token_id = jwt.verify(id, 'id');
+    var id = req.session.token_id;
+    var token_id = req.session.token_id;
     console.log(token_id)
 
     console.log("old", password_old);
     console.log("new", password_new);
 
 
-    var sql = `SELECT * FROM 2023_Elite.Elite_User where id = ${token_id};`
+    var sql = `SELECT * FROM Elite_User where id = ${token_id};`
     const result = await query(sql);;
     var oldPass = result[0].password;
     console.log("old p " + oldPass);
@@ -28,7 +34,7 @@ const change2 = asyncHandler(async (req, res) => {
     var match = await bcrypt.compare(password_old, oldPass);
     console.log(match);
     if (match) {
-        var sql1 = `update 2023_Elite.Elite_User set  password="${hashp}" where id= ${token_id};`
+        var sql1 = `update Elite_User set  password="${hashp}" where id= ${token_id};`
         var update = await query(sql1);
         console.log("edited");
         res.redirect("/prof/prof")
