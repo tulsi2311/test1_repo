@@ -6,7 +6,7 @@ const asyncHandler = require("express-async-handler");
 const register = asyncHandler(async (req, res) => {
     var cook = req.session.token;
     console.log("cookie: ", cook);
-    if (cook == '') {
+    if (cook == '' || cook==null) {
         res.render('reg.ejs')
     }else{
         res.redirect('/login/login');
