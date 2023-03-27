@@ -17,13 +17,14 @@ const login = asyncHandler(async (req, res) => {
 
    }
    else {
-
       var token = jwt.verify(cook, 'prachi');
       console.log("token verify", token);
       // res.render('home.ejs', { data: token });
       var id = req.cookies.home;
       var token_id = jwt.verify(id, 'id');
       console.log(token)
+      var select_user=await query(`select name,user_image from Elite_User where id='${token_id}'`)
+      console.log("name image",select_user)
       //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
       var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}'`)
       var followingid = await query(`select following_id from user_following where user_i='${token_id}'`)
@@ -46,11 +47,13 @@ const login = asyncHandler(async (req, res) => {
 
       console.log("following id ::::::::",followingid)
 
+      console.log(":::::",sql)
+
       if (followingid.length == 0) {
          if (sql) {
             tweetfollowing = ""
             console.log("render2")
-            res.render('home.ejs', { data: sql, data2: token, tweetfollowing, tweetid: arr, likecount: arr2 });
+            res.render('home.ejs', { data: sql,user:select_user, data2: token, tweetfollowing, tweetid: arr, likecount: arr2 });
          } else {
             console.log("else")
             console.log("render3")
@@ -60,16 +63,18 @@ const login = asyncHandler(async (req, res) => {
          if (followingid.length > 1) {
             for (var i = 0; i < followingid.length; i++) {
                tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+               followinguser = await query(`select name,user_image from Elite_User where id='${followingid[i].following_id}'`)
             }
          }
          else {
             tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+            followinguser = await query(`select name,user_image from Elite_User where id='${followingid[0].following_id}'`)
          }
 
          console.log(tweet)
          if (sql) {
             console.log("render4")
-            res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
+            res.render('home.ejs', { data: sql,user:select_user, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 ,followinguser});
          } else {
             console.log("render5")
             res.render('home.ejs', { data2: token });
@@ -136,7 +141,7 @@ const kakaLogin = asyncHandler(async (req, res) => {
 })
 
 const login2 = asyncHandler(async (req, res) => {
-
+   var tweetfollowing=[]
    var cook = req.cookies.authcookie;
    console.log("cookie: ", cook);
    if (!cook) {
@@ -153,6 +158,8 @@ const login2 = asyncHandler(async (req, res) => {
       var id = req.cookies.home;
       var token_id = jwt.verify(id, 'id');
       console.log("count:::::::::", token_id)
+      var select_user=await query(`select name,user_image from Elite_User where id='${token_id}'`)
+      console.log("name image",select_user)
       var count = await query(`select count(*) as count from login where user_id='${token_id}'`)
       console.log(count[0].count)
       if (count[0].count > 1) {
@@ -179,14 +186,15 @@ const login2 = asyncHandler(async (req, res) => {
             console.log("::::::::::post ids::::::", arr)
             console.log(":::::::::number of like:::::::", arr2)
 
-            var tweetid
+            var tweetid,followinguser
             if (followingid.length == 0) {
                console.log("yessssssss folllowwiiingh");
                if (sql) {
                   tweetfollowing = ""
+                  followinguser=""
                   // tweetid = ""
                   console.log("render10")
-                  res.render('home.ejs', { data: sql, data2: token, tweetfollowing, tweetid: arr, likecount: arr2  });
+                  res.render('home.ejs', { data: sql, data2: token, user:select_user,tweetfollowing, followinguser,tweetid: arr, likecount: arr2  });
                } else {
                   console.log("else")
                   console.log("render11")
@@ -196,15 +204,19 @@ const login2 = asyncHandler(async (req, res) => {
                if (followingid.length > 1) {
                   for (var i = 0; i < followingid.length; i++) {
                      tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+                     tweetfollowing=tweetfollowing.concat(tweet)
+                     followinguser = await query(`select name,user_image from Elite_User where id='${followingid[i].following_id}'`)
                   }
                }
                else {
                   tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+                  tweetfollowing=tweetfollowing.concat(tweet)
+                  followinguser = await query(`select name,user_image from Elite_User where id='${followingid[0].following_id}'`)
                }
                console.log(tweet)
                if (sql) {
                   console.log("render12")
-                  res.render('home.ejs', { data: sql, data2: token, tweetfollowing: tweet, tweetid: arr, likecount: arr2 });
+                  res.render('home.ejs', { data: sql, data2: token, user:select_user,tweetfollowing, tweetid: arr, likecount: arr2 ,followinguser});
                } else {
                   console.log("else")
                   console.log("render13")

@@ -42,25 +42,10 @@
                                     <% }}%>
                                         <div class="icon">
                                             <div class="insta" id="append">
-                                                <div class="icon_row">
-                                                    <a href=""><i class="fa fa-thumbs-up"></i></a>
-                                                    <p>10</p>
-                                                    <div class="icon_row">
-                                                        <div class="icon_col">
-                                                            <a href=""><i class="fas fa-comment"></i></a>
-                                                            <p>10</p>
-                                                        </div>
-
-                                                        <div class="icon_row">
-                                                            <div class="icon_col">
-                                                                <a href=""><i class="fa fa-retweet"></i></a>
-                                                                <p>10</p>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                                 <input type="text" name="comment" id="emoji123">
+                                                <span id="<%=tweetdata[i].id%>" onclick="postComment(this)">
+                                                    Post</span>       
                                                 <p onclick="abc()"><i class="fa-regular fa-face-smile fa-2x"></i></p>
                                                 <emoji-picker></emoji-picker>
 
@@ -78,8 +63,7 @@
                                                 <p id="name"></p>
                                                 <img id="image">
                                                 <p id="all"></p>
-                                                <p id="<%=tweetdata[i].id%>" onclick="postComment(this)">
-                                                    Post</p>                 
+                                                          
                                             </div>
                                         </div>
                         </div>
