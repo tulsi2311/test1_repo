@@ -26,7 +26,7 @@ const login = asyncHandler(async (req, res) => {
       var select_user=await query(`select name,user_image from Elite_User where id='${token_id}'`)
       console.log("name image",select_user)
       //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
-      var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}'`)
+      var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}' order by id desc`)
       var followingid = await query(`select following_id from user_following where user_i='${token_id}'`)
       console.log("error:::::::::", followingid)
       //console.log("following id:::::::",followingid[0].following_id)
@@ -63,13 +63,13 @@ const login = asyncHandler(async (req, res) => {
       } else {
          if (followingid.length > 1) {
             for (var i = 0; i < followingid.length; i++) {
-               tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+               tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}' order by id desc`)
                followinguser = await query(`select name,user_image from Elite_User where id='${followingid[i].following_id}'`)
             }
          }
          else {
             tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
-            followinguser = await query(`select name,user_image from Elite_User where id='${followingid[0].following_id}'`)
+            followinguser = await query(`select name,user_image from Elite_User where id='${followingid[0].following_id}' order by id desc`)
          }
 
          console.log(tweet)
@@ -175,7 +175,7 @@ const login2 = asyncHandler(async (req, res) => {
          var sql2 = await query(`select * from Elite_User where is_active=1 and is_delete=0 and id='${token_id}'`)
          if (sql2) {
             //var image = `select heading,description,media_url from user_tweets where u_id='${token}'`;
-            var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}'`)
+            var sql = await query(`select id,u_id,heading,description,media_url from user_tweets where u_id='${token_id}' order by id desc`)
             var followingid = await query(`select following_id from user_following where user_i='${token_id}'`)
             //console.log("following",followingid)
             //console.log("following id:::::::",followingid[0].following_id)
@@ -210,13 +210,13 @@ const login2 = asyncHandler(async (req, res) => {
             } else {
                if (followingid.length > 1) {
                   for (var i = 0; i < followingid.length; i++) {
-                     tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}'`)
+                     tweet = await query(`select * from user_tweets where u_id='${followingid[i].following_id}' order by id desc`)
                      tweetfollowing=tweetfollowing.concat(tweet)
                      followinguser = await query(`select name,user_image from Elite_User where id='${followingid[i].following_id}'`)
                   }
                }
                else {
-                  tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
+                  tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}' order by id desc`)
                   tweetfollowing=tweetfollowing.concat(tweet)
                   followinguser = await query(`select name,user_image from Elite_User where id='${followingid[0].following_id}'`)
                }
