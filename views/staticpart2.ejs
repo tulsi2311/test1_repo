@@ -16,12 +16,17 @@
 
     <div class="input1  header1" id="myHeader1">
         <span class="material-icons widgets__searchIcon"> search </span>
-        <input type="text" class="searchtext" placeholder="Search Twitter" onkeyup="search(this.value)" />
+        <input type="text" class="searchtext" placeholder="Search Twitter" onclick="display_title()" onkeyup="search(this.value)" />
     </div>
-    <p id="searchresult"></p>
+    <p id="searchresult"  > </p>
 
 
     <script>
+
+        function display_title(){
+            document.getElementById('searchresult').innerHTML = "Try searching for people, topics, or keywords";
+        }
+        
         var followinguser = [];
         async function search(search_value) {
             var s = "";

@@ -70,6 +70,7 @@ text-align: right;
   margin-top: 9px;
   color:#857DF9;
 }
+
 .twi{
     margin: 20px;
 text-align: center;
@@ -128,7 +129,8 @@ block-size: fit-content;
   
   align-items: center;
   cursor: pointer;
-
+width: 12rem;
+padding: .4rem 1rem 0.4rem 1rem;
   
 }
 
@@ -137,6 +139,9 @@ block-size: fit-content;
   font-size: 1.5rem;
 
   color:black;
+}
+#homeicon1:active{
+  font-size: xx-small;
 }
 .text{
 
@@ -172,9 +177,8 @@ margin-left:10px;
   
  
 }
-
-.sidebarOption.active {
-  color: var(--twitter-color);
+p{
+  margin-bottom: -1rem;
 }
 
 .sidebar__tweet {
@@ -234,6 +238,7 @@ margin-left:10px;
 .feed {
  width: 50%;
   overflow-y: auto;
+  cursor: pointer;
 
  border-left:1px solid rgba(128, 128, 128, 0.26);
  border-right:1px solid rgba(128, 128, 128, 0.26);
@@ -245,7 +250,7 @@ margin-left:10px;
 
 
 .fa{
-  color: #cfc3c3;
+  color: #000000;
 }
 
 
@@ -517,7 +522,6 @@ h4{
 
 .card {
   width: 100%;
- 
   background-color: #ffffff;
   margin: 0 auto;
    
@@ -606,14 +610,24 @@ margin-right: 45px;
  
 }
 
+.twitterIcon{
+  /* border: 2px solid; */
+  width: 3.7rem;
+  padding: .3rem;
 
+}
+.twitterIcon:hover{
+  border-radius: 50%;
+  background-color: var(--twitter-background);
+  /* background-color: #6164663a; */
+}
 .flex1{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
 .flex1{
-  width: 550px;
+  width: 200px;
 }
 .flexdatatwit{
   display: flex;
@@ -710,11 +724,13 @@ color: black;
   font-size: 1rem;
 }
 .cancle:hover{
-  background-color: #f3eded;
+  /* background-color: #f3eded; */
+  background-color: var(--twitter-background);
   border-radius: 5px;
 }
 .optiondata:hover{
-  background-color: #f3eded;
+  /* background-color: #f3eded; */
+  background-color: var(--twitter-background);
   border-radius: 5px;
 }
 .datastick{
@@ -1258,9 +1274,14 @@ margin-left: 40px;
 }
 #searchresult
 {
-  margin-top:60px;
-  margin-left:20px;
+  margin-top: 60px;
+  margin-left: 1rem;
+  cursor: pointer;
+  width: 13rem;
+  font-size: .8rem;
+  /* text-align: center; */
 }
+
 
 /* changes start in sidebar */
 
@@ -1275,9 +1296,15 @@ margin-left: 40px;
   display: flex;
   flex-wrap: wrap;
   margin-left: 9%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  padding: .5rem;
 
  width:200px;
+}
+.searchprofile:hover{
+  /* background-color:#6164663a; */
+  background-color: var(--twitter-background);
+  border-radius: 2rem;
 }
 
 .profileinfo1 {
@@ -1345,7 +1372,8 @@ margin-left: 40px;
 
 .prof_feed {
   width: 50%;
- 
+  cursor: pointer;
+
   border-left:1px solid rgba(128, 128, 128, 0.26);
   border-right:1px solid rgba(128, 128, 128, 0.26);
  }
@@ -1361,7 +1389,7 @@ margin-left: 40px;
 }
 
 .profName p{
-  margin-top:-10%;
+  margin-top:-8%;
   font-size:0.9rem;
 }
 
@@ -1450,6 +1478,7 @@ margin-left: 40px;
 
   border-top:1px solid #64676946;
    padding:10px;
+   cursor: pointer;
   
  }
 
@@ -1481,12 +1510,21 @@ margin-left: 40px;
  
   display:flex;
   flex-wrap: wrap;
-  margin-top:300px;
+  margin-top:17rem;
+padding: .5rem;
+}
+.bottom:hover{
+  /* background-color: #6164661a; */
+  /* color: var(--twitter-color); */
+  background-color: var(--twitter-background);
+  border-radius: 2rem;
+ 
 }
 .bottomImage img
 {
   width: 50px;
   height:50px;
+  border-radius: 50%;
 }
 .bottomText
 {

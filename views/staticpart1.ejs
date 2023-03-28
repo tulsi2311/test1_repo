@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style1.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   
 </head>
 
 <body>
@@ -17,7 +16,7 @@
 
     <div class="sidebar">
 
-        <div class="twitterIcon">
+        <div class="twitterIcon ">
             <svg class="svg-icon2"
                 style="width: 3em; height: 3em;vertical-align: middle;fill: currentColor;overflow: hidden;"
                 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -31,10 +30,10 @@
          
 
             <div class="sidebarOption">
-                <a href="/login/login" class="text-decoration-none thattxt">
-                    <p class="homeicon material-icons">home</p> 
+                <a href="/login/login" class="text-decoration-none thattxt" >
+                    <span class="homeicon material-icons" >home</span> 
                     <div class="text">
-                        <p>Home</p>
+                        <span >Home</span>
                         </div>
                 </a>
              
@@ -42,12 +41,12 @@
 
 
             <div class="sidebarOption">
-                <a href="/prof/prof" class="text-decoration-none thattxt">
+                <a href="/prof/prof" class="text-decoration-none thattxt" onclick="activecolor2()" >
 
-                    <p class="homeicon material-icons"> perm_identity
-                    </p>
+                    <span class="homeicon material-icons" > perm_identity
+                    </span>
                     <div class="text">
-                        <p>Profile</p>
+                        <span id="thattxt2">Profile</span>
 
                     </div>
                 </a>
@@ -55,10 +54,10 @@
             </div>
 
             <div id="manuopt" onclick="dataopt()" class="sidebarOption mp ">
-                <a class="thattxt text-decoration-none">
-                    <p class="homeicon material-icons"> more_horiz </p>
+                <a class="thattxt text-decoration-none" onclick="activecolor3()" >
+                    <span class="homeicon material-icons"> more_horiz </span>
                     <div class="text">
-                    <p>More</p>
+                    <span id="thattxt3">More</span>
                     </div>
                 </a>
 
@@ -71,9 +70,9 @@
             <div class="bottom">
                 <div class="bottomImage">
                     <%if(user[0].user_image=="" || user[0].user_image==null){%>
-                        <img src="/compress/img1.png" height="100px" width="100">
+                        <img src="/compress/img1.png">
                         <% }else{ %>
-                            <img src="<%=user[0].user_image%>" height="100px" width="100">
+                            <img src="<%=user[0].user_image%>" >
                             <% } %>
                 </div>
                 <div class="bottomText">
@@ -136,6 +135,9 @@
 
 
     <script>
+
+
+
 
         function dataopt() {
 

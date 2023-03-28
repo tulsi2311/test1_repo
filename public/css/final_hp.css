@@ -687,7 +687,8 @@ color: black;
   font-size: 1rem;
 }
 .cancle:hover{
-  background-color: #f3eded;
+  /* background-color: #f3eded; */
+  background-color: var(--twitter-background);
   border-radius: 5px;
 }
 .optiondata:hover{
@@ -779,7 +780,11 @@ max-width:450px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   margin-bottom: 3%;
 }
-
+.tweet:hover{
+  /* background-color: #6164663a; */
+  background-color: var(--twitter-background);
+  
+}
 .test_col_row
 {
   padding-top:20px;
@@ -1261,7 +1266,7 @@ color: white
   display: flex;
   flex-wrap: wrap;
   margin-left: 9%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   width: 112%;
 
 }
@@ -1351,10 +1356,6 @@ color: white
   margin-top:2%;
 }
 
-.profName p{
-  margin-top:-10%;
-  font-size:0.9rem;
-}
 
 .profUnameandarroo{
   width: 555px;
@@ -1442,6 +1443,9 @@ color: white
   border-top:1px solid #64676946;
    padding:10px;
   
+ }
+ .profPost:hover{
+  background-color: var(--twitter-background);
  }
 
  /* .profinsta

@@ -127,7 +127,8 @@
     padding: 5px;
   }
   .body-edit{
-    background-color: rgba(0,0,0,0.1);
+     background: rgb(133,125,249);
+background: radial-gradient(circle, rgba(133,125,249,1) 16%, rgba(203,221,224,1) 100%); 
   
   }
   .bdate{
