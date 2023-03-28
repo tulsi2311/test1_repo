@@ -71,7 +71,7 @@ const login = asyncHandler(async (req, res) => {
             tweet = await query(`select * from user_tweets where u_id='${followingid[0].following_id}'`)
             followinguser = await query(`select name,user_image from Elite_User where id='${followingid[0].following_id}' order by id desc`)
          }
-
+         console.log("following user ::::::::",followinguser)
          console.log(tweet)
          if (sql) {
             console.log("render4")

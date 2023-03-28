@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,105 +10,118 @@
     <link rel="stylesheet" href="/css/retweet.css">
     <title>Retweet</title>
 </head>
+
 <body>
-    <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
-            <% for(var i=0;i<tweetdata.length;i++) { %>
+    <div class="retweetBody">
+        <div class="retweetContainer">
+            <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
+                <% for(var i=0;i<tweetdata.length;i++) { %>
+       
+                   
 
-                <div class="tweet">
-                    <div class="test_col_row">
-                        <div class="text_col1">
-                            <div class="img1"><img src="/files/profile-img.png"></div>
+                    <div class="tweet">
+                        <div onclick="history.back()"  class="top1">
+                            <i class="fa fa-close" style="font-size:24px"></i>
+                    
                         </div>
-                        <div class="text_col2">
-                            <p id="tweetid" hidden>
-                                <%=tweetdata[i].id%>
-                            </p>
-                            <a href="">Jaquon Hart</a>
-                            <p class="skill">
-                                <%=tweetdata[i].description%>
-                            </p>
-                            <% if(tweetdata[i].media_url==null) { console.log("nothing") }else{ const
-                                file_extension=tweetdata[i].media_url.slice(((tweetdata[i].media_url.lastIndexOf('.') - 1)>>> 0) +
-                                2);
-                                if (array_of_allowed_files.includes(file_extension)) {
-                                %>
-                                <img id="tweet_img" width="20%" src="<%=tweetdata[i].media_url%>" />
-                                <% }else{ %>
-                                    <video width="320" height="240" controls>
-                                        <source src="<%=tweetdata[i].media_url%>" type="video/mp4">
-                                    </video>
-                                    <% }}%>
-                                        <div class="icon">
-                                            <div class="insta" id="append">
-                                               
-                                                <input type="text" name="comment" id="emoji123">
-                                                <span id="<%=tweetdata[i].id%>" onclick="postComment(this)">
-                                                    Post</span>       
-                                                <p onclick="abc()"><i class="fa-regular fa-face-smile fa-2x"></i></p>
-                                                <emoji-picker></emoji-picker>
+                        <div class="test_col_row">
+                            <div class="text_col1">
+                                <div class="img1"><img src="<%=retweetData[0].user_image%>"></div>
+                            </div>
+                            <div class="text_col2">
+                                <p id="tweetid" hidden>
+                                    <%=tweetdata[i].id%>
+                                </p>
+                                <a href=""><%=retweetData[0].name%></a>
 
-                                                <%for(var k=0;k<nameimage.length;k++){%>
-                                                    <% if(nameimage[k].user_image==null){%>
-                                                        <img src="/files/profile-img.png" width="2%"></img>
-                                                        <%}else{%>
-                                                            <img src="<%=nameimage[k].user_image%>" width="1%"></img>
-                                                            <%}%>
-                                                                <span>Name:- <%=nameimage[k].name%></span>
-
-                                                                <p>comment:- <%=c[k].retweet_data%>
-                                                                </p>
-                                                <%}%>
-                                                <p id="name"></p>
-                                                <img id="image">
-                                                <p id="all"></p>
-                                                          
-                                            </div>
+                                <div class="icon">
+                                    <!-- <div class="insta" id="append"> -->
+                                        <div class="retweetCard1">
+                                            <textarea name="comment" id="emoji123"
+                                                placeholder="Add a comment"></textarea>
                                         </div>
+                                        <div class="retweetCard2">
+                                            <i class="fa-regular fa-face-smile "  onclick="abc()"></i>
+                                            <emoji-picker></emoji-picker>
+                                        </div>
+                                        <!-- removed from here{show retweet} -->
+                                    <!-- </div> -->
+                                </div>
+
+                                <div class="tweetRetweet">
+                                    <p class="skill">
+                                        <%=tweetdata[i].description%>
+                                    </p>
+                                    <% if(tweetdata[i].media_url==null) { console.log("nothing") }else{ const
+                                        file_extension=tweetdata[i].media_url.slice(((tweetdata[i].media_url.lastIndexOf('.')
+                                        - 1)>>> 0) +
+                                        2);
+                                        if (array_of_allowed_files.includes(file_extension)) {
+                                        %>
+                                        <img id="tweet_img" width="20%" src="<%=tweetdata[i].media_url%>" />
+                                        <% }else{ %>
+                                            <video width="320" height="240" controls>
+                                                <source src="<%=tweetdata[i].media_url%>" type="video/mp4">
+                                            </video>
+                                            <% }}%>
+                                </div>
+
+                                <div class="retweetPost">
+                                    <span id="<%=tweetdata[i].id%>" onclick="postComment(this)">
+                                        Post</span>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <% } %>
-                <script>
-                    async function postComment(id) {
-                            console.log(id.id)
-                            var c = document.getElementById("emoji123").value
-                            var data = await fetch(`/retweet/reC?twid=${id.id}&comment=${c}`)
-                            var retweet = await data.json()
-                            console.log(retweet)
-                            console.log(retweet.nameImage[0].name)
-                            console.log(retweet.nameImage[0].user_image)
-                            console.log(retweet.result2[0].retweet_data)
-                            document.getElementById("all").innerHTML = retweet.result2[0].retweet_data
-                            document.getElementById("name").innerHTML = retweet.nameImage[0].name
-                            if (comment.nameImage[0].user_image == null) {
-                                const img = document.createElement("img");
-                                img.src = "/files/profile-img.png";
-                                document.getElementById("name").appendChild(img);
-                                //document.getElementById("image").src = "/files/profile-img.png"
-                            } else {
-                                document.getElementById("image").src = retweet.nameImage[0].user_image
-                            }
-                        }
+                    <% } %>
+        </div>
 
-                    document.querySelector('emoji-picker')
-                            .addEventListener('emoji-click', event => console.log(event.detail));
+    </div>
 
-                        document.querySelector('emoji-picker')
-                            .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
+    <script>
+        async function postComment(id) {
+            console.log(id.id)
+            var c = document.getElementById("emoji123").value
+            var data = await fetch(`/retweet/reC?twid=${id.id}&comment=${c}`)
+            location.assign('/login/login')
+            var retweet = await data.json()
+            console.log(retweet)
+            console.log(retweet.nameImage[0].name)
+            console.log(retweet.nameImage[0].user_image)
+            console.log(retweet.result2[0].retweet_data)
+            document.getElementById("all").innerHTML = retweet.result2[0].retweet_data
+            document.getElementById("name").innerHTML = retweet.nameImage[0].name
+            if (comment.nameImage[0].user_image == null) {
+                const img = document.createElement("img");
+                img.src = "/files/profile-img.png";
+                document.getElementById("name").appendChild(img);
+                //document.getElementById("image").src = "/files/profile-img.png"
+            } else {
+                document.getElementById("image").src = retweet.nameImage[0].user_image
+            }
+        }
 
-                        document.querySelector('emoji-picker').style.display = "none";
-                        // document.querySelector('tweet').style.display = "none";
+        document.querySelector('emoji-picker')
+            .addEventListener('emoji-click', event => console.log(event.detail));
 
-                        function abc() {
-                            console.log("harsh")
-                            if (document.querySelector('emoji-picker').style.display == "none") {
-                                document.querySelector('emoji-picker').style.display = "block";
-                            }
-                            else {
-                                document.querySelector('emoji-picker').style.display = "none";
-                            }
-                        }
-                </script>
+        document.querySelector('emoji-picker')
+            .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
+
+        document.querySelector('emoji-picker').style.display = "none";
+        // document.querySelector('tweet').style.display = "none";
+
+        function abc() {
+            console.log("harsh")
+            if (document.querySelector('emoji-picker').style.display == "none") {
+                document.querySelector('emoji-picker').style.display = "block";
+            }
+            else {
+                document.querySelector('emoji-picker').style.display = "none";
+            }
+        }
+    </script>
 </body>
+
 </html>

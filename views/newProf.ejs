@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Twitter Clone - Final</title>
   <link rel="stylesheet" href="/css/final_hp.css" />
-  <!-- <link rel="stylesheet" href="/css/extra.css"> -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
@@ -56,10 +55,10 @@
               <div class="profName">
 
                 <h2>
-                  <%=profile_data.name%>
+                  <%=userdata[0].name%>
                 </h2>
                 <p class="lighttxt">
-                  <%=tweet_count%> Tweets
+                   <%=tweetcount[0].t%> Tweets
                 </p>
               </div>
             </div>
@@ -78,29 +77,29 @@
               </div>
 
               <div class="profCard_profile_img">
-                <%if(user[0].user_image==null){%>
+                <%if(userdata[0].user_image==null){%>
                   <div class="img1"><img src="/files/profile-img.png"></div>
                   <%}else{%>
-                    <div class="img1"><img src="<%=profile_data.user_image%>"></div>
+                    <div class="img1"><img src="<%=userdata[0].user_image%>"></div>
                     <% } %>
 
               </div>
               <div class="profEditpro">
 
-                <a href="/prof/profedit" class="editproa"> Edit Profile </a>
+                
               </div>
 
               <div class="user_details">
                 <div class="unameinpro">
 
                   <p>
-                    <%=profile_data.name%>
+                    <%=userdata[0].name%>
                   </p>
                   <p>
-                    <%=profile_data.user_name%>
+                    <%=userdata[0].user_name%>
                   </p>
                   <p>
-                    <%=profile_data.bio%>
+                    <%=userdata[0].bio%>
                   </p>
 
                 </div>
@@ -120,13 +119,13 @@
                 <div class="flexthisdata profFollow">
                   <div class="lfmargin ">
                     <p> <strong>
-                        <%=count%>
-                      </strong> <a href="/list/following">Following</a> </p>
+                        <%=followingcount[0].count%>
+                      </strong> <a href="#">Following</a> </p>
                   </div>
                   <div>
                     <p><strong>
-                        <%=f%>
-                      </strong><a href="/list/follower"> Followers</a></p>
+                        <%=follower[0].c%>
+                      </strong><a href="#"> Followers</a></p>
                   </div>
 
 
@@ -144,127 +143,7 @@
         </div>
 
         <!-- post starts -->
-        <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
-          <% for(var i=0;i<data.length;i++) { %>
-            <div class="profPost">
-
-
-              <div class="post-child">
-
-                <div class="flexdatatwit">
-
-
-                  <div class="twitimg">
-
-                    <%if(user[0].user_image==""){%>
-                      <div class="img1"><img src="./files/profile-img.png"></div>
-        
-                      <%}else{%>
-                        <div class="img1"><img src="<%=profile_data.user_image%>"></div>
-                        <% } %>
-                  </div>
-
-                  <div class="nameandtime">
-
-                    <div class="flex1">
-
-                      <div class="tweetname">
-
-                        <p class="tweetnamed">
-                          <%=profile_data.name%>
-                        </p>
-                        <p class="tweetnamed">
-                          <%=profile_data.user_name%>
-                        </p>
-
-                      </div>
-
-
-                    </div>
-                    <div class="tweetdatamain">
-
-                      <h5 class="tweetdatatxt"></h5>
-                      <div>
-
-
-                        <p class="skill">
-                          <%=data[i].description%>
-                        </p>
-
-
-                        <% if(data[i].media_url==null || data[i].media_url=="") { console.log("nothing") }else{ %>
-                          <% const file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>>
-                            0) + 2);
-                            if (array_of_allowed_files.includes(file_extension)) { %>
-                            <img id="tweet_img" src="<%=data[i].media_url%>" />
-
-                            
-                            <% }else{ %>
-                              <video width="320" height="240" controls>
-                                <source src="<%=data[i].media_url%>" type="video/mp4">
-                              </video>
-                              
-                              <% }}%>
-
-                              <div>
-                                <div class="profInsta">
-                                  <div class="icon_row">
-                                    <div class="icon_tab">
-                                      <div class="icon_tab">
-                                        <% for(let j=0;j<tweetid.length;j++){%>
-                                          <% if(data[i].id==tweetid[j]){%>
-                                            <i id="<%=data[i].id%>" class="like_d fa fa-thumbs-up"
-                                              onclick="likepost(this.id,1)"></i>
-                                            <a id="likeCount<%=data[i].id%>" class="prachilikes" href="/likes/likes2">
-                                              <%=likecount[j]%>
-                                            </a>
-                                            <%flag=1%>
-                                              <%}%>
-                                                <%}%>
-                                                  <%if(flag !=1){%>
-                                                  
-                                                    <i id="<%=data[i].id%>" class="like_c fa fa-thumbs-up" 
-                                                      onclick="likepost(this.id,0)"></i>
-                                                      <a id="likeCount<%=data[i].id%>" class="prachilikes" href="/likes/likes2"></a>
-                                                    <%}%>
-  
-                                      <div class="icon_row">
-                                        <div class="icon_tab">
-                                          <a href="/comment/newc?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fas fa-comment"></i></a>
-                                          <p>
-                                            <%=arr3[i]%>
-                                          </p>
-                                        </div>
-  
-                                        <div class="icon_row">
-                                          <div class="icon_tab">
-                                            <a href="/retweet/re?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fa fa-retweet"></i></a>
-                                            
-                                          </div>
-  
-                                        </div>
-  
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-
-
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            <%}%>
-      </div>
-      <div class="widgets">
-        <%-include("staticpart2")-%>
+       
       </div>
     </div>
 

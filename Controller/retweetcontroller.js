@@ -7,7 +7,7 @@ const asyncHandler = require("express-async-handler");
 
 const query = util.promisify(conn.query).bind(conn)
 const re = asyncHandler(async (req, res) => {
-  console.log("re",req.query.tid)
+  console.log("tokenId:::::",req.query.tid)
   console.log("re",req.query.u_id)
   var tweetdata=await query(`select * from user_tweets where id='${req.query.tid}'`)
   console.log(tweetdata)
@@ -27,7 +27,15 @@ const re = asyncHandler(async (req, res) => {
          arr2.push(nameImage[0])
       }
    }
-  res.render("retweet",{tweetdata,nameimage:arr2,c:comment})
+   var id = req.session.token_id;
+   var token_id = req.session.token_id;
+   console.log("token::::::  ",token_id)
+
+   
+   var retweetData = await query(`select name,user_image from Elite_User where id='${token_id}'`);
+   console.log("retweet data:::::::::::: ",retweetData);
+
+  res.render("retweet",{tweetdata,nameimage:arr2,c:comment,retweetData})
 })
 
 const reC = asyncHandler(async (req, res) => {
@@ -41,6 +49,8 @@ const reC = asyncHandler(async (req, res) => {
     var result2=await query(`select * from re_tweet where id=${lastid}`)
     var nameImage=await query(`select name,user_image from Elite_User where id='${result2[0].uid}'`)
     res.json({result2,nameImage})
+    //res.redirect('/login/login');
+  
 })  
 
 module.exports = { re,reC }
