@@ -2,37 +2,32 @@
     width: 20px;
     height: 20px;
   }
-  .dataflxedit{
-    display: flex;
+.dataflxedit{
+  display: flex;
   flex-wrap: wrap;
   text-decoration: none;
   position: relative;
   top: 40%;
   left: 40%;
   width: 220px;
-  
-  
-  }
-  .boxdata{
-    position: absolute;
-    top: 50%;
-    left: 50%;
+}
+.boxdata{
+  position: absolute;
+  top: 50%;
+  left: 50%;
   padding: 30px 0px;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) ;
-    width: 500px;
-    border-radius: 20px;
-    background-color: white;
-    /* border: 2px solid #857df965; */
-  
-  }
-  .icondiv1{
-    margin: 18px 0px 0px 19px;
-    padding: 9px;
-    border-radius: 50%;
-    background-color: #02070a83;
-  
-  }
+  margin-right: -50%;
+  transform: translate(-50%, -50%) ;
+  width: 500px;
+  border-radius: 20px;
+  background-color: white;  
+}
+.icondiv1{
+  margin: 18px 0px 0px 19px;
+  padding: 9px;
+  border-radius: 50%;
+  background-color: #02070a83;  
+}
   .txtdataedit{
     padding: 20px;
   }
@@ -93,7 +88,6 @@
     border-radius: 120px;
     margin-top: -60px;
     margin-left: 40px;
- 
   }
   .card_profile_img1 img{
       height:20%;
