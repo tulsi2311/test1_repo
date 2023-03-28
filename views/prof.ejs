@@ -146,7 +146,6 @@
         <!-- post starts -->
         <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
           <% for(var i=0;i<data.length;i++) { %>
-            <% var flag=0%>
             <div class="profPost">
 
 
@@ -193,7 +192,7 @@
                         </p>
 
 
-                        <% if(data[i].media_url==null || data[i].media_url=="") { console.log("nothing") }else{ %>
+                        <% if(data[i].media_url==null) { console.log("nothing") }else{ %>
                           <% const file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>>
                             0) + 2);
                             if (array_of_allowed_files.includes(file_extension)) { %>
@@ -212,26 +211,17 @@
                                   <div class="icon_row">
                                     <div class="icon_tab">
                                       <div class="icon_tab">
-                                        <% for(let j=0;j<tweetid.length;j++){%>
-                                          <% if(data[i].id==tweetid[j]){%>
-                                            <i id="<%=data[i].id%>" class="like_d fa fa-thumbs-up"
-                                              onclick="likepost(this.id,1)"></i>
-                                            <a id="likeCount<%=data[i].id%>" class="prachilikes" href="/likes/likes2">
-                                              <%=likecount[j]%>
-                                            </a>
-                                            <%flag=1%>
-                                              <%}%>
-                                                <%}%>
-                                                  <%if(flag !=1){%>
-                                                  
-                                                    <i id="<%=data[i].id%>" class="like_c fa fa-thumbs-up" 
-                                                      onclick="likepost(this.id,0)"></i>
-                                                      <a id="likeCount<%=data[i].id%>" class="prachilikes" href="/likes/likes2"></a>
-                                                    <%}%>
+                                        <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
+  
+                                        <p>
+                                          <%=arr2[i]%>
+                                        </p>
+  
+                                      </div>
   
                                       <div class="icon_row">
                                         <div class="icon_tab">
-                                          <a href="/comment/newc?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fas fa-comment"></i></a>
+                                          <a href=""><i class="fas fa-comment"></i></a>
                                           <p>
                                             <%=arr3[i]%>
                                           </p>
@@ -239,8 +229,8 @@
   
                                         <div class="icon_row">
                                           <div class="icon_tab">
-                                            <a href="/retweet/re?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fa fa-retweet"></i></a>
-                                            
+                                            <a href=""><i class="fa fa-retweet"></i></a>
+                                            <p>10</p>
                                           </div>
   
                                         </div>
@@ -462,27 +452,22 @@
 
     }
 
-    async function likepost(id, like_flag) {
-      if (like_flag == 0) {
-        document.getElementById(`${id}`).style.color = "red"
 
-        const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=1`);
-        const like_count = await like_result.json();
-        console.log(like_count);
-        document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
-        document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id}, 1)`);
+    // var likeobj = 0;
+    var count = 0
+    var flag = true
+    function likepost() {
+      var z = document.getElementById('heart1')
+      count = 1
+
+      if (flag == true) {
+        z.style.color = 'red'
+        flag = false;
+      } else {
+        z.style.color = '#e0e2e4'
+        flag = true;
       }
-      else {
-        var like_btn = document.getElementById(`${id}`).style.color = "black"
-
-        const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=0`);
-        const like_count = await like_result.json();
-        document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
-        document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id},0)`);
-      }
-
     }
-
   </script>
 </body>
 

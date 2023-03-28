@@ -64,29 +64,4 @@ const following = asyncHandler(async (req, res) => {
 
 
 
-const user = asyncHandler(async (req, res) => {
-    console.log("id::::::::",req.query.id)
-    var token_id = req.session.token_id;
-    console.log("count:::::::::", token_id)
-    //for sidebar
-    var select_user = await query(`select name,user_image,user_name from Elite_User where id='${token_id}'`)
-    console.log("name image:::::::::::", select_user)
-    
-    //selected user
-    var userdata=await query(`select * from Elite_User where id='${req.query.id}'`)
-    console.log("userdata ::::::::",userdata)
-
-    //tweetcount
-    var tweetcount = await query(`select count(*) as t from user_tweets where u_id=${req.query.id}`);
-    
-    //followers and following count
-    var followingcount = await query(`select count(*) as count from user_following where user_i='${req.query.id}'`);
-    var follower = await query(`select count(*) as c from user_follower where user_id_id='${req.query.id}'`);
-    
-    
-    res.render("newProf",{userdata,user:select_user,tweetcount,followingcount,follower})
-})
-
-
-
-module.exports = { follower, following,user }
+module.exports = { follower, following }

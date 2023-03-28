@@ -28,21 +28,6 @@ const prof_new = asyncHandler(async (req, res) => {
         var tweetcount = await query(`select count(*) as t from user_tweets where u_id=${token}`);
         var count = await query(`select count(*) as count from user_following where user_i='${token}'`);
         var follower = await query(`select count(*) as c from user_follower where user_id_id='${token}'`);
-        
-        
-       
-
-        var arrid = [], count2, arr2count = []
-        for (var z = 0; z < like.length; z++) {
-           arrid.push(like[z].twet_id)
-           count2 = await query(`select count(*) as count from tweet_like where twet_id='${like[z].twet_id}'`)
-           arr2count.push(count2[0].count)
-        }
-
-        console.log("::::::::::post ids::::::", arrid)
-        console.log(":::::::::number of like:::::::", arr2count)
-
-
 
 
         console.log("sql:::  ", sql)
@@ -76,7 +61,7 @@ const prof_new = asyncHandler(async (req, res) => {
         var select_user = await query(`select name,user_image,user_name  from Elite_User where id='${token_id}'`)
         console.log("name image:::::::welcome:::::::::", select_user)
         res.render('prof', {
-            data: sql, likeid: like, count: count[0].count, user: select_user, f: follower[0].c, profile_data: profdata[0], tweet_count: tweetcount[0].t, arr2, length, arr3,tweetid:arrid,likecount:arr2count
+            data: sql, likeid: like, count: count[0].count, user: select_user, f: follower[0].c, profile_data: profdata[0], tweet_count: tweetcount[0].t, arr2, length, arr3
         });
     }
 })

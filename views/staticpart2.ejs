@@ -50,7 +50,7 @@
                             </div>
                             <div class="profileinfo2">
                                    <div class="name">
-                                    <span onclick=clickuser(`+arr.listUser[i].id+`)>`+ arr.listUser[i].name + `</span>
+                                    <span>`+ arr.listUser[i].name + `</span>
                                     </div>
                                     <div class="email">
                                     <span>`+ arr.listUser[i].email + `</span>
@@ -101,10 +101,6 @@
 
 
             }
-        }
-        function clickuser(id){
-            console.log(id)
-            location.assign(`/list/user?id=${id}`);
         }
     </script>
 </body>
