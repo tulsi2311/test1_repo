@@ -4,25 +4,39 @@
 
 body {
   margin: 0px;
+  background: rgb(133,125,249);
+  background: radial-gradient(circle, rgba(133,125,249,1) 16%, rgba(203,221,224,1) 100%);
 }
 
-.container {
+.activebox {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  width: fit-content;
+  /* text-align: center; */
+  margin: auto;
+  padding: 40px 45px;
+  border-radius: 20px;
+  background-color: white;
+  margin-top:10%;
+  display: flex;
+}
+
+/* .container {
   max-width: 84%;
   margin: 0 auto;
   padding: 0 16px;
   display: flex;
   justify-content: center;
   background-color: white;
-}
+} */
 
-.profile {
+/* .profile {
   width: 75%;
   background-color: white;
   margin-top: 5%;
   padding: 5% 7%;
   border-radius: 10px;
   box-shadow: 5px 5px 40px grey;
-}
+} */
 
 .fa-twitter {
   color: #857DF9;
@@ -32,16 +46,16 @@ body {
   text-align: center;
 }
 
-.info_content {
+/* .info_content {
   margin-top: 6%;
-}
+} */
 
 .user_img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
   background-color: aliceblue;
   border: 3px solid rgba(128, 128, 128, 0.158);
+  margin-right: 65px;
 }
 
 input[type=text],
@@ -62,14 +76,12 @@ select {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  resize: vertical;
   margin-top: 15px;
 }
 
 
 input[type=submit] {
-  background-color: #857DF9;
-  ;
+  background-color: #857DF9;;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -84,15 +96,19 @@ input[type=submit]:hover {
 }
 
 
-.col-25 {
+/* .col-25 {
   float: left;
-  width: 25%;
+  width: 100%;
 }
 
 .col-75 {
   float: left;
   width: 75%;
   margin-top: 7%;
+} */
+
+.imgInput{
+  display: flex; margin-top: 50px;
 }
 
 .row::after {
@@ -105,7 +121,7 @@ input[type=submit]:hover {
   margin-left: 30px;
 }
 
-
+/* 
 .card_profile_img1 {
   width: 100px;
   height: 100px;
@@ -118,7 +134,7 @@ input[type=submit]:hover {
   margin: 0 auto;
   margin-top: -99px;
   margin-left: 40px;
-}
+} */
 
 
 .iconedit {
@@ -127,7 +143,7 @@ input[type=submit]:hover {
   background-color: rgba(0, 0, 0, 0.301);
   padding: 10px;
   border-radius: 50%;
-  transform: translate(95%, 200%);
+  transform: translate(85%, 190%);
 }
 
 .iconaddpic {
@@ -140,4 +156,10 @@ input[type=submit]:hover {
   font-family: sans-serif;
   font-size: 17px;
   color: gray;
+}
+
+.error_msg{
+  font-size: 0.8rem; 
+  margin-top: 0px;
+  color: red;
 }

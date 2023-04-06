@@ -1,0 +1,341 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twitter Clone - Final</title>
+  <link rel="stylesheet" href="/css/final_hp.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <input type="text" hidden name="id" id="id">
+  <div class="whole-web">
+    <div class="container">
+
+
+      <div class="flexdata">
+
+
+        <!-- sidebar starts -->
+
+
+        <%-include("staticpart1")-%>
+      </div>
+      <!-- sidebar ends -->
+
+      <!-- feed starts -->
+      <div class="prof_feed">
+
+        <div class="prof_feed__header">
+          <div class="profHeader" id="myHeader">
+            <div class="profUnameandarroo">
+
+
+              <div onclick="history.back()" class="profArrowicon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                  viewBox="0 0 256 256" xml:space="preserve">
+
+                  <defs>
+                  </defs>
+                  <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                    transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                    <polygon points="65.36,0 69.64,4.28 28.92,45 69.64,85.72 65.36,90 20.36,45 "
+                      style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                      transform="  matrix(1 0 0 1 0 0) " />
+                  </g>
+                </svg>
+              </div>
+
+              <div class="profName">
+
+                <h2>
+                  <%=userdata[0].name%>
+                </h2>
+                <p class="lighttxt">
+                   <%=tweetcount[0].t%> Tweets
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- tweetbox starts -->
+        <div class="feed-contain">
+          <div class="prof_mainprofile">
+
+
+            <div class="card">
+              <div class="profCard_background_img">
+
+              </div>
+
+              <div class="profCard_profile_img">
+                <%if(userdata[0].user_image==null){%>
+                  <div class="img1"><img src="/files/profile-img.png"></div>
+                  <%}else{%>
+                    <div class="img1"><img src="<%=userdata[0].user_image%>"></div>
+                    <% } %>
+
+              </div>
+              <div class="profEditpro">
+
+                
+              </div>
+
+              <div class="user_details">
+                <div class="unameinpro">
+
+                  <p>
+                    <%=userdata[0].name%>
+                  </p>
+                  <p>
+                    <%=userdata[0].user_name%>
+                  </p>
+                  <p>
+                    <%=userdata[0].bio%>
+                  </p>
+
+                </div>
+              </div>
+
+              <div class="profFollow">
+                <div class="flexthisdata">
+                  <div class="lfmargin">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </div>
+                  <div class="joindate">
+
+                    <span>
+                      joined March @2023</span>
+                  </div>
+                </div>
+                <div class="flexthisdata profFollow">
+                  <div class="lfmargin ">
+                    <p> <strong>
+                        <%=followingcount[0].count%>
+                      </strong> <a href="#">Following</a> </p>
+                  </div>
+                  <div>
+                    <p><strong>
+                        <%=follower[0].c%>
+                      </strong><a href="#"> Followers</a></p>
+                  </div>
+
+
+                </div>
+
+
+
+
+                <!-- tweetbox ends -->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- post starts -->
+       
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+  <!-- widgets ends -->
+
+  <dialog id="moreoption">
+    <div class="manubar">
+      <a class="achange" href="http://localhost:8000/changepassword"> Change Password</a>
+      <a class="achange" href="/changepassword/changepassword"> Change Password</a>
+      <a class="achange" id="deleteac" onclick="deleteac()">Delete Account</a>
+      <a class="achange" id="logoutac" onclick="logoutac()">Logout</a>
+
+      <p class="cancel" onclick="dataout()">cancle</p>
+    </div>
+  </dialog>
+
+
+
+
+
+  <script>
+
+    function dataopt() {
+
+      var data1 = document.getElementById('moreoption')
+      data1.showModal()
+    }
+    function dataout() {
+      var data1 = document.getElementById('moreoption')
+      data1.close()
+    }
+
+
+
+
+
+
+
+
+  
+
+    
+
+
+
+
+
+
+
+    async function del(abc) {
+      x = parseInt(abc)
+      console.log(x)
+
+      var text = "you really want to delte this record" + x;
+      if (confirm(text) == true) {
+        text = "you really want to delte this record", x;
+        fetch('/delete?id=' + x, {
+          method: 'post',
+          headers: {
+            "Content-type": 'application/json'
+          },
+          body: JSON.stringify({
+            id: x
+          })
+        })
+
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById(x).style.display = 'none';
+            //console.log(data.result.length);
+            console.log(data)
+            console.log("data delete sucesfully!!!!")
+            location.reload()
+          })
+      }
+    }
+
+
+    // var likeobj = 0;
+    var count = 0
+    var flag = true
+    function likepost() {
+      var count2 = document.getElementById("count").innerHTML
+      console.log(count2)
+      var z = document.getElementById('heart1')
+      count = 1
+
+      if (flag == true) {
+        z.style.color = 'red'
+        flag = false;
+      } else {
+        z.style.color = '#e0e2e4'
+        flag = true;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function dataopt() {
+
+      var data1 = document.getElementById('moreoption')
+      data1.showModal()
+    }
+    function dataout() {
+      var data1 = document.getElementById('moreoption')
+      data1.close()
+    }
+
+
+
+
+
+
+
+
+
+
+    function logoutac() {
+
+
+      if (confirm("are your sure to logout") == true) {
+        fetch(`/logout/logout`)
+        location.assign(`/login/login/index5`)
+        console.log("delete")
+      } else {
+        alert("you cancel the delete");
+      }
+
+    }
+
+
+    async function deleteac() {
+
+      if (confirm("are your sure to Delete Account") == true) {
+        const data = await fetch(`/deleteAccount/delete`);
+        const data2 = await data.json();
+        console.log(data2);
+        window.location.href = "/login/login/index5"
+        console.log(data2);
+      } else {
+        alert("you cancel the delete");
+      }
+
+    }
+
+    async function likepost(id, like_flag) {
+      if (like_flag == 0) {
+        document.getElementById(`${id}`).style.color = "red"
+
+        const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=1`);
+        const like_count = await like_result.json();
+        console.log(like_count);
+        document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+        document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id}, 1)`);
+      }
+      else {
+        var like_btn = document.getElementById(`${id}`).style.color = "black"
+
+        const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=0`);
+        const like_count = await like_result.json();
+        document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+        document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id},0)`);
+      }
+
+    }
+
+  </script>
+</body>
+
+</html>

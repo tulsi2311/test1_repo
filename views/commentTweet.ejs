@@ -12,45 +12,51 @@
 </head>
 
 <body>
-    <div class="alldata">
-
-   
-        <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
-            <% for(var i=0;i<data.length;i++) { %>
-
-                <div class="tweet">
-                    <div class="test_col_row">
-                        <div class="text_col1">
-                            <div class="img1"><img src="/files/profile-img.png"></div>
+    <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
+        <% for(var i=0;i<data.length;i++) { %>
+            <div class="commentBody">
+                <div class="commentContainer">
+                    <div class="tweet">
+                        <div onclick="history.back()" class="top1">
+                            <i class="fa fa-close" style="font-size:24px"></i>
                         </div>
-                        <div class="text_col2">
-                            <p id="tweetid" hidden>
-                                <%=data[i].id%>
-                            </p>
-                            <a href="">Jaquon Hart</a>
-                            <p class="skill">
-                                <%=data[i].description%>
-                            </p>
-                            <% if(data[i].media_url==null) { console.log("nothing") }else{ const
-                                file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>> 0) +
-                                2);
-                                if (array_of_allowed_files.includes(file_extension)) {
-                                %>
-                                <img id="tweet_img" width="25%" src="<%=data[i].media_url%>" />
-                                <% }else{ %>
-                                    <video width="320" height="240" controls>
-                                        <source src="<%=data[i].media_url%>" type="video/mp4">
-                                    </video>
-                                    <% }}%>
-                                        <div class="icon">
-                                            <div class="insta" id="append">
-                                              
+                        <div class="test_col_row">
+                            <div class="text_col1">
+                                <div class="img1"><img src="<%=commentData[0].user_image%>"></div>
+                            </div>
+                            <div class="text_col2">
+                                <p id="tweetid" hidden>
+                                    <%=data[i].id%>
+                                </p>
+                                <a href="">
+                                    <%=commentData[0].name%>
+                                </a>
+                                <p class="skill">
+                                    <%=data[i].description%>
+                                </p>
+                                <% if(data[i].media_url==null) { console.log("nothing") }else{ const
+                                    file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>>
+                                    0) +
+                                    2);
+                                    if (array_of_allowed_files.includes(file_extension)) {
+                                    %>
+                                    <img id="tweet_img" width="25%" src="<%=data[i].media_url%>" />
+                                    <% }else{ %>
+                                        <video width="320" height="240" controls>
+                                            <source src="<%=data[i].media_url%>" type="video/mp4">
+                                        </video>
+                                        <% }}%>
+                                            <div class="icon">
+                                                <div class="commentCardFlex">
+                                                    <!-- <div class="insta" id="append"></div> -->
+                                                    <div class="">
+                                                        <input type="text" name="comment" id="emoji123" placeholder="Add a comment">
+                                                    </div>
+                                                    <div class="commentCard2">
+                                                        <i class="fa-regular fa-face-smile" onclick="abc()"></i>
+                                                        <emoji-picker></emoji-picker>
+                                                    </div>
                                                 </div>
-                                                <input type="text" name="comment" id="emoji123">
-                                                <span id="<%=data[i].id%>" onclick="postComment(this)">
-                                                    Post</span>
-                                                <p onclick="abc()"><i class="fa-regular fa-face-smile fa-2x"></i></p>
-                                                <emoji-picker></emoji-picker>
 
                                                 <%for(var k=0;k<arr2.length;k++){%>
                                                     <% if(arr2[k].user_image==null){%>
@@ -64,61 +70,73 @@
                                                                 </p>
                                                                 <%}%>
                                                                     <p id="name"></p>
-                                                                    <img src="" id="image" alt="">
+                                                                    <img src="" id="image" width="5%" alt="">
                                                                     <p id="all"></p>
-                                                                    
+                                                                    <div class="commentPost">
+                                                                        <span id="<%=data[i].id%>"
+                                                                            onclick="postComment(this)">
+                                                                            Post</span>
+                                                                    </div>
+
                                             </div>
-                                        </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
-
-                <% } %>
             </div>
-                    <script>
+            <% } %>
+
+                <script>
 
 
-                        async function postComment(id) {
-                            console.log(id.id)
-                            var c = document.getElementById("emoji123").value
-                            var data = await fetch(`/comment/postComment?twid=${id.id}&comment=${c}`)
-                            var comment = await data.json()
-                            console.log(comment)
-                            console.log(comment.nameImage[0].name)
-                            console.log(comment.nameImage[0].user_image)
-                            console.log(comment.all[0].comment)
-                            document.getElementById("all").innerHTML += comment.all[0].comment
-                            document.getElementById("name").innerHTML += comment.nameImage[0].name
-                            if (comment.nameImage[0].user_image == null) {
-                                const img = document.createElement("img");
-                                img.src = "/files/profile-img.png";
-                                document.getElementById("name").appendChild(img);
-                                //document.getElementById("image").src = "/files/profile-img.png"
-                            } else {
-                                document.getElementById("image").src = comment.nameImage[0].user_image
-                            }
+                    async function postComment(id) {
+                        console.log(id.id)
+                        var c = document.getElementById("emoji123").value
+                        var data = await fetch(`/comment/postComment?twid=${id.id}&comment=${c}`)
+                        var comment = await data.json()
+                        console.log(comment)
+                        console.log(comment.s.length)
+                        if(comment.s.length>1){
+                            document.getElementById("all").innerHTML =comment.s 
+                        }else{
+                            document.getElementById("all").innerHTML =""
+                        console.log(comment.nameImage[0].name)
+                        console.log(comment.nameImage[0].user_image)
+                        console.log(comment.all[0].comment)
+                        document.getElementById("all").innerHTML += comment.all[0].comment
+                        document.getElementById("name").innerHTML += comment.nameImage[0].name
+                        if (comment.nameImage[0].user_image == null) {
+                            const img = document.createElement("img");
+                            img.src = "/files/profile-img.png";
+                            document.getElementById("name").appendChild(img);
+                            //document.getElementById("image").src = "/files/profile-img.png"
+                        } else {
+                            document.getElementById("image").src = comment.nameImage[0].user_image
                         }
-
-                        document.querySelector('emoji-picker')
-                            .addEventListener('emoji-click', event => console.log(event.detail));
-
-                        document.querySelector('emoji-picker')
-                            .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
-
-                        document.querySelector('emoji-picker').style.display = "none";
-                        // document.querySelector('tweet').style.display = "none";
-
-                        function abc() {
-                            console.log("harsh")
-                            if (document.querySelector('emoji-picker').style.display == "none") {
-                                document.querySelector('emoji-picker').style.display = "block";
-                            }
-                            else {
-                                document.querySelector('emoji-picker').style.display = "none";
-                            }
                         }
-                    </script>
+                    }
+
+                    
+                    document.querySelector('emoji-picker')
+                        .addEventListener('emoji-click', event => console.log(event.detail));
+
+                    document.querySelector('emoji-picker')
+                        .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
+
+                    document.querySelector('emoji-picker').style.display = "none";
+                    // document.querySelector('tweet').style.display = "none";
+
+                    function abc() {
+                        console.log("harsh")
+                        if (document.querySelector('emoji-picker').style.display == "none") {
+                            document.querySelector('emoji-picker').style.display = "block";
+                        }
+                        else {
+                            document.querySelector('emoji-picker').style.display = "none";
+                        }
+                    }
+                </script>
 </body>
 
 </html>

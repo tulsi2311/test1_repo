@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile_info</title>
     <link rel="stylesheet" href="/css/profile_info.css" />
+    <!-- <link rel="stylesheet" href="/public/css/activePage.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,59 +17,90 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="profile">
-            <div class="logo">
-                <i class="fa-brands fa-twitter fa-3x"></i>
-            </div>
-            <div class="row">
-                <form action="/info/pro_info" method="post" enctype="multipart/form-data">
-                    <div class="info_content col-25">
 
-                        <label for="image">
-                            <svg class="iconedit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="add-photo">
-                                <path
-                                    d="M20,10.5a1,1,0,0,0-1,1v7a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1v-8a1,1,0,0,1,1-1H6a1,1,0,0,0,1-.68l.54-1.64a1,1,0,0,1,.95-.68H14a1,1,0,0,0,0-2H8.44A3,3,0,0,0,5.6,6.55l-.32,1H4a3,3,0,0,0-3,3v8a3,3,0,0,0,3,3H18a3,3,0,0,0,3-3v-7A1,1,0,0,0,20,10.5Zm-9-1a4,4,0,1,0,4,4A4,4,0,0,0,11,9.5Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,11,15.5Zm11-11H21v-1a1,1,0,0,0-2,0v1H18a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0v-1h1a1,1,0,0,0,0-2Z">
-                                </path>
-                            </svg>
-                        </label>
-                        <input type="file" id="image" name="img" style="display: none;" onchange="previewImage(event)">
-                        <div>
-                            <img id="preview" class="user_img" name="profile_img">
-                        </div>
-
-                    </div>
-
-                    <div class="col-75">
-
-                        <div>
-                            <input type="text" id="contact" name="contact" placeholder="Phone number..">
-                        </div>
-
-                        <div>
-                            <input type="date" id="dob" name="dob" placeholder="Date of Birth..">
-                        </div>
-
-
-
-                        <div>
-                            <input type="text" id="bio" name="bio" placeholder="Bio..">
-                        </div>
-
-
-                    </div>
-                    <div>
-                        <input type="submit" value="Submit" class="sub_btn" id="sub_btn">
-                    </div>
-
-                </form>
-            </div>
-            <a href="/login/login" class="skipBtn">Skip</a>
-            <i class="fa-solid fa-right-from-bracket"></i>
+    <div class="activebox">
+        <div>
+            <i class="fa-brands fa-twitter fa-3x"></i>
         </div>
-    </div>
+
+        <form action="/info/pro_info" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+            <div class="imgInput">
+
+                <div class="info_content col-75">
+
+                    <label for="image">
+                        <svg class="iconedit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="add-photo">
+                            <path
+                                d="M20,10.5a1,1,0,0,0-1,1v7a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1v-8a1,1,0,0,1,1-1H6a1,1,0,0,0,1-.68l.54-1.64a1,1,0,0,1,.95-.68H14a1,1,0,0,0,0-2H8.44A3,3,0,0,0,5.6,6.55l-.32,1H4a3,3,0,0,0-3,3v8a3,3,0,0,0,3,3H18a3,3,0,0,0,3-3v-7A1,1,0,0,0,20,10.5Zm-9-1a4,4,0,1,0,4,4A4,4,0,0,0,11,9.5Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,11,15.5Zm11-11H21v-1a1,1,0,0,0-2,0v1H18a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0v-1h1a1,1,0,0,0,0-2Z">
+                            </path>
+                        </svg>
+                    </label>
+                    <input type="file" id="image" name="img" style="display: none;" onchange="previewImage(event)">
+                    <div>
+                        <img id="preview" class="user_img" name="profile_img">
+                    </div>
+
+                </div>
+
+                <div class="col-75">
+                    <div>
+                        <input type="text" id="contact" name="contact" placeholder="Phone number.." maxlength="10">
+                        <p id="error" class="error_msg"></p>
+                    </div>
+
+                    <div>
+                        <input type="date" id="dob" name="dob" placeholder="Date of Birth..">
+                        <p id="error1" class="error_msg"></p>
+                    </div>
+
+                    <div>
+                        <input type="text" id="bio" name="bio" placeholder="Bio..">
+                        <p id="error2" class="error_msg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" value="Submit" class="sub_btn" id="sub_btn">
+            </div>
+
+        </form>
+        <a href="/login/login" class="skipBtn">Skip
+            <i class="fa-solid fa-right-from-bracket"></i></a>
+
+
     </div>
     <script>
+
+        function validate() {
+            let phone = document.getElementById("contact").value;
+            let DOB = document.getElementById("dob").value;
+            let bio = document.getElementById("bio").value;
+
+            if(phone == ""){
+                document.getElementById("error").innerHTML = "please enter your number";
+                return false;
+            }
+            else{
+                document.getElementById("error").innerHTML = "";
+            }
+
+            if(DOB == ""){
+                document.getElementById("error1").innerHTML = "please enter your DOB";
+                return false;
+            }
+            else{
+                document.getElementById("error1").innerHTML = "";
+            }
+
+            if(bio == ""){
+                document.getElementById("error2").innerHTML = "please enter your bio";
+                return false;
+            }
+            else{
+                document.getElementById("error2").innerHTML = "";
+            }
+        }
         const previewImage = (event) => {
             /**
             * Get the selected files.

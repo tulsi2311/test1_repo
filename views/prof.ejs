@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Twitter Clone - Final</title>
   <link rel="stylesheet" href="/css/final_hp.css" />
-  <!-- <link rel="stylesheet" href="/css/extra.css"> -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
@@ -79,18 +78,16 @@
 
               <div class="profCard_profile_img">
                 <%if(user[0].user_image==null){%>
-                  <div class="img1"><img src="/files/profile-img.png"></div>
+                  <div class="img1"><img src="/compress/user-gfe2533ef7_640.png"></div>
                   <%}else{%>
                     <div class="img1"><img src="<%=profile_data.user_image%>"></div>
                     <% } %>
 
               </div>
-              <div class="profEditpro">
-
-                <a href="/prof/profedit" class="editproa"> Edit Profile </a>
-              </div>
+              
 
               <div class="user_details">
+                
                 <div class="unameinpro">
 
                   <p>
@@ -104,6 +101,11 @@
                   </p>
 
                 </div>
+                <div class="profEditpro">
+
+                  <a href="/prof/profedit" class="editproa"> Edit Profile </a>
+                </div>
+            
               </div>
 
               <div class="profFollow">
@@ -146,181 +148,166 @@
         <!-- post starts -->
         <% const array_of_allowed_files=['png', 'jpeg' , 'jpg' ]; const array_of_allowed_videos=['mp4','gif']; %>
           <% for(var i=0;i<data.length;i++) { %>
-            <div class="profPost">
+            <%var flag=0 %>
+              <div class="profPost">
 
 
-              <div class="post-child">
+                <div class="post-child">
 
-                <div class="flexdatatwit">
+                  <div class="flexdatatwit">
 
 
-                  <div class="twitimg">
+                    <div class="twitimg">
 
-                    <%if(user[0].user_image==""){%>
-                      <div class="img1"><img src="./files/profile-img.png"></div>
-        
-                      <%}else{%>
-                        <div class="img1"><img src="<%=profile_data.user_image%>"></div>
-                        <% } %>
-                  </div>
+                      <%if(user[0].user_image==""){%>
+                        <div class="img1"><img src="./files/profile-img.png"></div>
 
-                  <div class="nameandtime">
+                        <%}else{%>
+                          <div class="img1"><img src="<%=profile_data.user_image%>"></div>
+                          <% } %>
+                    </div>
 
-                    <div class="flex1">
+                    <div class="nameandtime">
 
-                      <div class="tweetname">
+                      <div class="flex1">
 
-                        <p class="tweetnamed">
-                          <%=profile_data.name%>
-                        </p>
-                        <p class="tweetnamed">
-                          <%=profile_data.user_name%>
-                        </p>
+                        <div class="tweetname">
+
+                          <p class="tweetnamed">
+                            <%=profile_data.name%>
+                          </p>
+                          <p class="tweetnamed">
+                            <%=profile_data.user_name%>
+                          </p>
+
+                        </div>
+
 
                       </div>
+                      <div class="tweetdatamain">
+
+                        <h5 class="tweetdatatxt"></h5>
+                        <div>
 
 
-                    </div>
-                    <div class="tweetdatamain">
-
-                      <h5 class="tweetdatatxt"></h5>
-                      <div>
+                          <p class="skill">
+                            <%=data[i].description%>
+                          </p>
 
 
-                        <p class="skill">
-                          <%=data[i].description%>
-                        </p>
+                          <% if(data[i].media_url==null || data[i].media_url=="" ) {  }else{ %>
+                            <% const file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>>
+                              0) + 2);
+                              if (array_of_allowed_files.includes(file_extension)) { %>
+                              <img id="tweet_img" src="<%=data[i].media_url%>" />
 
 
-                        <% if(data[i].media_url==null) { console.log("nothing") }else{ %>
-                          <% const file_extension=data[i].media_url.slice(((data[i].media_url.lastIndexOf('.') - 1)>>>
-                            0) + 2);
-                            if (array_of_allowed_files.includes(file_extension)) { %>
-                            <img id="tweet_img" src="<%=data[i].media_url%>" />
+                              <% }else{ %>
+                                <video width="320" height="240" controls>
+                                  <source src="<%=data[i].media_url%>" type="video/mp4">
+                                </video>
 
-                            
-                            <% }else{ %>
-                              <video width="320" height="240" controls>
-                                <source src="<%=data[i].media_url%>" type="video/mp4">
-                              </video>
-                              
-                              <% }}%>
+                                <% }}%>
 
-                              <div>
-                                <div class="profInsta">
-                                  <div class="icon_row">
-                                    <div class="icon_tab">
-                                      <div class="icon_tab">
-                                        <i id="heart1" class="fa fa-thumbs-up" onclick="likepost()"></i>
-  
-                                        <p>
-                                          <%=arr2[i]%>
-                                        </p>
-  
-                                      </div>
-  
+                                  <div>
+                                    <div class="profInsta">
                                       <div class="icon_row">
                                         <div class="icon_tab">
-                                          <a href=""><i class="fas fa-comment"></i></a>
-                                          <p>
-                                            <%=arr3[i]%>
-                                          </p>
-                                        </div>
-  
-                                        <div class="icon_row">
                                           <div class="icon_tab">
-                                            <a href=""><i class="fa fa-retweet"></i></a>
-                                            <p>10</p>
+                                            <% for(let j=0;j<tweetid.length;j++){%>
+                                              <% if(data[i].id==tweetid[j]){%>
+                                                <i id="<%=data[i].id%>" class="like_d fa fa-thumbs-up"
+                                                  onclick="likepost(this.id,1)"></i>
+                                                <a  id="likeCount<%=data[i].id%>" class="prachilikes"
+                                                  href="/likes/likes2">
+                                                  <%=likecount[j]%>
+                                                </a>
+                                                <%flag=1%>
+                                                  <%}%>
+                                                    <%}%>
+                                                      <%if(flag !=1){%>
+
+                                                        <i id="<%=data[i].id%>" class="like_c fa fa-thumbs-up"
+                                                          onclick="likepost(this.id,0)" title="Like"></i>
+                                                        <a  id="likeCount<%=data[i].id%>" class="prachilikes"
+                                                          href="/likes/likes2" ></a>
+                                                        <%}%>
                                           </div>
-  
-                                        </div>
-  
-                                      </div>
-                                    </div>
+                                          </div>
+                                                          <div class="icon_row">
+                                                            <div class="icon_tab">
+                                                              <a
+                                                                href="/comment/newc?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i
+                                                                  class="fas fa-comment" title="comment"></i></a>
+                                                              <p>
+                                                                <%=arr3[i]%>
+                                                              </p>
+                                                            </div>
+                                                            </div>
+                                                            <div class="icon_row">
+                                                              <div class="icon_tab">
+                                                                <a title="retweet"
+                                                                  href="/retweet/re?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i
+                                                                    class="fa fa-retweet"></i></a>
+
+                                                              </div>
+
+                                                            </div>
+                                                            <div class="icon_row">
+                                                              <div class="icon_tab">
+                                                                <a title="View re-tweet" href="/retweet/show?tid=<%=data[i].id%>&u_id=<%=data[i].u_id%>"><i class="fa fa-solid fa-eye"></i></a>
+                                                              </div>
+    
+                                                            </div>
+
+                                                          </div>
+
+                                                          
+                                          </div>
                                   </div>
-                                </div>
-                              </div>
-
-
+                        </div>
 
                       </div>
+
                     </div>
-
                   </div>
-
                 </div>
+
+              </div>
+                <%}%>
+
+              </div>
+              
+              
+              
+              <div class="widgets">
+                <%-include("staticpart2")-%>
               </div>
             </div>
-
-            <%}%>
-      </div>
-      <div class="widgets">
-        <%-include("staticpart2")-%>
-      </div>
-    </div>
-
-
-
-
-  </div>
+            
+            </div>
 
 
 
 
 
 
+    <!-- widgets ends -->
+
+ 
 
 
-  <!-- widgets ends -->
+    <script>
 
-  <dialog id="moreoption">
-    <div class="manubar">
-      <a class="achange" href="http://localhost:8000/changepassword"> Change Password</a>
-      <a class="achange" href="/changepassword/changepassword"> Change Password</a>
-      <a class="achange" id="deleteac" onclick="deleteac()">Delete Account</a>
-      <a class="achange" id="logoutac" onclick="logoutac()">Logout</a>
+      function dataopt() {
 
-      <p class="cancel" onclick="dataout()">cancle</p>
-    </div>
-  </dialog>
-
-
-
-
-
-  <script>
-
-    function dataopt() {
-
-      var data1 = document.getElementById('moreoption')
-      data1.showModal()
-    }
-    function dataout() {
-      var data1 = document.getElementById('moreoption')
-      data1.close()
-    }
-
-
-
-
-
-
-
-
-    window.onscroll = function () { myFunction() };
-
-    var header = document.getElementById("myHeader");
-
-
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-      if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-      } else {
-        header.classList.remove("sticky");
+        var data1 = document.getElementById('moreoption')
+        data1.showModal()
       }
-    }
+      function dataout() {
+        var data1 = document.getElementById('moreoption')
+        data1.close()
+      }
 
 
 
@@ -329,146 +316,140 @@
 
 
 
-    async function del(abc) {
-      x = parseInt(abc)
-      console.log(x)
 
-      var text = "you really want to delte this record" + x;
-      if (confirm(text) == true) {
-        text = "you really want to delte this record", x;
-        fetch('/delete?id=' + x, {
-          method: 'post',
-          headers: {
-            "Content-type": 'application/json'
-          },
-          body: JSON.stringify({
-            id: x
+     
+
+
+
+
+
+
+      async function del(abc) {
+        x = parseInt(abc)
+        console.log(x)
+
+        var text = "you really want to delte this record" + x;
+        if (confirm(text) == true) {
+          text = "you really want to delte this record", x;
+          fetch('/delete?id=' + x, {
+            method: 'post',
+            headers: {
+              "Content-type": 'application/json'
+            },
+            body: JSON.stringify({
+              id: x
+            })
           })
-        })
 
-          .then(res => res.json())
-          .then(data => {
-            document.getElementById(x).style.display = 'none';
-            //console.log(data.result.length);
-            console.log(data)
-            console.log("data delete sucesfully!!!!")
-            location.reload()
-          })
-      }
-    }
-
-
-    // var likeobj = 0;
-    var count = 0
-    var flag = true
-    function likepost() {
-      var count2 = document.getElementById("count").innerHTML
-      console.log(count2)
-      var z = document.getElementById('heart1')
-      count = 1
-
-      if (flag == true) {
-        z.style.color = 'red'
-        flag = false;
-      } else {
-        z.style.color = '#e0e2e4'
-        flag = true;
-      }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function dataopt() {
-
-      var data1 = document.getElementById('moreoption')
-      data1.showModal()
-    }
-    function dataout() {
-      var data1 = document.getElementById('moreoption')
-      data1.close()
-    }
-
-
-
-
-
-
-
-
-    window.onscroll = function () { myFunction() };
-
-    var header = document.getElementById("myHeader");
-
-
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-      if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-      } else {
-        header.classList.remove("sticky");
-      }
-    }
-
-
-    function logoutac() {
-
-
-      if (confirm("are your sure to logout") == true) {
-        fetch(`/logout/logout`)
-        location.assign(`/login/login/index5`)
-        console.log("delete")
-      } else {
-        alert("you cancel the delete");
+            .then(res => res.json())
+            .then(data => {
+              document.getElementById(x).style.display = 'none';
+              //console.log(data.result.length);
+              console.log(data)
+              console.log("data delete sucesfully!!!!")
+              location.reload()
+            })
+        }
       }
 
-    }
 
+      // var likeobj = 0;
+      var count = 0
+      var flag = true
+      function likepost() {
+        var count2 = document.getElementById("count").innerHTML
+        console.log(count2)
+        var z = document.getElementById('heart1')
+        count = 1
 
-    async function deleteac() {
-
-      if (confirm("are your sure to Delete Account") == true) {
-        const data = await fetch(`/deleteAccount/delete`);
-        const data2 = await data.json();
-        console.log(data2);
-        window.location.href = "/login/login/index5"
-        console.log(data2);
-      } else {
-        alert("you cancel the delete");
+        if (flag == true) {
+          z.style.color = 'red'
+          flag = false;
+        } else {
+          z.style.color = '#e0e2e4'
+          flag = true;
+        }
       }
 
-    }
 
 
-    // var likeobj = 0;
-    var count = 0
-    var flag = true
-    function likepost() {
-      var z = document.getElementById('heart1')
-      count = 1
 
-      if (flag == true) {
-        z.style.color = 'red'
-        flag = false;
-      } else {
-        z.style.color = '#e0e2e4'
-        flag = true;
+
+
+
+
+
+
+
+
+
+
+
+
+      function dataopt() {
+
+        var data1 = document.getElementById('moreoption')
+        data1.showModal()
       }
-    }
-  </script>
+      function dataout() {
+        var data1 = document.getElementById('moreoption')
+        data1.close()
+      }
+
+
+
+
+
+
+     
+      function logoutac() {
+
+
+        if (confirm("are your sure to logout") == true) {
+          fetch(`/logout/logout`)
+          location.assign(`/login/login/index5`)
+          console.log("delete")
+        } else {
+          alert("you cancel the delete");
+        }
+
+      }
+
+
+      async function deleteac() {
+
+        if (confirm("are your sure to Delete Account") == true) {
+          const data = await fetch(`/deleteAccount/delete`);
+          const data2 = await data.json();
+          console.log(data2);
+          window.location.href = "/login/login/index5"
+          console.log(data2);
+        } else {
+          alert("you cancel the delete");
+        }
+
+      }
+
+      async function likepost(id, like_flag) {
+        if (like_flag == 0) {
+          document.getElementById(`${id}`).style.color = "red"
+          const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=1`);
+          const like_count = await like_result.json();
+          console.log(like_count);
+          document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+          document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id}, 1)`);
+        }
+        else {
+          var like_btn = document.getElementById(`${id}`).style.color = "black"
+          const like_result = await fetch(`/likes/likes2?tweet_id=${id}&like_flag=0`);
+          const like_count = await like_result.json();
+          document.getElementById(`likeCount${id}`).innerHTML = like_count.countLike;
+          document.getElementById(`${id}`).setAttribute("onclick", `likepost(${id},0)`);
+        }
+
+      }
+
+    </script>
 </body>
 
 </html>

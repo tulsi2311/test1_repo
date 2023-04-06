@@ -18,7 +18,7 @@ const home = asyncHandler(async (req, res) => {
   var search_query = await query(`select * from Elite_User where name like '${fname}%' and id <> ${token}`)
   var search_following = await query(`SELECT following_id from user_following where user_i = ${token};`)
 
-  console.log(":::::::",search_query);
+  // console.log(":::::::",search_query);
   res.send({listUser:search_query,following:search_following})
   
 
@@ -28,16 +28,16 @@ const follower = asyncHandler(async (req, res) => {
   var cook_id = req.session.token_id;
   var token = req.session.token_id;
   var follower_id = token;
-  console.log("req.body",req.query);
-  console.log("follower_id:::::::  ", follower_id)
+  // console.log("req.body",req.query);
+  // console.log("follower_id:::::::  ", follower_id)
 
   var id = req.query.follower_id;
-  console.log("user_id:::: ", id);
+  // console.log("user_id:::: ", id);
 
 
 
   var follow_flag = req.query.flag;
-  console.log("flag = ", follow_flag);
+  // console.log("flag = ", follow_flag);
 
   if (follow_flag == 1) {
 
@@ -45,12 +45,12 @@ const follower = asyncHandler(async (req, res) => {
 
     conn.query(follower_insert, (err, data) => {
       if (err) throw err
-      console.log("succedd");
+      // console.log("succedd");
 
       var following_insert = `INSERT INTO user_following (user_i, following_id, is_delete) VALUES ('${follower_id}','${id}', '0');`
       conn.query(following_insert, (err, data) => {
         if (err) throw err;
-        console.log("thai gyu");
+        // console.log("thai gyu");
       })
     })
   }
@@ -60,12 +60,12 @@ const follower = asyncHandler(async (req, res) => {
       var follower_delete = `delete  from user_follower where follower_id = '${follower_id}'`;
       conn.query(follower_delete, (err, data) => {
         if (err) throw err;
-        console.log("thai gyu");
+        // console.log("thai gyu");
 
         var following_delete = `delete  from user_following where following_id = '${id}'`;
         conn.query(following_delete, (err, data) => {
           if (err) throw err;
-          console.log("thai gyu");
+          // console.log("thai gyu");
         })
 
       })

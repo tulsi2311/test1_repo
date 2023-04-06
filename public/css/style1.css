@@ -4,9 +4,6 @@
   padding:0px;
   box-sizing:border-box;
 }
-
-
-
 .body-login{
     text-transform: capitalize;
    font-family: Arial;
@@ -16,9 +13,15 @@
 .body-changepwd{
   text-transform: capitalize;
   font-family: Arial;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgb(133,125,249);
+background: radial-gradient(circle, rgba(133,125,249,1) 16%, rgba(203,221,224,1) 100%);
    color: black;
 
+}
+#errormatch{
+  font-size: 0.8rem;
+  margin: 5px;
+  color: rgba(255, 0, 0, 0.562);
 }
 .form1{
     position: absolute;
@@ -288,12 +291,7 @@ p{
 
 
 .user_details{
-  margin-top:15px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
-  /* border:2px solid yellowgreen */
+ 
 }
 .feed__header h2 {
   font-size: 20px;
@@ -436,8 +434,7 @@ p{
   border-radius: 50%;
 }
 .profEditpro{
-  margin-top:-7%;
-  margin-left:75%;
+ 
   
 }
 .profEditpro a
@@ -583,10 +580,10 @@ margin-left: 50px;
 .submit-change{
   
     margin: 10px 0px 0px 10px;
-  padding: 2px 4px 2px 4px;
+  padding: 5px 20px;
   border-radius: 15px;
-  background-color:#000000;
-  border: 2px solid black;
+  background-color:#857DF9;
+  border: 1px solid #857DF9;
   color:white;
 }
 .changepwdsave{
@@ -687,9 +684,7 @@ margin-top:5px;
 .icons{
   width:33.33%;
 }
-.containicon{
 
-}
 
 /* editpop */
 
@@ -698,7 +693,7 @@ margin-top:5px;
 }
 #moreoption{
  
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 25%;
   margin-right: -50%;
@@ -710,7 +705,8 @@ box-shadow: 4px 2px 5px rgb(85, 86, 87);
 
 }
 .manubar{
-  margin: 20px;
+  /* margin: 20px; */
+  
 }
 .achange{
   border-radius: 10px;
@@ -1185,7 +1181,7 @@ flex-wrap: wrap;
 border-radius: 10px;
 background-color: black;
 text-align: center;
-margin-top: -10px;
+margin-top: -10px; 
 }
 
 
@@ -1279,6 +1275,8 @@ margin-left: 40px;
   cursor: pointer;
   width: 13rem;
   font-size: .8rem;
+  position:sticky;
+  top: 10%;
   /* text-align: center; */
 }
 
@@ -1449,12 +1447,12 @@ margin-left: 40px;
 }
 .unameinpro p:nth-child(2)
 {
-    margin-top:-4%;
+    
     color: #616466;
 }
 .unameinpro p:nth-child(3)
 {
-    margin-top:5%;
+   
     
 }
 .profFollow
@@ -1510,12 +1508,11 @@ margin-left: 40px;
  
   display:flex;
   flex-wrap: wrap;
-  margin-top:17rem;
+  margin-top:20rem;
 padding: .5rem;
 }
 .bottom:hover{
-  /* background-color: #6164661a; */
-  /* color: var(--twitter-color); */
+
   background-color: var(--twitter-background);
   border-radius: 2rem;
  
@@ -1529,8 +1526,6 @@ padding: .5rem;
 .bottomText
 {
   margin-left:5%;
-  
-
 }
 .bottomText p
 {

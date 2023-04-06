@@ -17,7 +17,7 @@
 </head>
 
 <body class="body-align">
-    <form action="/login/login" onsubmit="return prachi1()" method="post" class="form1 card">
+    <form action="/login/login" onsubmit="return validation()" method="post" class="form1 card">
         <div class="card_profile_img"></div>
         <div class="whole-txt pt-4 ps-5 pe-5 pb-5">
 
@@ -57,7 +57,7 @@
 
 <script>
   var c=0;
-  function prachi1()
+  function validation()
   {
      var email = document.getElementById('emaill').value;
      var password = document.getElementById('pass').value
@@ -65,14 +65,6 @@
      if(email == "")
      {
         document.getElementById('strerr').innerHTML = "please enter email";
-        // c++;
-        // console.log(c)
-        // if(data>0){
-        //   var sum=ParseInt(data)+parseInt(c)
-        //   document.getElementById("fail").value=sum
-        // }else{
-        //   
-        // }
         document.getElementById("fail").value=c
         return false;
      }
@@ -84,15 +76,6 @@
      if(password == "")
      {
         document.getElementById('strerr').innerHTML = "please enter password";
-        // c++;
-        // console.log(c)
-        // if(data>0){
-          
-        //   var sum=ParseInt(data)+parseInt(c)
-        //   document.getElementById("fail").value=sum
-        // }else{
-        //   
-        // }
         document.getElementById("fail").value=c
         return false;
      }

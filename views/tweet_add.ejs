@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 
-    <link rel="stylesheet" href="/css/tweet_post.css">
-    <title>Tweet_add</title>
+  <link rel="stylesheet" href="/css/tweet_post.css">
+  <title>Tweet_add</title>
 </head>
 
 <body>
-    <!-- <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
+  <!-- <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post">
         <label for="text">Heading:</label>
         <textarea  id="text" name="heading"></textarea>
         <p id="err"></p>
@@ -30,100 +30,120 @@
     
         <input type="submit" value="submit"/>
     </form> -->
-    <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post" class="formdata">
-    <div class="alldata">
+  <form action="/tweet/tweet_upload" onsubmit="return function_tweet()" enctype="multipart/form-data" method="post"
+    >
+    <div class="formdata">
 
-   
+      <div class="alldata">
+  
+  
         <div class="container">
-        <div class="post_row">
-              <div class="text_col1">
-                  <div class="img1">
-                    <img src="/files/profile-img.png " class="imgprof"></div>
+          <div class="post_row">
+            <div class="text_col1">
+              <div class="img1">
+                <img src="/files/profile-img.png " class="imgprof">
               </div>
-             
+            </div>
+  
+          </div>
+          <div class="happen">
+            <textarea name="desc"  maxlength="200" class="textarea1"  placeholder="What's happening?"
+              id="emoji123"></textarea>
+              <img id="preview"  style="width:300px; height: 300px; display: none;">
+            <p id="err1"></p>
+          </div>
+          <p><%=s%></p>
+          <hr class="line">
+          <div style="display:flex ; justify-content: space-between; margin-top: 1rem;" >
+  
+       <div class="tweetTags" >
+  
+      
+          <div class="icgg">
+            
+            <label for="image"><i class="fa-solid fa-image iconimg1"></i></label>
+            
+            <input type="file" id="image" name="img" onchange="previewImage(event)" />
+          </div>
+          <div class="emojiTag">
+  
+         
+            <p id="err2"></p>
+            <p onclick="abc()" class="emojiInput" ><i class="fa-regular fa-face-smile  iconsmile1"></i></p>
+            
+          </div>
+  
         </div>
-        <div class="happen">
-          <textarea name="desc" maxlength="250" class="textarea1" placeholder="What's happening?" id="emoji123"></textarea>
-          <p id="err1"></p>
+          <div class="uploadpic">
+  
+            <input type="submit" value="Tweet" class="tweetbtn" />
+          </div>
         </div>
-      <hr class="line">
-      <div class="icgg">
-        <img id="preview" width="25%">
-        <label for="image"><i class="fa-solid fa-image iconimg1"></i></label>
-        <input type="file" id="image" name="img" onchange="previewImage(event)"/>
-        <p id="err2"></p>
-        <p onclick="abc()"><i class="fa-regular fa-face-smile  iconsmile1"></i></p>
-        <emoji-picker></emoji-picker>
         </div>
-        <div class="uploadpic">
-
-                <input type="submit" value="Tweet" class="tweetbtn"/>
-            </div>  
       </div>
     </div>
-    </form>
+    <emoji-picker class="setemoj"></emoji-picker>
+  </form>
 
-    <script>
-        document.querySelector('emoji-picker')
-        .addEventListener('emoji-click', event => console.log(event.detail));
-        
-        document.querySelector('emoji-picker')
-        .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
-        
-        document.querySelector('emoji-picker').style.display = "none";
-        // document.querySelector('tweet').style.display = "none";
-        
-        function abc() {
-        console.log("tulsi")
-        if (document.querySelector('emoji-picker').style.display == "none") {
+  <script>
+    document.querySelector('emoji-picker')
+      .addEventListener('emoji-click', event => console.log(event.detail));
+
+    document.querySelector('emoji-picker')
+      .addEventListener('emoji-click', event => document.getElementById('emoji123').value += event.detail.unicode);
+
+    document.querySelector('emoji-picker').style.display = "none";
+    // document.querySelector('tweet').style.display = "none";
+
+    function abc() {
+      console.log("tulsi")
+      if (document.querySelector('emoji-picker').style.display == "none") {
         document.querySelector('emoji-picker').style.display = "block";
         document.querySelector('.tweet').style.display = "none";
-        }
-        else {
+      }
+      else {
         document.querySelector('emoji-picker').style.display = "none";
         document.querySelector('.tweet').style.display = "block";
-        }
-        }
-        
-        function function_tweet() {
-        var tweet_text = document.getElementById("emoji123").value;
-        var tweet_image = document.getElementById("image");
-        
-        
+      }
+    }
 
-        
-        if (tweet_text.length > 140) {
+    function function_tweet() {
+      var tweet_text = document.getElementById("emoji123").value;
+      var tweet_image = document.getElementById("image");
+      var desc=document.getElementById("desc").value
+
+      if (tweet_text.length > 140) {
         document.getElementById("err1").innerHTML = "enter valid text";
         return false;
-        }
-        else {
+      }
+      else {
         document.getElementById("err1").innerHTML = "";
-        }
-        
-        var imgsize = Math.round(tweet_image.files[0].size / 1048576);
-        if (imgsize > 2) {
+      }
+
+      var imgsize = Math.round(tweet_image.files[0].size / 1048576);
+      if (imgsize > 2) {
         document.getElementById("err2").innerHTML = "upload image whose size is less than 2mb";
         return false;
-        }
-        else {
+      }
+      else {
         document.getElementById("err1").innerHTML = "";
-        }
-        
-        }
-        
-        const previewImage = (event) => {
-        /**
-        * Get the selected files.
-        */
-        const imageFiles = event.target.files;
-        /**
-        * Count the number of files selected.
-        */
-        const imageFilesLength = imageFiles.length;
-        /**
-        * If at least one image is selected, then proceed to display the preview.
-        */
-        if (imageFilesLength > 0) {
+      }
+
+    }
+
+    const previewImage = (event) => {
+      /**
+      * Get the selected files.
+      */
+      const imageFiles = event.target.files;
+      /**
+      * Count the number of files selected.
+      */
+      const imageFilesLength = imageFiles.length;
+      /**
+      * If at least one image is selected, then proceed to display the preview.
+      */
+      if (imageFilesLength > 0) {
         /**
         * Get the image path.
         */
@@ -140,9 +160,11 @@
         * Show the element by changing the display value to "block".
         */
         imagePreviewElement.style.display = "block";
-        }
-        };
-        </script>
+      }
+    };
+  </script>
 </body>
 
 </html>
+
+

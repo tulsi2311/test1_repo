@@ -1,18 +1,24 @@
+
+
+
+
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 
 }
-body{
-    background-color: #d9d9d9;
+body
+{
+    background-color: rgb(133,125,249);
+background: radial-gradient(circle, rgba(133,125,249,1) 16%, rgba(203,221,224,1) 100%);
 }
 
 .post_row
 {
     display: flex;
     flex-wrap: wrap;
-   margin-top:50px;
+   margin-top:40px;
 }
 .text_col2 input{
     border:3px solid #d9d9d9;
@@ -26,12 +32,11 @@ body{
     font-weight: 600;
     padding:15px;
     border:none;
-  
 }
 .textarea1{
     margin-top: -50px;
-    width: 300px;
-    height:150px;
+    width: 320px;
+    height:120px;
     border: none;
     outline: none;
 }
@@ -60,6 +65,9 @@ body{
 .container{
     margin-top: -30px;
 }
+.preview{
+    width:25%;
+}
 .icon
 {
     display: flex;
@@ -84,7 +92,7 @@ body{
     margin-right:auto;
     /* padding: 0 16px; */
     border:1px solid white;
-    margin-top:200px;
+    margin-top:100px;
     border-radius:10px;
 }
 /* 
@@ -97,4 +105,29 @@ body{
 .iconsmile1{
   
     margin: 0px 0px 0px 10px;
+}
+
+/* .picker {
+    border-radius: 20px;
+} */
+
+.setemoj{
+    margin-left: 35%;
+    width: 16rem;
+    margin-top: -25px;
+    --emoji-size: 1rem;
+    height: 17rem;
+}
+
+.tweetTags{
+    display:flex;
+}
+
+.emojiTag{
+    margin-right: -2rem;
+}
+
+.emojiInput{
+    width:30px ;
+     margin-bottom: 1rem;
 }

@@ -8,7 +8,7 @@ const asyncHandler = require("express-async-handler");
 const query = util.promisify(conn.query).bind(conn)
 const deleteA = asyncHandler(async (req, res) => {
     var cook = req.session.token;
-    console.log("cookie: ", cook);
+    // console.log("cookie: ", cook);
     if (cook == '') {
         res.redirect('/login/login')
     } else {

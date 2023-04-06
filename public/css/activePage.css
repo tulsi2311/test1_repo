@@ -1,0 +1,54 @@
+body {
+    background: rgb(133,125,249);
+    background: radial-gradient(circle, rgba(133,125,249,1) 16%, rgba(203,221,224,1) 100%);
+}
+
+.activebox {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    width: fit-content;
+    text-align: center;
+    margin: auto;
+    padding: 40px 45px;
+    border-radius: 20px;
+    background-color: white;
+    margin-top:10%;
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+
+p {
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.active_link{
+    border: 1px solid;
+    font-family: sans-serif;
+    /* width: fit-content; */
+    margin: auto;
+    font-size: 1.2rem;
+    padding: 8px 45px;
+    border-radius: 20px;
+    background-color: green;
+    box-shadow: 5px 5px 13px inset #60f190;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.active_link:hover {
+    box-shadow: 3px 3px 10px #696960;
+} 
+
+.fa-twitter{
+    color: #857df9;
+}
+
+.link{
+    margin-top: 60px;
+}

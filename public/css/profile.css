@@ -230,10 +230,7 @@ margin: 20px 40px 10px 20px ;
 
 
 .user_details{
-display: flex;
-flex-wrap: wrap;
-flex-direction: row;
-justify-content: space-between;
+
 }
 .feed__header h2 {
 font-size: 20px;

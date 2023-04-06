@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style1.css" />
-   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 
     <div class="sidebar">
 
-        <div class="twitterIcon ">
+        <div class="twitterIcon">
             <svg class="svg-icon2"
                 style="width: 3em; height: 3em;vertical-align: middle;fill: currentColor;overflow: hidden;"
                 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -30,10 +31,10 @@
          
 
             <div class="sidebarOption">
-                <a href="/login/login" class="text-decoration-none thattxt" >
-                    <span class="homeicon material-icons" >home</span> 
+                <a href="/login/login" class="text-decoration-none thattxt">
+                    <span class="homeicon material-icons">home</span> 
                     <div class="text">
-                        <span >Home</span>
+                        <span>Home</span>
                         </div>
                 </a>
              
@@ -41,12 +42,12 @@
 
 
             <div class="sidebarOption">
-                <a href="/prof/prof" class="text-decoration-none thattxt" onclick="activecolor2()" >
+                <a href="/prof/prof" class="text-decoration-none thattxt">
 
-                    <span class="homeicon material-icons" > perm_identity
+                    <span class="homeicon material-icons"> perm_identity
                     </span>
                     <div class="text">
-                        <span id="thattxt2">Profile</span>
+                        <span>Profile</span>
 
                     </div>
                 </a>
@@ -54,10 +55,10 @@
             </div>
 
             <div id="manuopt" onclick="dataopt()" class="sidebarOption mp ">
-                <a class="thattxt text-decoration-none" onclick="activecolor3()" >
+                <a class="thattxt text-decoration-none">
                     <span class="homeicon material-icons"> more_horiz </span>
                     <div class="text">
-                    <span id="thattxt3">More</span>
+                    <span>More</span>
                     </div>
                 </a>
 
@@ -70,9 +71,9 @@
             <div class="bottom">
                 <div class="bottomImage">
                     <%if(user[0].user_image=="" || user[0].user_image==null){%>
-                        <img src="/compress/img1.png">
+                        <img src="/compress/user-gfe2533ef7_640.png" height="100px" width="100">
                         <% }else{ %>
-                            <img src="<%=user[0].user_image%>" >
+                            <img src="<%=user[0].user_image%>" height="100px" width="100">
                             <% } %>
                 </div>
                 <div class="bottomText">
@@ -136,9 +137,6 @@
 
     <script>
 
-
-
-
         function dataopt() {
 
             var data1 = document.getElementById('moreoption')
@@ -151,28 +149,7 @@
 
 
 
-
-
-
-
-
-        window.onscroll = function () { myFunction() };
-
-        var header = document.getElementById("myHeader");
-
-
-        var sticky = header.offsetTop;
-
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        }
-
-
-
+       
 
 
 
@@ -235,27 +212,7 @@
 
 
 
-
-
-
-
-        window.onscroll = function () { myFunction() };
-
-        var header = document.getElementById("myHeader");
-
-
-        var sticky = header.offsetTop;
-
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        }
-
-
-
+      
 
 
 
@@ -335,29 +292,12 @@
 
 
 
-
-        window.onscroll = function () { myFunction() };
-
-        var header = document.getElementById("myHeader");
-
-
-        var sticky = header.offsetTop;
-
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        }
-
-
         function logoutac() {
 
 
             if (confirm("are your sure to logout") == true) {
                 fetch(`/logout/logout`)
-                location.assign(`/login/login/index5`)
+                location.assign(`/login/login`)
                 console.log("delete")
             } else {
                 alert("you cancel the delete");
@@ -369,11 +309,8 @@
         async function deleteac() {
 
             if (confirm("are your sure to Delete Account") == true) {
-                const data = await fetch(`/deleteAccount/delete`);
-                const data2 = await data.json();
-                console.log(data2);
-                window.location.href = "/login/login/index5"
-                console.log(data2);
+                fetch(`/deleteAccount/delete`);
+                location.assign(`/login/login`)
             } else {
                 alert("you cancel the delete");
             }

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 
 const app = express();
@@ -48,7 +49,7 @@ app.use(session({
    cookie: {
    maxAge: 24 * 60 * 60 * 1000
    }
-   }));
+}));
 
 
 app.use('/registration',register)
@@ -67,4 +68,6 @@ app.use('/retweet',retweet)
 
 
 
-app.listen(2082);
+app.listen(process.env.PORT,(req,res)=>{
+   console.log("app is reunning on port ",process.env.PORT)
+});

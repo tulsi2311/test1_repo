@@ -30,7 +30,7 @@
     </div>
 </div>
 
-    <form action="/prof/updateprof" method="post" enctype="multipart/form-data">
+    <form action="/prof/updateprof" method="post" onsubmit="return validate()" enctype="multipart/form-data">
     <div class="savebtn">
         <!-- <a  class="savebtn1" href="/prof/updateprof">Save</a> -->
         <input class="savebtn1" type="submit" value="save">
@@ -62,13 +62,16 @@
 
 
     <div class="col m-2">
-        <input placeholder="name" name="user_name" type="text" class="form-control " id="inputEmail3" value="<%=edit_query[0].name %>">
-      </div>
-      <div class="col  m-2 "> <input placeholder="bio" name="user_bio" type="text" class="form-control textarea" id="inputEmail3" value="<%=edit_query[0].bio%>" ></div>
+        <input placeholder="name" id="name" name="user_name" type="text" class="form-control " id="inputEmail3" value="<%=edit_query[0].name %>">
+        <p id="err1"></p>
+    </div>
+      <div class="col  m-2 "> <input id="bio" placeholder="bio" name="user_bio" type="text" class="form-control textarea" id="inputEmail3" value="<%=edit_query[0].bio%>" >
+        <p id="err2"></p></div>
 
 
     <div class="editdata">
-        <label for="exampleFormControlInput1"  class="form-label"> Birth Date :</label> <input type="date" name="dob" class="bdate" value="<%=date%>">
+        <label for="exampleFormControlInput1"  class="form-label"> Birth Date :</label> <input type="date" id="dob" name="dob" class="bdate" value="<%=date%>">
+        <p id="err3"></p>
         <!-- <label for="exampleFormControlInput1" class="form-label"></label> -->
     </div>
 
@@ -82,3 +85,25 @@
 
 </div>
 </div>
+<script>
+    function validate(){
+        var name=document.getElementById("name").value
+        var bio=document.getElementById("bio").value
+        var dob=document.getElementById("dob").value
+
+        if(name.trim()==""){
+           document.getElementById("err1").innerHTML="please enter name"
+           return false
+        }else if(bio.trim()==""){
+            document.getElementById("err2").innerHTML="please enter bio"
+           return false
+        }else if(dob.trim()==""){
+            document.getElementById("err3").innerHTML="please enter dob"
+           return false
+        }else{
+            return true
+        }
+    }
+</script>
+</body>
+</html>

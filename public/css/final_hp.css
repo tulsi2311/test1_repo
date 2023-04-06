@@ -260,12 +260,9 @@ block-size: fit-content;
 
 
 .user_details{
-  margin-top:15px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
-  /* border:2px solid yellowgreen */
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
 }
 .feed__header h2 {
   font-size: 20px;
@@ -408,8 +405,7 @@ block-size: fit-content;
   border-radius: 50%;
 }
 .profEditpro{
-  margin-top:-7%;
-  margin-left:75%;
+ margin-top: 1rem;
   
 }
 .profEditpro a
@@ -760,8 +756,11 @@ color: black;
 .prachilikes{
   /* border: 1px solid; */
   margin-top: -5px;
+  text-decoration: none;
+  color: #000000;
+  pointer-events: none; 
+  cursor: default;
 }
-
 .col_tweet {
   float: left;
   width: 48%;
@@ -957,7 +956,7 @@ max-width:450px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-bottom:20%;
+  margin-bottom:10%;
 }
 .sidebarOption a{
   font-size: 35px;
@@ -1413,12 +1412,12 @@ color: white
 }
 .unameinpro p:nth-child(2)
 {
-    margin-top:-4%;
+   
     color: #616466;
 }
 .unameinpro p:nth-child(3)
 {
-    margin-top:5%;
+  
     
 }
 .profFollow
