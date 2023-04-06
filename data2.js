@@ -1,19 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 
-const app = express();
-const bodyParser = require('body-parser');
-var bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
-const date = require('date-and-time')
-var util = require('util')
-const multer = require("multer");
-const compress_images = require("compress-images")
-var cookie = require('cookie-parser');
-var session = require('express-session');
-const conn =  require('./connection/connection')
-const register =  require('./Routes/register')
-const login = require('./Routes/login')
 const logout = require('./Routes/logout')
 const tweet = require('./Routes/tweet')
 const prof = require('./Routes/prof')
